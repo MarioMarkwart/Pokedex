@@ -1,7 +1,7 @@
 let currentPokemon;
 
 async function loadPokemon(){
-    let url = 'https://pokeapi.co/api/v2/pokemon/pikachu'
+    let url = 'https://pokeapi.co/api/v2/pokemon/charmander'
     let response = await fetch(url);
     currentPokemon = await response.json();
 
@@ -11,5 +11,5 @@ async function loadPokemon(){
 
 function renderPokemonInfo(){
     document.getElementById('pokemonName').innerHTML = currentPokemon['name'];
-    document.getElementById('pokedex').innerHTML += `<img src="${currentPokemon['sprites']['front_shiny']}" alt="${currentPokemon['name']}">`
+    document.getElementById('pokemonImage').src = currentPokemon['sprites']['front_shiny'];
 }
