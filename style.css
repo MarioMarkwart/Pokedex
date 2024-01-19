@@ -13,6 +13,8 @@
 }
 
 .info-container{
+    display: flex;
+    align-items: center;
     background-color: white;
     border-radius: 40px 40px 0 0;
     margin-top: -40px;
@@ -22,6 +24,6 @@
 }
 
 #pokemonImage{
-    width: 200px;
-    margin-top: -120px;
+    width: 250px;
+    margin-top: -200px;
 }
