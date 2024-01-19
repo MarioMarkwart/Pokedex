@@ -8,7 +8,7 @@ async function loadPokemon(name){
     let url = `https://pokeapi.co/api/v2/pokemon/${name}`
     let response = await fetch(url);
     currentPokemon = await response.json();
-    currentPokemonName = currentPokemon['name'].charAt(0).toUpperCase() + currentPokemon['name'].slice(1);
+    currentPokemonName = await currentPokemon['name'].charAt(0).toUpperCase() + currentPokemon['name'].slice(1);
 
     console.log(currentPokemon);
     renderPokemonInfo(currentPokemon);
@@ -50,6 +50,7 @@ async function loadAllPokemon(){
 
 function renderAllPokemon(){
     for (let i=0; i<50; i++){
+        console.log(allPokemon[i]['name']);
         document.getElementById('allPokemon').innerHTML += `<div class="card">${loadPokemon(allPokemon[i]['name'])}</div>`;
     }
 }
