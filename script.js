@@ -48,11 +48,16 @@ async function loadAllPokemon(){
     console.log(allPokemon)
 }
 
-function renderAllPokemon(){
+async function renderAllPokemon(){
     for (let i=0; i<50; i++){
         // url += allPokemon[i]['name'];
         let url = `https://pokeapi.co/api/v2/pokemon/${allPokemon[i]['name']}`
-        console.log(url);
-        document.getElementById('allPokemon').innerHTML += `<div class="card">${url}</div>`;
+        let response = await fetch(url);
+        let responseAsJson = await response.json();
+
+        let imgSrc = responseAsJson['sprites']['other']['official-artwork']['front_shiny'];
+
+        console.log(responseAsJson);
+        document.getElementById('allPokemon').innerHTML += /*html*/`<div class="card"><img src="${imgSrc}"></div>`;
     }
 }
