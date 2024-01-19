@@ -17,6 +17,7 @@ async function loadPokemon(name){
     setTitle();
 }
 
+// function render
 function renderPokemonInfo(){
     document.getElementById('pokemonName').innerHTML = currentPokemonName;
     // document.getElementById('pokemonImage').src = currentPokemon['sprites']['front_shiny'];
@@ -32,7 +33,6 @@ function setTitle(){
 
     if (currentPokemon == "") title.innerHTML = "Pokédex"
     else title.innerHTML = `Pokédex - ${currentPokemonName}`;
-
 }
 
 async function loadAllPokemon(){
@@ -50,7 +50,9 @@ async function loadAllPokemon(){
 
 function renderAllPokemon(){
     for (let i=0; i<50; i++){
-        console.log(allPokemon[i]['name']);
-        document.getElementById('allPokemon').innerHTML += `<div class="card">${loadPokemon(allPokemon[i]['name'])}</div>`;
+        // url += allPokemon[i]['name'];
+        let url = `https://pokeapi.co/api/v2/pokemon/${allPokemon[i]['name']}`
+        console.log(url);
+        document.getElementById('allPokemon').innerHTML += `<div class="card">${url}</div>`;
     }
 }
