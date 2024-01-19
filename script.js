@@ -11,5 +11,5 @@ async function loadPokemon(){
 
 function renderPokemonInfo(){
     document.getElementById('pokemonName').innerHTML = currentPokemon['name'];
-    document.getElementById('pokemonFront').innerHTML = `<img src="${currentPokemon['sprites']['front_shiny']}" alt="${currentPokemon['name']}">`
+    document.getElementById('pokedex').innerHTML += `<img src="${currentPokemon['sprites']['front_shiny']}" alt="${currentPokemon['name']}">`
 }

@@ -2,11 +2,19 @@
     margin:0;
     text-decoration: none;
     box-sizing: border-box;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 #pokedex{
     min-height: 50vh;
-    background-color: rgb(218, 36, 36);
+    background-color: #FB6C6C;
     color:white;
-    padding: 20px;
+    padding: 24px;
+}
+
+.info-container{
+    background-color: white;
+    border-radius: 40px 40px 0 0;
+    margin-top: -40px;
+    min-height: 100px;
 }
