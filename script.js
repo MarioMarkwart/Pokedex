@@ -1,10 +1,11 @@
 let currentPokemon;
 let currentPokemonName;
+let allPokemon = [];
 
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 
-async function loadPokemon(){
-    let url = 'https://pokeapi.co/api/v2/pokemon/pikachu'
+async function loadPokemon(name){
+    let url = `https://pokeapi.co/api/v2/pokemon/${name}`
     let response = await fetch(url);
     currentPokemon = await response.json();
     currentPokemonName = currentPokemon['name'].charAt(0).toUpperCase() + currentPokemon['name'].slice(1);
@@ -32,4 +33,23 @@ function setTitle(){
     if (currentPokemon == "") title.innerHTML = "Pokédex"
     else title.innerHTML = `Pokédex - ${currentPokemonName}`;
 
+}
+
+async function loadAllPokemon(){
+    let url = "https://pokeapi.co/api/v2/pokemon/?limit=1500"
+    let response = await fetch(url);
+    let responseAsJson = await response.json();
+    // console.log('Length: ', responseAsJson['results'].length)
+
+    for (let i=0; i<responseAsJson['results'].length; i++){
+        // console.log(i, responseAsJson['results'][i]);
+        allPokemon.push(responseAsJson['results'][i]);
+    }
+    console.log(allPokemon)
+}
+
+function renderAllPokemon(){
+    for (let i=0; i<50; i++){
+        document.getElementById('allPokemon').innerHTML += `<div class="card">${loadPokemon(allPokemon[i]['name'])}</div>`;
+    }
 }

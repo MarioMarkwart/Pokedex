@@ -27,3 +27,9 @@
     width: 250px;
     margin-top: -200px;
 }
+
+.card{
+    padding: 10px;
+    background-color: lightskyblue;
+    border: 1px solid black;
+}
