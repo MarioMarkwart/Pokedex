@@ -5,7 +5,7 @@ let currentPokemonName;
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 async function init(){
     await loadAllPokemon();
-    await loadPokemon("indeedee-female")
+    await loadPokemon("goomy")
     await renderPokemonStats();
 }
 
@@ -42,18 +42,17 @@ function renderPokemonInfo(){
 }
 
 function renderPokemonStats(){
-    let stats = document.getElementById('pokemonStats');
-    stats.innerHTML = '<table>'
+    let statsTable = document.getElementById('statsTable');
+    // stats.innerHTML = '<table>';
     for(let i=0; i<currentPokemon['stats'].length; i++){
         console.log(currentPokemon['stats'][i]['stat']['name'])
-        // stats.innerHTML += /*html*/`<div><b>${currentPokemon['stats'][i]['stat']['name']}:</b> ${currentPokemon['stats'][i]['base_stat']}</div>`
-        stats.innerHTML += /*html*/`
+        statsTable.innerHTML += /*html*/`
         <tr>
             <td><b>${currentPokemon['stats'][i]['stat']['name']}:</b></td>
             <td>${currentPokemon['stats'][i]['base_stat']}</td>
         </tr>`
     }
-    stats.innerHTML += `</table>`
+    // stats.innerHTML += `</table>`
 }
 
 function setFavIcon(){
