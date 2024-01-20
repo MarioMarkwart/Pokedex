@@ -1,8 +1,25 @@
+let allPokemon = [];
 let currentPokemon;
 let currentPokemonName;
-let allPokemon = [];
 
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
+async function init(){
+    await loadAllPokemon();
+    await loadPokemon("indeedee-female")
+    await renderPokemonStats();
+}
+
+
+async function loadAllPokemon(){
+    let url = "https://pokeapi.co/api/v2/pokemon/?limit=1500"
+    let response = await fetch(url);
+    let responseAsJson = await response.json();
+
+    for (let i=0; i<responseAsJson['results'].length; i++){
+        allPokemon.push(responseAsJson['results'][i]);
+    }
+    console.log(allPokemon)
+}
 
 async function loadPokemon(name){
     let url = `https://pokeapi.co/api/v2/pokemon/${name}`
@@ -11,17 +28,32 @@ async function loadPokemon(name){
     currentPokemonName = await currentPokemon['name'].charAt(0).toUpperCase() + currentPokemon['name'].slice(1);
 
     console.log(currentPokemon);
-    renderPokemonInfo(currentPokemon);
 
     setFavIcon();
     setTitle();
+    renderPokemonInfo(currentPokemon);
 }
 
-// function render
 function renderPokemonInfo(){
     document.getElementById('pokemonName').innerHTML = currentPokemonName;
-    // document.getElementById('pokemonImage').src = currentPokemon['sprites']['front_shiny'];
     document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
+    // document.getElementById('pokemonStats').innerHTML = currentPokemon[]
+    console.log(currentPokemon);
+}
+
+function renderPokemonStats(){
+    let stats = document.getElementById('pokemonStats');
+    stats.innerHTML = '<table>'
+    for(let i=0; i<currentPokemon['stats'].length; i++){
+        console.log(currentPokemon['stats'][i]['stat']['name'])
+        // stats.innerHTML += /*html*/`<div><b>${currentPokemon['stats'][i]['stat']['name']}:</b> ${currentPokemon['stats'][i]['base_stat']}</div>`
+        stats.innerHTML += /*html*/`
+        <tr>
+            <td><b>${currentPokemon['stats'][i]['stat']['name']}:</b></td>
+            <td>${currentPokemon['stats'][i]['base_stat']}</td>
+        </tr>`
+    }
+    stats.innerHTML += `</table>`
 }
 
 function setFavIcon(){
@@ -35,29 +67,18 @@ function setTitle(){
     else title.innerHTML = `Pokédex - ${currentPokemonName}`;
 }
 
-async function loadAllPokemon(){
-    let url = "https://pokeapi.co/api/v2/pokemon/?limit=1500"
-    let response = await fetch(url);
-    let responseAsJson = await response.json();
-    // console.log('Length: ', responseAsJson['results'].length)
+async function renderPokemonMainScreen(){
 
-    for (let i=0; i<responseAsJson['results'].length; i++){
-        // console.log(i, responseAsJson['results'][i]);
-        allPokemon.push(responseAsJson['results'][i]);
-    }
-    console.log(allPokemon)
-}
-
-async function renderAllPokemon(){
     for (let i=0; i<50; i++){
-        // url += allPokemon[i]['name'];
-        let url = `https://pokeapi.co/api/v2/pokemon/${allPokemon[i]['name']}`
-        let response = await fetch(url);
-        let responseAsJson = await response.json();
+        // // url += allPokemon[i]['name'];
+        // let url = `https://pokeapi.co/api/v2/pokemon/${allPokemon[i]['url']}`
+        // console.log(url)
+        // let response = await fetch(url);
+        // let responseAsJson = await response.json();
+        // console.log(responseAsJson);
 
-        let imgSrc = responseAsJson['sprites']['other']['official-artwork']['front_shiny'];
+        // let imgSrc = responseAsJson['sprites']['other']['official-artwork']['front_shiny'];
 
-        console.log(responseAsJson);
-        document.getElementById('allPokemon').innerHTML += /*html*/`<div class="card"><img src="${imgSrc}"></div>`;
+        // document.getElementById('allPokemon').innerHTML += /*html*/`<div class="card"><img src="${imgSrc}"></div>`;
     }
 }
