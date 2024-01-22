@@ -35,18 +35,42 @@
 }
 
 #pokemonStats{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: lightcyan;
+    width: 300px;
 }
 
 #statsTable{
+    /* table-layout: fixed; */
+    width: 100%;
+    padding: 10px;
+
     td:nth-child(1){
-        /* width: 100px; */
+        /* width: 200px; */
+        width: 100%;
+        /* background-color: lightcoral; */
     }
     td:nth-child(2){
         /* background-color: green; */
-        width: 100px;
+        width: 100%;
         text-align: center;
         padding: 10px
     }
+}
 
+.statsMenuBar{
+    display: flex;
+    text-align: center;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.statsMenuBar div{
+    border-radius: 10px 10px 0 0;
+    padding: 5px;
+}
+.active{
+    background-color: red;
 }

@@ -5,7 +5,7 @@ let currentPokemonName;
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 async function init(){
     await loadAllPokemon();
-    await loadPokemon("goomy")
+    await loadPokemon("ivysaur")
     await renderPokemonStats();
 }
 
@@ -80,4 +80,19 @@ async function renderPokemonMainScreen(){
 
         // document.getElementById('allPokemon').innerHTML += /*html*/`<div class="card"><img src="${imgSrc}"></div>`;
     }
+}
+
+function loadStat(index){
+    let content = document.getElementById('pokemonStats');
+    for (let i = 0; i < 4; i++) {
+        if (i === index){
+            document.getElementById(`stat${i}`).classList.add('active');
+            // content.innerHTML =  renderPokemonStats(i);
+        }
+        else{
+            document.getElementById(`stat${i}`).classList.remove('active')
+        }
+    }
+
+
 }
