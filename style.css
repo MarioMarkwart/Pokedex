@@ -37,3 +37,16 @@
 #pokemonStats{
     background-color: lightcyan;
 }
+
+#statsTable{
+    td:nth-child(1){
+        /* width: 100px; */
+    }
+    td:nth-child(2){
+        /* background-color: green; */
+        width: 100px;
+        text-align: center;
+        padding: 10px
+    }
+
+}
