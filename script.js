@@ -6,7 +6,7 @@ let statsTable;
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 async function init(){
     await loadAllPokemon();
-    await loadPokemon("caterpie")
+    await loadPokemon("cobalion")
     renderPokemonStats(0);
 }
 
@@ -45,7 +45,13 @@ function renderPokemonInfoTop(){
     else if (currentPokemon['id'].toString().length == 2) pokemonId.innerHTML = /*html*/`#00${currentPokemon['id']}`
     else if (currentPokemon['id'].toString().length == 3) pokemonId.innerHTML = /*html*/`#0${currentPokemon['id']}`
     else pokemonId.innerHTML = /*html*/`#${currentPokemon['id']}`
+
+    let pokedex = document.getElementById('pokedex');
+    pokedex.className = "";
+    pokedex.classList.add(`${currentPokemon['types'][0]['type']['name']}`)
+    
 }
+
 
 function renderPokemonStats(index){
     let statsTable = document.getElementById('statsTable');
@@ -57,6 +63,7 @@ function renderPokemonStats(index){
     }
 }
 
+
 function renderAboutStatHTML(statsTable){
     let abilities = currentPokemon['abilities'];
     statsTable.innerHTML = "<td><b>Abilities</b></td>"
@@ -65,18 +72,19 @@ function renderAboutStatHTML(statsTable){
         statsTable.innerHTML += `<td>${e}</td>`;
     });
     statsTable.innerHTML += `
-    <tr>
-    <td><b>Height</b></td>
-    <td>${(currentPokemon['height']/10).toFixed(2)} cm</td>
-    </tr>
-    <tr>
-    <td><b>Weight</b></td><td>${currentPokemon['weight']/10} kg
-    <tr><b>Type</b></tr>`
+        <tr>
+        <td><b>Height</b></td>
+        <td>${(currentPokemon['height']/10).toFixed(2)} cm</td>
+        </tr>
+        <tr>
+        <td><b>Weight</b></td><td>${currentPokemon['weight']/10} kg
+        <tr><b>Type</b></tr>`
 
     toTempArray(currentPokemon['types'], 'type', 'name').forEach(e =>{
         statsTable.innerHTML += `<td>${e}</td>`
     })
 }
+
 
 function toTempArray(valuesToPush, part1, part2){
     let tempArray = [];
@@ -86,6 +94,7 @@ function toTempArray(valuesToPush, part1, part2){
     }
     return tempArray;
 }
+
 
 function renderBaseStatHTML(statsTable){
     for(let i=0; i<currentPokemon['stats'].length; i++){
@@ -97,6 +106,7 @@ function renderBaseStatHTML(statsTable){
     }
 }
 
+
 function renderMovesStatHTML(statsTable){
 
     let moves = currentPokemon['moves'];
@@ -106,9 +116,11 @@ function renderMovesStatHTML(statsTable){
     }
 }
 
+
 function setFavIcon(){
     document.getElementById('favicon').href = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
 }
+
 
 function setTitle(){
     let title = document.getElementById('title');

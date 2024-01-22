@@ -15,7 +15,7 @@ body{
 
 #pokedex{
     min-height: 30vh;
-    background-color: #FB6C6C;
+    /* background-color: #FB6C6C; */
     color:white;
     padding: 24px;
 }
@@ -88,4 +88,32 @@ body{
 
 .active{
     background-color: var(--menu-acc);
+}
+
+.electric, .ground, .rock{
+    background-color: rgb(247,222,63);
+}
+
+.fire{
+    background-color: rgb(253,125,36);
+}
+
+.bug, .grass{
+    background-color: rgb(114,159,63);
+}
+
+.water, .stellar{
+    background-color: rgb(69,146,196);
+}
+
+.normal{
+    background-color: #A4ACAF;
+}
+
+.poison, .psyhic{
+    background-color: rgb(185,127,201)
+    
+}
+.steel{
+    background-color: #9EB7B8
 }
