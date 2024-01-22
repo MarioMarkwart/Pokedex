@@ -41,8 +41,9 @@ function renderPokemonInfo(){
     console.log(currentPokemon);
 }
 
-function renderPokemonStats(){
+function renderPokemonStats(index){
     let statsTable = document.getElementById('statsTable');
+    statsTable.innerHTML = "";
     // stats.innerHTML = '<table>';
     for(let i=0; i<currentPokemon['stats'].length; i++){
         console.log(currentPokemon['stats'][i]['stat']['name'])
@@ -53,6 +54,22 @@ function renderPokemonStats(){
         </tr>`
     }
     // stats.innerHTML += `</table>`
+}
+/*
+TODO:
+Get Path of Information and Put it to "renderPokemonStats"
+*/
+function renderAboutStatHTML(){
+
+}
+function renderBaseStatHTML(){
+
+}
+function renderEvolutionStatHTML(){
+
+}
+function renderMovesStatHTML(){
+
 }
 
 function setFavIcon(){
@@ -65,6 +82,20 @@ function setTitle(){
     if (currentPokemon == "") title.innerHTML = "Pokédex"
     else title.innerHTML = `Pokédex - ${currentPokemonName}`;
 }
+
+
+function loadStat(index){
+    for (let i = 0; i < 4; i++) {
+        if (i === index){
+            document.getElementById(`stat${i}`).classList.add('active');
+        }
+        else{
+            document.getElementById(`stat${i}`).classList.remove('active')
+        }
+    }
+    renderPokemonStats(index);
+}
+
 
 async function renderPokemonMainScreen(){
 
@@ -79,18 +110,5 @@ async function renderPokemonMainScreen(){
         // let imgSrc = responseAsJson['sprites']['other']['official-artwork']['front_shiny'];
 
         // document.getElementById('allPokemon').innerHTML += /*html*/`<div class="card"><img src="${imgSrc}"></div>`;
-    }
-}
-
-function loadStat(index){
-    let content = document.getElementById('pokemonStats');
-    for (let i = 0; i < 4; i++) {
-        if (i === index){
-            document.getElementById(`stat${i}`).classList.add('active');
-            // content.innerHTML =  renderPokemonStats(i);
-        }
-        else{
-            document.getElementById(`stat${i}`).classList.remove('active')
-        }
     }
 }
