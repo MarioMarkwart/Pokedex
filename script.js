@@ -5,11 +5,16 @@ let statsTable;
 
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 async function init(){
+    // let randomPokemon = pickRandomPokemon();
     await loadAllPokemon();
-    await loadPokemon("cobalion")
+    await loadPokemon(pickRandomPokemon())
     renderPokemonStats(0);
 }
 
+function pickRandomPokemon(){
+    let number = Math.floor(Math.random() * 1301);
+    return allPokemon[number]['name'];
+}
 
 async function loadAllPokemon(){
     let url = "https://pokeapi.co/api/v2/pokemon/?limit=1500"
