@@ -6,8 +6,8 @@ let statsTable;
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 async function init(){
     await loadAllPokemon();
-    await loadPokemon("ivysaur")
-    await renderPokemonStats();
+    await loadPokemon("caterpie")
+    renderPokemonStats(0);
 }
 
 
@@ -26,55 +26,69 @@ async function loadPokemon(name){
     let url = `https://pokeapi.co/api/v2/pokemon/${name}`
     let response = await fetch(url);
     currentPokemon = await response.json();
-    currentPokemonName = await currentPokemon['name'].charAt(0).toUpperCase() + currentPokemon['name'].slice(1);
+    currentPokemonName = await currentPokemon['name'];
+    currentPokemonName = firstLetterToUpperCase(currentPokemonName);
 
     console.log(currentPokemon);
 
     setFavIcon();
     setTitle();
-    renderPokemonInfo(currentPokemon);
+    renderPokemonInfoTop(currentPokemon);
 }
 
-function renderPokemonInfo(){
+function renderPokemonInfoTop(){
     document.getElementById('pokemonName').innerHTML = currentPokemonName;
     document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
-    // document.getElementById('pokemonStats').innerHTML = currentPokemon[]
-    // console.log(currentPokemon);
+    let pokemonId = document.getElementById('pokemonId');
+    console.log(currentPokemon['id'].toString().length)
+    if (currentPokemon['id'].toString().length == 1) pokemonId.innerHTML = /*html*/`#000${currentPokemon['id']}`
+    else if (currentPokemon['id'].toString().length == 2) pokemonId.innerHTML = /*html*/`#00${currentPokemon['id']}`
+    else if (currentPokemon['id'].toString().length == 3) pokemonId.innerHTML = /*html*/`#0${currentPokemon['id']}`
+    else pokemonId.innerHTML = /*html*/`#${currentPokemon['id']}`
 }
 
 function renderPokemonStats(index){
     let statsTable = document.getElementById('statsTable');
     statsTable.innerHTML = "";
     switch(index){
-        case 0: renderAboutStatHTML(); break;
-        case 1: renderBaseStatHTML(); break;
-        case 2: renderEvolutionStatHTML(); break;
-        case 3: renderMovesStatHTML(); break;
-
+        case 0: renderAboutStatHTML(statsTable); break;
+        case 1: renderBaseStatHTML(statsTable); break;
+        case 2: renderMovesStatHTML(statsTable); break;
     }
-    // stats.innerHTML = '<table>';
-    // for(let i=0; i<currentPokemon['stats'].length; i++){
-    //     console.log(currentPokemon['stats'][i]['stat']['name'])
-    //     statsTable.innerHTML += /*html*/`
-    //     <tr>
-    //         <td><b>${currentPokemon['stats'][i]['stat']['name']}:</b></td>
-    //         <td>${currentPokemon['stats'][i]['base_stat']}</td>
-    //     </tr>`
-    // }
-    // stats.innerHTML += `</table>`
 }
-/*
-TODO:
-Get Path of Information and Put it to "renderPokemonStats"
-*/
-function renderAboutStatHTML(){
-    console.log("ABOUT");
+
+function renderAboutStatHTML(statsTable){
+    let abilities = currentPokemon['abilities'];
+    statsTable.innerHTML = "<td><b>Abilities</b></td>"
+
+    toTempArray(abilities, 'ability','name').forEach(e => {
+        statsTable.innerHTML += `<td>${e}</td>`;
+    });
+    statsTable.innerHTML += `
+    <tr>
+    <td><b>Height</b></td>
+    <td>${(currentPokemon['height']/10).toFixed(2)} cm</td>
+    </tr>
+    <tr>
+    <td><b>Weight</b></td><td>${currentPokemon['weight']/10} kg
+    <tr><b>Type</b></tr>`
+
+    toTempArray(currentPokemon['types'], 'type', 'name').forEach(e =>{
+        statsTable.innerHTML += `<td>${e}</td>`
+    })
 }
-function renderBaseStatHTML(){
-    console.log("BASE");
-    let statsTable = document.getElementById('statsTable');
+
+function toTempArray(valuesToPush, part1, part2){
+    let tempArray = [];
+
+    for (let i = 0; i < valuesToPush.length; i++) {
+        tempArray.push(firstLetterToUpperCase(valuesToPush[i][part1][part2]));
+    }
+    return tempArray;
+}
+
+function renderBaseStatHTML(statsTable){
     for(let i=0; i<currentPokemon['stats'].length; i++){
-        // console.log(currentPokemon['stats'][i]['stat']['name'])
         statsTable.innerHTML += /*html*/`
         <tr>
             <td><b>${currentPokemon['stats'][i]['stat']['name']}:</b></td>
@@ -82,17 +96,13 @@ function renderBaseStatHTML(){
         </tr>`
     }
 }
-function renderEvolutionStatHTML(){
-    console.log("EVOLUTION");
-    let statsTable = document.getElementById('statsTable');
 
-}
-function renderMovesStatHTML(){
-    let statsTable = document.getElementById('statsTable');
+function renderMovesStatHTML(statsTable){
+
     let moves = currentPokemon['moves'];
     for (let i=0; i<moves.length; i++){
-        console.log(moves[i]['move']['name']);
-        statsTable.innerHTML += /*html*/`<tr>${moves[i]['move']['name']}</tr>`;
+        // console.log(moves[i]['move']['name']);
+        statsTable.innerHTML += /*html*/`<tr>${firstLetterToUpperCase(moves[i]['move']['name'])}</tr>`;
     }
 }
 
@@ -109,7 +119,7 @@ function setTitle(){
 
 
 function loadStat(index){
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
         if (i === index){
             document.getElementById(`stat${i}`).classList.add('active');
         }
@@ -135,4 +145,8 @@ async function renderPokemonMainScreen(){
 
         // document.getElementById('allPokemon').innerHTML += /*html*/`<div class="card"><img src="${imgSrc}"></div>`;
     }
+}
+
+function firstLetterToUpperCase(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }

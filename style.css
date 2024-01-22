@@ -1,6 +1,7 @@
 :root{
-    --menu-acc: #FB6C6C;
+    --menu-acc: rgb(167, 167, 167);
 }
+
 *{
     margin:0;
     text-decoration: none;
@@ -8,8 +9,12 @@
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+body{
+    background-color: white
+}
+
 #pokedex{
-    min-height: 25vh;
+    min-height: 30vh;
     background-color: #FB6C6C;
     color:white;
     padding: 24px;
@@ -18,19 +23,20 @@
 .info-container{
     display: flex;
     align-items: center;
-    background-color: ht;
+    background-color: white;
     border-radius: 40px 40px 0 0;
     margin-top: -40px;
     min-height: 100px;
     display: flex;
     flex-direction: column;
+
 }
 
 #pokemonImage{
     width: 250px;
     margin-top: -200px;
 }
-
+/* MAIN?! */
 .card{
     padding: 10px;
     background-color: lightskyblue;
@@ -40,43 +46,43 @@
 #pokemonStats{
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
     background-color: var(--menu-acc);
-    width: 300px;
+    /* width: 300px; */
+    width: 80%;
     height: 50vh;
-    /* height:100%; */
     overflow-y: auto;
+    border-radius: 0 0 10px 10px;
 }
 
 
 #statsTable{
     /* table-layout: fixed; */
-    width: 100%;
+    /* max-width: 300px; */
+    /* text-align: center; */
+    width: 80%;
     padding: 10px;
+}
+#statsTable td{
+    width: 50%;
+    padding-block: 5px;
     
-    td:nth-child(1){
-        /* width: 200px; */
-        width: 100%;
-        /* background-color: lightcoral; */
-    }
-    td:nth-child(2){
-        /* background-color: green; */
-        width: 100%;
-        text-align: center;
-        padding: 10px
-    }
 }
 
 .statsMenuBar{
     display: flex;
     text-align: center;
-    width: 300px;
+    /* width: 300px; */
+    width: 80%;
     justify-content: space-between;
+    cursor: pointer;
+
 }
 
 .statsMenuBar div{
     border-radius: 10px 10px 0 0;
     padding: 5px;
+    flex-grow: 1;
 
 }
 
