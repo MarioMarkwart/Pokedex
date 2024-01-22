@@ -93,6 +93,4 @@ function loadStat(index){
             document.getElementById(`stat${i}`).classList.remove('active')
         }
     }
-
-
 }
