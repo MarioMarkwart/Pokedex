@@ -39,7 +39,7 @@ function renderPokemonInfo(){
     document.getElementById('pokemonName').innerHTML = currentPokemonName;
     document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
     // document.getElementById('pokemonStats').innerHTML = currentPokemon[]
-    console.log(currentPokemon);
+    // console.log(currentPokemon);
 }
 
 function renderPokemonStats(index){
@@ -74,7 +74,7 @@ function renderBaseStatHTML(){
     console.log("BASE");
     let statsTable = document.getElementById('statsTable');
     for(let i=0; i<currentPokemon['stats'].length; i++){
-        console.log(currentPokemon['stats'][i]['stat']['name'])
+        // console.log(currentPokemon['stats'][i]['stat']['name'])
         statsTable.innerHTML += /*html*/`
         <tr>
             <td><b>${currentPokemon['stats'][i]['stat']['name']}:</b></td>
