@@ -1,6 +1,7 @@
 let allPokemon = [];
 let currentPokemon;
 let currentPokemonName;
+let statsTable;
 
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 async function init(){
@@ -44,7 +45,34 @@ function renderPokemonInfo(){
 function renderPokemonStats(index){
     let statsTable = document.getElementById('statsTable');
     statsTable.innerHTML = "";
+    switch(index){
+        case 0: renderAboutStatHTML(); break;
+        case 1: renderBaseStatHTML(); break;
+        case 2: renderEvolutionStatHTML(); break;
+        case 3: renderMovesStatHTML(); break;
+
+    }
     // stats.innerHTML = '<table>';
+    // for(let i=0; i<currentPokemon['stats'].length; i++){
+    //     console.log(currentPokemon['stats'][i]['stat']['name'])
+    //     statsTable.innerHTML += /*html*/`
+    //     <tr>
+    //         <td><b>${currentPokemon['stats'][i]['stat']['name']}:</b></td>
+    //         <td>${currentPokemon['stats'][i]['base_stat']}</td>
+    //     </tr>`
+    // }
+    // stats.innerHTML += `</table>`
+}
+/*
+TODO:
+Get Path of Information and Put it to "renderPokemonStats"
+*/
+function renderAboutStatHTML(){
+    console.log("ABOUT");
+}
+function renderBaseStatHTML(){
+    console.log("BASE");
+    let statsTable = document.getElementById('statsTable');
     for(let i=0; i<currentPokemon['stats'].length; i++){
         console.log(currentPokemon['stats'][i]['stat']['name'])
         statsTable.innerHTML += /*html*/`
@@ -53,23 +81,19 @@ function renderPokemonStats(index){
             <td>${currentPokemon['stats'][i]['base_stat']}</td>
         </tr>`
     }
-    // stats.innerHTML += `</table>`
-}
-/*
-TODO:
-Get Path of Information and Put it to "renderPokemonStats"
-*/
-function renderAboutStatHTML(){
-
-}
-function renderBaseStatHTML(){
-
 }
 function renderEvolutionStatHTML(){
+    console.log("EVOLUTION");
+    let statsTable = document.getElementById('statsTable');
 
 }
 function renderMovesStatHTML(){
-
+    let statsTable = document.getElementById('statsTable');
+    let moves = currentPokemon['moves'];
+    for (let i=0; i<moves.length; i++){
+        console.log(moves[i]['move']['name']);
+        statsTable.innerHTML += /*html*/`<tr>${moves[i]['move']['name']}</tr>`;
+    }
 }
 
 function setFavIcon(){

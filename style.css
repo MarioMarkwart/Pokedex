@@ -9,7 +9,7 @@
 }
 
 #pokedex{
-    min-height: 50vh;
+    min-height: 25vh;
     background-color: #FB6C6C;
     color:white;
     padding: 24px;
@@ -18,7 +18,7 @@
 .info-container{
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: ht;
     border-radius: 40px 40px 0 0;
     margin-top: -40px;
     min-height: 100px;
@@ -43,13 +43,17 @@
     justify-content: space-between;
     background-color: var(--menu-acc);
     width: 300px;
+    height: 50vh;
+    /* height:100%; */
+    overflow-y: scroll;
 }
+
 
 #statsTable{
     /* table-layout: fixed; */
     width: 100%;
     padding: 10px;
-
+    
     td:nth-child(1){
         /* width: 200px; */
         width: 100%;
