@@ -2,6 +2,17 @@ let allPokemon = [];
 let currentPokemon;
 let currentPokemonName;
 let statsTable;
+let fetchedStats = {
+    name: [],
+    id: [],
+    img: [],
+    type: [],
+    ability: [],
+    weight: [],
+    height: [],
+    base: [],
+    moves: [],
+  };
 
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 async function init(){
@@ -16,13 +27,20 @@ function pickRandomPokemon(){
     return allPokemon[number]['name'];
 }
 
+function setFetchedStats(){
+    // Aufruf:
+    // loadPokemon(responseAsJson['results'][i]['name']);
+    fetchedStats['name'].push(currentPokemon['name']);
+}
+
 async function loadAllPokemon(){
     let url = "https://pokeapi.co/api/v2/pokemon/?limit=1500"
     let response = await fetch(url);
     let responseAsJson = await response.json();
-
+    console.log(responseAsJson)
     for (let i=0; i<responseAsJson['results'].length; i++){
         allPokemon.push(responseAsJson['results'][i]);
+        
     }
     console.log(allPokemon)
 }
@@ -90,17 +108,6 @@ function renderAboutStatHTML(statsTable){
     })
 }
 
-
-function toTempArray(valuesToPush, part1, part2){
-    let tempArray = [];
-
-    for (let i = 0; i < valuesToPush.length; i++) {
-        tempArray.push(firstLetterToUpperCase(valuesToPush[i][part1][part2]));
-    }
-    return tempArray;
-}
-
-
 function renderBaseStatHTML(statsTable){
     for(let i=0; i<currentPokemon['stats'].length; i++){
         statsTable.innerHTML += /*html*/`
@@ -111,7 +118,6 @@ function renderBaseStatHTML(statsTable){
     }
 }
 
-
 function renderMovesStatHTML(statsTable){
 
     let moves = currentPokemon['moves'];
@@ -121,6 +127,14 @@ function renderMovesStatHTML(statsTable){
     }
 }
 
+function toTempArray(valuesToPush, part1, part2){
+    let tempArray = [];
+
+    for (let i = 0; i < valuesToPush.length; i++) {
+        tempArray.push(firstLetterToUpperCase(valuesToPush[i][part1][part2]));
+    }
+    return tempArray;
+}
 
 function setFavIcon(){
     document.getElementById('favicon').href = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
