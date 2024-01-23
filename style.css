@@ -93,39 +93,31 @@ body{
 .electric, .ground, .rock{
     background-color: rgb(248,208,48);
 }
-
 .fire{
     background-color: rgb(253,125,36);
 }
-
 .bug, .grass{
     background-color: rgb(114,159,63);
 }
-
 .water, .stellar{
     background-color: rgb(69,146,196);
 }
-
-.normal{
-    background-color: #A4ACAF;
-}
-
-.poison, .psyhic{
+.poison, .psychic, .fairy, .flying{
     background-color: rgb(185,127,201)
-    
 }
-.steel{
+.steel, .normal{
     background-color: #9EB7B8
 }
-
-.dragon{
-    background-color: rgb(112,56,248);
-}
-
 .dark{
     background-color: rgb(112,88,72)
 }
 
-.fairy, .flying{
-    background-color: rgb(168,144,240)
+.fighting{
+    background-color: rgb(192,48,40);
+}
+.ghost, .dragon{
+    background-color: rgb(112,88,152);
+}
+.ice{
+    background-color: rgb(152,216,216)
 }
