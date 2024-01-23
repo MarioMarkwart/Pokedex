@@ -37,7 +37,7 @@ body{
     margin-top: -200px;
 }
 /* MAIN?! */
-.card{
+.card-container{
     padding: 10px;
     background-color: lightskyblue;
     border: 1px solid black;
@@ -120,4 +120,8 @@ body{
 }
 .ice{
     background-color: rgb(152,216,216)
+}
+
+.d-none{
+    display: none;
 }

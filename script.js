@@ -18,8 +18,8 @@ let fetchedStats = {
 async function init(){
     // let randomPokemon = pickRandomPokemon();
     await loadAllPokemon();
-    await loadPokemon(pickRandomPokemon());
-    // await loadPokemon('pikachu-starter')
+    // await loadPokemon(pickRandomPokemon());
+    await loadPokemon('pikachu-starter')
     renderPokemonStats(0);
 }
 
@@ -41,10 +41,17 @@ async function loadAllPokemon(){
     console.log(responseAsJson)
     for (let i=0; i<responseAsJson['results'].length; i++){
         allPokemon.push(responseAsJson['results'][i]);
-        
+        renderPokemonSmallCard(responseAsJson['results'][i]['name']);
     }
     console.log(allPokemon)
 }
+async function renderPokemonSmallCard(name){
+    let content = document.getElementById('overview-container');
+    content.innerHTML += `<div class="card" onclick="loadPokemon('${name}')">${name}</div>`
+    
+// console.log(name)
+}
+
 
 async function loadPokemon(name){
     let url = `https://pokeapi.co/api/v2/pokemon/${name}`
@@ -52,12 +59,11 @@ async function loadPokemon(name){
     currentPokemon = await response.json();
     currentPokemonName = await currentPokemon['name'];
     currentPokemonName = firstLetterToUpperCase(currentPokemonName);
+    // console.log(currentPokemon);
 
-    console.log(currentPokemon);
-
-    setFavIcon();
-    setTitle();
-    renderPokemonInfoTop(currentPokemon);
+    // setFavIcon();
+    // setTitle();
+    // renderPokemonInfoTop(currentPokemon);
 }
 
 function renderPokemonInfoTop(){
