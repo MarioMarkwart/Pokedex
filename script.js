@@ -18,7 +18,8 @@ let fetchedStats = {
 async function init(){
     // let randomPokemon = pickRandomPokemon();
     await loadAllPokemon();
-    await loadPokemon(pickRandomPokemon())
+    await loadPokemon(pickRandomPokemon());
+    // await loadPokemon('pikachu-starter')
     renderPokemonStats(0);
 }
 
@@ -61,18 +62,19 @@ async function loadPokemon(name){
 
 function renderPokemonInfoTop(){
     document.getElementById('pokemonName').innerHTML = currentPokemonName;
-    document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
+    let pokePic = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
+        if (pokePic != null) document.getElementById('pokemonImage').src = pokePic;
+        else (document.getElementById('pokemonImage').src = './img/questionmark.png')
+    
     let pokemonId = document.getElementById('pokemonId');
-    console.log(currentPokemon['id'].toString().length)
-    if (currentPokemon['id'].toString().length == 1) pokemonId.innerHTML = /*html*/`#000${currentPokemon['id']}`
-    else if (currentPokemon['id'].toString().length == 2) pokemonId.innerHTML = /*html*/`#00${currentPokemon['id']}`
-    else if (currentPokemon['id'].toString().length == 3) pokemonId.innerHTML = /*html*/`#0${currentPokemon['id']}`
-    else pokemonId.innerHTML = /*html*/`#${currentPokemon['id']}`
+        if (currentPokemon['id'].toString().length == 1) pokemonId.innerHTML = /*html*/`#000${currentPokemon['id']}`
+        else if (currentPokemon['id'].toString().length == 2) pokemonId.innerHTML = /*html*/`#00${currentPokemon['id']}`
+        else if (currentPokemon['id'].toString().length == 3) pokemonId.innerHTML = /*html*/`#0${currentPokemon['id']}`
+        else pokemonId.innerHTML = /*html*/`#${currentPokemon['id']}`
 
     let pokedex = document.getElementById('pokedex');
     pokedex.className = "";
     pokedex.classList.add(`${currentPokemon['types'][0]['type']['name']}`)
-    
 }
 
 
