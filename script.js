@@ -1,3 +1,4 @@
+const MAX_POKEMON = 151;
 let allPokemon = [];
 let currentPokemon;
 let currentPokemonName;
@@ -35,7 +36,7 @@ function setFetchedStats(){
 }
 
 async function loadAllPokemon(){
-    let url = "https://pokeapi.co/api/v2/pokemon/?limit=1500"
+    let url = `https://pokeapi.co/api/v2/pokemon/?limit=${MAX_POKEMON}`
     let response = await fetch(url);
     let responseAsJson = await response.json();
     console.log(responseAsJson)
@@ -61,9 +62,9 @@ async function loadPokemon(name){
     currentPokemonName = firstLetterToUpperCase(currentPokemonName);
     // console.log(currentPokemon);
 
-    // setFavIcon();
-    // setTitle();
-    // renderPokemonInfoTop(currentPokemon);
+    setFavIcon();
+    setTitle();
+    renderPokemonInfoTop(currentPokemon);
 }
 
 function renderPokemonInfoTop(){
