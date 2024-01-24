@@ -82,6 +82,7 @@ function renderPokemonInfoTop(){
     let pokedex = document.getElementById('pokedex');
     pokedex.className = "";
     pokedex.classList.add(`${currentPokemon['types'][0]['type']['name']}`)
+    document.getElementById('card-container').classList.remove('d-none');
 }
 
 
