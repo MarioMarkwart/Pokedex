@@ -137,9 +137,7 @@ body{
     background-color: var(--menu-acc);
 }
 
-.d-none{
-    display: none;
-}
+
 
 #card-container{
     position: absolute;
@@ -151,3 +149,24 @@ body{
     margin-right: auto;
 
 }
+.close{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+.close:hover{
+    color: black
+}
+
+.d-none{
+    display: none  !important;
+}
+.tooltip .tooltiptext {
+    width: 120px;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  }

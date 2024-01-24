@@ -191,3 +191,8 @@ async function renderPokemonMainScreen(){
 function firstLetterToUpperCase(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+function closeCard(){
+    console.log("close")
+    document.getElementById('card-container').classList.add("d-none");
+}
