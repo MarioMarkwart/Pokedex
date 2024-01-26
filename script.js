@@ -75,11 +75,11 @@ function renderPokemonInfoTop(){
 
     document.getElementById('pokemonId').innerHTML = /*html*/`#${currentPokemon['id']}`
 
-    let pokedex = document.getElementById('pokedex');
-    pokedex.className = "";
-    pokedex.classList.add(`${currentPokemon['types'][0]['type']['name']}`)
+    let pokedexTop = document.getElementById('pokedex-top');
+    pokedexTop.className = "";
+    pokedexTop.classList.add(`${currentPokemon['types'][0]['type']['name']}`)
 
-    document.getElementById('card-container').classList.remove('d-none');
+    document.getElementById('pokedex').classList.remove('d-none');
 }
 
 
@@ -191,5 +191,5 @@ function firstLetterToUpperCase(str){
 
 function closeCard(){
     console.log("close")
-    document.getElementById('card-container').classList.add("d-none");
+    document.getElementById('pokedex').classList.add("d-none");
 }

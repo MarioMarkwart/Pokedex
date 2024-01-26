@@ -46,7 +46,7 @@ body{
     position: relative;
 }
 
-#pokedex{
+#pokedex-top{
     min-height: 30vh;
     /* background-color: #FB6C6C; */
     color:white;
@@ -54,7 +54,7 @@ body{
     border-radius: 10px;
 }
 
-.info-container{
+.pokedex-bottom{
     display: flex;
     align-items: center;
     background-color: white;
@@ -137,7 +137,7 @@ body{
 
 
 
-#card-container{
+#pokedex{
     position: fixed;
     top:50px;
     left:0;
@@ -172,7 +172,7 @@ body{
   }
 
   @media (max-width: 500px){
-    .info-container{
+    .pokedex-bottom{
         height: 85svh;
         margin-top: -200px;
     }
@@ -187,10 +187,10 @@ body{
         margin-top: -100px;
     }
 
-    #pokedex{
+    #pokedex-top{
         margin-bottom: 50px;
     }
-    #card-container{
+    #pokedex{
         top:0;
         width:100%;
         height: 100%
