@@ -12,12 +12,12 @@
 
 <body onload="init()">
     <div id="overview-container"></div>
-    <div id="pokedex-container" class="d-none">
-        <div id="pokedex">
+    <div id="pokedex-container" class="d-none" onclick="closePokedex()">
+        <div id="pokedex" onclick="doNotClose(event)">
             <div id="pokedex-top">
                 <h1 id="pokemonName"></h1>
                 <div id="pokemonId"></div>
-                <div id="close" class="close" onclick="closeCard()">X</div>
+                <div id="close" class="close" onclick="closePokedex()">X</div>
             </div>
             <div class="pokedex-bottom">
                 <img id="pokemonImage">

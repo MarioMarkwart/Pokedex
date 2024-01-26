@@ -185,8 +185,13 @@ function firstLetterToUpperCase(str){
 }
 
 
-function closeCard(){
+function closePokedex(){
     console.log("close")
     document.getElementById('pokedex-container').classList.add("d-none");
     document.getElementById('overview-container').classList.remove("blur");
+}
+
+function doNotClose(event){
+    console.log('Don\'t close');
+    event.stopPropagation();
 }
