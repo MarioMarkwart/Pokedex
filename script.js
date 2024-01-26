@@ -82,10 +82,7 @@ function renderPokemonInfoTop(){
     document.getElementById('card-container').classList.remove('d-none');
 }
 
-/**
- * 
- * @param {*} index 
- */
+
 function renderPokemonStats(index){
     let statsTable = document.getElementById('statsTable');
     statsTable.innerHTML = "";
