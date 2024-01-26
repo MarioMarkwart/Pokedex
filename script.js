@@ -3,17 +3,7 @@ let allPokemon = [];
 let currentPokemon;
 let currentPokemonName;
 let statsTable;
-let fetchedStats = {
-    name: [],
-    id: [],
-    img: [],
-    type: [],
-    ability: [],
-    weight: [],
-    height: [],
-    base: [],
-    moves: [],
-  };
+
 
 // GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 async function init(){
@@ -21,6 +11,7 @@ async function init(){
     await loadAllPokemon();
     // await loadPokemon(pickRandomPokemon());
     await loadPokemon('pikachu-starter')
+    renderPokemonSmallCard();
     renderPokemonStats(0);
 }
 
@@ -45,17 +36,21 @@ async function loadAllPokemon(){
     console.log(responseAsJson)
     for (let i=0; i<responseAsJson['results'].length; i++){
         allPokemon.push(responseAsJson['results'][i]);
-        renderPokemonSmallCard(responseAsJson['results'][i]['name']);
     }
     console.log(allPokemon)
 }
 
 
-async function renderPokemonSmallCard(name){
+async function renderPokemonSmallCard(){
     let content = document.getElementById('overview-container');
-    content.innerHTML += `<div class="card" onclick="loadPokemon('${name}')">${name}</div>`
-    
-// console.log(name)
+
+    allPokemon.forEach(pokemon => {
+        content.innerHTML += renderPokemonSmallCardHTML(pokemon);
+    });
+    // for(let i=0; i<allPokemon.length;i++){
+    //     name = allPokemon[i]['name'];
+    //     content.innerHTML += `<div class="card" onclick="loadPokemon('${name}')">${name}</div>`
+    // }
 }
 
 
