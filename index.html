@@ -12,27 +12,26 @@
 
 <body onload="init()">
     <div id="overview-container"></div>
-
-    <div id="pokedex" class="d-none">
-        <div id="pokedex-top">
-            <h1 id="pokemonName"></h1>
-            <div id="pokemonId"></div>
-            <div id="close" class="close" onclick="closeCard()">X</div>
-        </div>
-        <div class="pokedex-bottom">
-            <img id="pokemonImage">
-            <div class="statsMenuBar">
-                <div id="stat0" class="statsButton active" onclick="loadStat(0)">About</div>
-                <div id="stat1" class="statsButton" onclick="loadStat(1)">Base Stats</div>
-                <div id="stat2" class="statsButton" onclick="loadStat(2)">Moves</div>
+    <div id="pokedex-container" class="d-none">
+        <div id="pokedex">
+            <div id="pokedex-top">
+                <h1 id="pokemonName"></h1>
+                <div id="pokemonId"></div>
+                <div id="close" class="close" onclick="closeCard()">X</div>
             </div>
-            <div id="pokemonStats">
-                <table id="statsTable"></table>
+            <div class="pokedex-bottom">
+                <img id="pokemonImage">
+                <div class="statsMenuBar">
+                    <div id="stat0" class="statsButton active" onclick="loadStat(0)">About</div>
+                    <div id="stat1" class="statsButton" onclick="loadStat(1)">Base Stats</div>
+                    <div id="stat2" class="statsButton" onclick="loadStat(2)">Moves</div>
+                </div>
+                <div id="pokemonStats">
+                    <table id="statsTable"></table>
+                </div>
             </div>
         </div>
-
     </div>
-
 
 
 </body>
