@@ -72,7 +72,7 @@ function renderPokemonInfoTop(){
     let pokePic = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
     if (pokePic != null) document.getElementById('pokemonImage').src = pokePic;
     else (document.getElementById('pokemonImage').src = './img/questionmark.png')
-    
+
     document.getElementById('pokemonId').innerHTML = /*html*/`#${currentPokemon['id']}`
 
     let pokedex = document.getElementById('pokedex');
@@ -82,7 +82,10 @@ function renderPokemonInfoTop(){
     document.getElementById('card-container').classList.remove('d-none');
 }
 
-
+/**
+ * 
+ * @param {*} index 
+ */
 function renderPokemonStats(index){
     let statsTable = document.getElementById('statsTable');
     statsTable.innerHTML = "";
