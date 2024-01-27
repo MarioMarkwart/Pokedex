@@ -1,18 +1,16 @@
-const MAX_POKEMON = 151;
+const MAX_POKEMON = 51;
 let allPokemon = [];
 let currentPokemon;
 let currentPokemonName;
 let statsTable;
+let pokedexOpened;
 
 
-// GIF: document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['showdown']['front_shiny']
 async function init(){
-    // let randomPokemon = pickRandomPokemon();
+  
     await loadAllPokemon();
-    // await loadPokemon(pickRandomPokemon());
-    await loadPokemon('pikachu-starter')
+    await loadPokemon(5);
     renderPokemonSmallCard();
-    renderPokemonStats(0);
 }
 
 
@@ -22,11 +20,11 @@ function pickRandomPokemon(){
 }
 
 
-function setFetchedStats(){
-    // Aufruf:
-    // loadPokemon(responseAsJson['results'][i]['name']);
-    fetchedStats['name'].push(currentPokemon['name']);
-}
+// function setFetchedStats(){
+//     // Aufruf:
+//     // loadPokemon(responseAsJson['results'][i]['name']);
+//     fetchedStats['name'].push(currentPokemon['name']);
+// }
 
 
 async function loadAllPokemon(){
@@ -37,38 +35,37 @@ async function loadAllPokemon(){
     for (let i=0; i<responseAsJson['results'].length; i++){
         allPokemon.push(responseAsJson['results'][i]);
     }
-    console.log(allPokemon)
+    console.log(allPokemon);
 }
 
 
-async function renderPokemonSmallCard(){
+function renderPokemonSmallCard(){
     let content = document.getElementById('overview-container');
-
-    allPokemon.forEach(pokemon => {
-        content.innerHTML += renderPokemonSmallCardHTML(pokemon);
-    });
-    // for(let i=0; i<allPokemon.length;i++){
-    //     name = allPokemon[i]['name'];
-    //     content.innerHTML += `<div class="card" onclick="loadPokemon('${name}')">${name}</div>`
-    // }
+    for(let i=0; i<allPokemon.length;i++){
+            content.innerHTML += renderPokemonSmallCardHTML(i);
+    }
 }
 
 
-async function loadPokemon(name){
-    let url = `https://pokeapi.co/api/v2/pokemon/${name}`
+async function loadPokemon(index){
+    // let url = `https://pokeapi.co/api/v2/pokemon/${name}`
+    let url = `https://pokeapi.co/api/v2/pokemon/${index}`
     let response = await fetch(url);
     currentPokemon = await response.json();
-    currentPokemonName = await currentPokemon['name'];
-    currentPokemonName = firstLetterToUpperCase(currentPokemonName);
-    // console.log(currentPokemon);
-
+    currentPokemonName = await firstLetterToUpperCase(currentPokemon['name']);
+    pokedexOpened = true;
     setFavIcon();
     setTitle();
-    renderPokemonInfoTop(currentPokemon);
+    renderPokedex()
+}
+
+function renderPokedex(){
+    renderPokedexTop();
+    renderPokedexBottom(0);
 }
 
 
-function renderPokemonInfoTop(){
+function renderPokedexTop(){
     document.getElementById('pokemonName').innerHTML = currentPokemonName;
     let pokePic = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
     if (pokePic != null) document.getElementById('pokemonImage').src = pokePic;
@@ -85,7 +82,7 @@ function renderPokemonInfoTop(){
 }
 
 
-function renderPokemonStats(index){
+function renderPokedexBottom(index){
     let statsTable = document.getElementById('statsTable');
     statsTable.innerHTML = "";
     switch(index){
@@ -93,49 +90,7 @@ function renderPokemonStats(index){
         case 1: renderBaseStatHTML(statsTable); break;
         case 2: renderMovesStatHTML(statsTable); break;
     }
-}
-
-
-function renderAboutStatHTML(statsTable){
-    let abilities = currentPokemon['abilities'];
-    statsTable.innerHTML = "<td><b>Abilities</b></td>"
-
-    toTempArray(abilities, 'ability','name').forEach(e => {
-        statsTable.innerHTML += `<td>${e}</td>`;
-    });
-    statsTable.innerHTML += `
-        <tr>
-        <td><b>Height</b></td>
-        <td>${(currentPokemon['height']/10).toFixed(2)} cm</td>
-        </tr>
-        <tr>
-        <td><b>Weight</b></td><td>${currentPokemon['weight']/10} kg
-        <tr><b>Type</b></tr>`
-
-    toTempArray(currentPokemon['types'], 'type', 'name').forEach(e =>{
-        statsTable.innerHTML += `<td>${e}</td>`
-    })
-}
-
-
-function renderBaseStatHTML(statsTable){
-    for(let i=0; i<currentPokemon['stats'].length; i++){
-        statsTable.innerHTML += /*html*/`
-        <tr>
-            <td><b>${currentPokemon['stats'][i]['stat']['name']}:</b></td>
-            <td>${currentPokemon['stats'][i]['base_stat']}</td>
-        </tr>`
-    }
-}
-
-
-function renderMovesStatHTML(statsTable){
-
-    let moves = currentPokemon['moves'];
-    for (let i=0; i<moves.length; i++){
-        // console.log(moves[i]['move']['name']);
-        statsTable.innerHTML += /*html*/`<tr>${firstLetterToUpperCase(moves[i]['move']['name'])}</tr>`;
-    }
+    // loadStat(index);
 }
 
 
@@ -149,19 +104,6 @@ function toTempArray(valuesToPush, part1, part2){
 }
 
 
-function setFavIcon(){
-    document.getElementById('favicon').href = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
-}
-
-
-function setTitle(){
-    let title = document.getElementById('title');
-
-    if (currentPokemon == "") title.innerHTML = "Pokédex"
-    else title.innerHTML = `Pokédex - ${currentPokemonName}`;
-}
-
-
 function loadStat(index){
     for (let i = 0; i < 3; i++) {
         if (i === index){
@@ -171,22 +113,5 @@ function loadStat(index){
             document.getElementById(`stat${i}`).classList.remove('active')
         }
     }
-    renderPokemonStats(index);
-}
-
-
-function firstLetterToUpperCase(str){
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-
-function closePokedex(){
-    console.log("close")
-    document.getElementById('pokedex-container').classList.add("d-none");
-    document.getElementById('overview-container').classList.remove("blur");
-}
-
-function doNotClose(event){
-    console.log('Don\'t close');
-    event.stopPropagation();
+    renderPokedexBottom(index);
 }
