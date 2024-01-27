@@ -1,3 +1,12 @@
+function toTempArray(valuesToPush, part1, part2){
+    let tempArray = [];
+
+    for (let i = 0; i < valuesToPush.length; i++) {
+        tempArray.push(firstLetterToUpperCase(valuesToPush[i][part1][part2]));
+    }
+    return tempArray;
+}
+
 function closePokedex(){
     console.log("close")
     pokedexOpened = false;
@@ -20,9 +29,8 @@ function firstLetterToUpperCase(str){
 
 
 function setFavIcon(){
-    if (pokedexOpened) document.getElementById('favicon').href = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
+    if (pokedexOpened) document.getElementById('favicon').href = pokemonInformations['img'][pokemonIndex];
     else document.getElementById('favicon').href = '/img/favicon.png';
-     
 }
 
 
@@ -30,5 +38,5 @@ function setTitle(){
     let title = document.getElementById('title');
 
     if (pokedexOpened == "") title.innerHTML = "Pokédex"
-    else title.innerHTML = `Pokédex - ${currentPokemonName}`;
+    else title.innerHTML = `Pokédex - ${firstLetterToUpperCase(pokemonInformations['name'][pokemonIndex])}`;
 }

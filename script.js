@@ -1,4 +1,5 @@
-const MAX_POKEMON = 10;
+const MAX_POKEMON = 20;
+let pokemonIndex = 4;
 let allPokemon = [];
 let currentPokemon;
 let currentPokemonName;
@@ -20,16 +21,16 @@ let pokemonInformations = {
 async function init(){
   
     await loadAllPokemon();
-    loadPokemonInformations();
-    // await loadPokemonInformations();
-    // await loadPokemon(5);
-    // renderPokemonSmallCard();
+    await loadPokemonInformations();
+    renderPokemonSmallCard();
+    pickRandomPokemon()
+    // await loadPokemon(pokemonIndex);
 }
 
 
 function pickRandomPokemon(){
-    let number = Math.floor(Math.random() * 1301);
-    return allPokemon[number]['name'];
+    let number = Math.floor(Math.random() * MAX_POKEMON);
+    loadPokemon(number);
 }
 
 
@@ -74,17 +75,13 @@ async function loadAllPokemon(){
 function renderPokemonSmallCard(){
     let content = document.getElementById('overview-container');
     for(let i=0; i<allPokemon.length;i++){
-            content.innerHTML += renderPokemonSmallCardHTML(i);
+        content.innerHTML += renderPokemonSmallCardHTML(i);
     }
 }
 
 
-async function loadPokemon(index){
-    // let url = `https://pokeapi.co/api/v2/pokemon/${name}`
-    let url = `https://pokeapi.co/api/v2/pokemon/${index}`
-    let response = await fetch(url);
-    currentPokemon = await response.json();
-    currentPokemonName = await firstLetterToUpperCase(currentPokemon['name']);
+async function loadPokemon(idx){
+    pokemonIndex = idx;
     pokedexOpened = true;
     setFavIcon();
     setTitle();
@@ -98,16 +95,16 @@ function renderPokedex(){
 
 
 function renderPokedexTop(){
-    document.getElementById('pokemonName').innerHTML = currentPokemonName;
-    let pokePic = currentPokemon['sprites']['other']['official-artwork']['front_shiny'];
+    document.getElementById('pokemonName').innerHTML = firstLetterToUpperCase(pokemonInformations['name'][pokemonIndex]);
+    let pokePic = pokemonInformations['img'][pokemonIndex];
     if (pokePic != null) document.getElementById('pokemonImage').src = pokePic;
     else (document.getElementById('pokemonImage').src = './img/questionmark.png')
 
-    document.getElementById('pokemonId').innerHTML = /*html*/`#${currentPokemon['id']}`
+    document.getElementById('pokemonId').innerHTML = /*html*/`#${pokemonInformations['id'][pokemonIndex]}`
 
     let pokedexTop = document.getElementById('pokedex-top');
     pokedexTop.className = "";
-    pokedexTop.classList.add(`${currentPokemon['types'][0]['type']['name']}`)
+    pokedexTop.classList.add(`${pokemonInformations['types'][pokemonIndex][0]['type']['name']}`)
 
     document.getElementById('pokedex-container').classList.remove('d-none');
     document.getElementById('overview-container').classList.add('blur');
@@ -124,17 +121,6 @@ function renderPokedexBottom(index){
     }
 }
 
-
-function toTempArray(valuesToPush, part1, part2){
-    let tempArray = [];
-
-    for (let i = 0; i < valuesToPush.length; i++) {
-        tempArray.push(firstLetterToUpperCase(valuesToPush[i][part1][part2]));
-    }
-    return tempArray;
-}
-
-
 function setStatsTab(index){
     for (let i = 0; i < 3; i++) {
         if (i === index){
@@ -144,6 +130,6 @@ function setStatsTab(index){
             document.getElementById(`stat${i}`).classList.remove('active')
         }
     }
-    renderPokedexBottom(index);
+    renderPokedexBottom(index, pokemonIndex);
 }
 
