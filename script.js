@@ -1,17 +1,29 @@
-const MAX_POKEMON = 51;
+const MAX_POKEMON = 10;
 let allPokemon = [];
 let currentPokemon;
 let currentPokemonName;
 let statsTable;
 let pokedexOpened;
+let pokemonInformations = {
+    'name': [],
+    'id': [],
+    'img': [],
+    'abilities': [],
+    'height': [],
+    'weight': [],
+    'types': [],
+    'baseStats': [],
+    'moves': []
+}
 
 
 async function init(){
   
     await loadAllPokemon();
-    // await loadStats();
-    await loadPokemon(5);
-    renderPokemonSmallCard();
+    loadPokemonInformations();
+    // await loadPokemonInformations();
+    // await loadPokemon(5);
+    // renderPokemonSmallCard();
 }
 
 
@@ -21,11 +33,30 @@ function pickRandomPokemon(){
 }
 
 
-// function setFetchedStats(){
-//     // Aufruf:
-//     // loadPokemon(responseAsJson['results'][i]['name']);
-//     fetchedStats['name'].push(currentPokemon['name']);
-// }
+async function loadPokemonInformations(){
+    console.log("Length: ", allPokemon.length)
+    for (let i=0; i<allPokemon.length; i++){
+        let url = allPokemon[i]['url'];
+        let response = await fetch(url);
+        let responseAsJson = await response.json();
+        setPokemonInformations(responseAsJson);
+        console.log("fetched: ", i+1);
+    }
+
+}
+
+async function setPokemonInformations(currentPokemon){
+    pokemonInformations['name'].push(currentPokemon['name']);
+    pokemonInformations['id'].push(currentPokemon['id']);
+    pokemonInformations['img'].push(currentPokemon['sprites']['other']['official-artwork']['front_shiny']);
+    pokemonInformations['abilities'].push(currentPokemon['abilities']);
+    pokemonInformations['height'].push(currentPokemon['height']);
+    pokemonInformations['weight'].push(currentPokemon['weight']);
+    pokemonInformations['types'].push(currentPokemon['types']);
+    pokemonInformations['baseStats'].push(currentPokemon['stats']);
+    pokemonInformations['moves'].push(currentPokemon['moves']);
+    // console.log(pokemonInformations);
+}
 
 
 async function loadAllPokemon(){
@@ -115,3 +146,4 @@ function setStatsTab(index){
     }
     renderPokedexBottom(index);
 }
+
