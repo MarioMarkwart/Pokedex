@@ -9,6 +9,7 @@ let pokedexOpened;
 async function init(){
   
     await loadAllPokemon();
+    // await loadStats();
     await loadPokemon(5);
     renderPokemonSmallCard();
 }
@@ -90,7 +91,6 @@ function renderPokedexBottom(index){
         case 1: renderBaseStatHTML(statsTable); break;
         case 2: renderMovesStatHTML(statsTable); break;
     }
-    // loadStat(index);
 }
 
 
@@ -104,7 +104,7 @@ function toTempArray(valuesToPush, part1, part2){
 }
 
 
-function loadStat(index){
+function setStatsTab(index){
     for (let i = 0; i < 3; i++) {
         if (i === index){
             document.getElementById(`stat${i}`).classList.add('active');
