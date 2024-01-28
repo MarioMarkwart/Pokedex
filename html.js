@@ -44,6 +44,6 @@ function renderMovesStatHTML(statsTable){
 }
 
 function renderPokemonSmallCardHTML(i){
-    return /*html*/`<div class="card" onclick="loadPokemon('${i}')">${firstLetterToUpperCase(allPokemon[i]['name'])}</div>`
+    return /*html*/`<div class="card" onclick="loadPokemon(${i})">${firstLetterToUpperCase(allPokemon[i]['name'])}</div>`
 
 }
