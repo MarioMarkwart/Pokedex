@@ -246,6 +246,34 @@ body {
     /* Use half of the width (120/2 = 60), to center the tooltip */
 }
 
+#loadingScreen{
+    position: fixed;
+    top:50px;
+    right:50px;
+    left:50px;
+    bottom:50px;
+    text-align: center;
+    background-color: lightgreen !important;
+    z-index: 1;
+}
+#loadMore{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+}
+.loadMoreBtn{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 10px;
+    width: 50%;
+    max-width: 200px;
+    height: 50px;
+    text-align: center;
+    bac
+}
+
 @media (max-width: 500px) {
     .pokedex-bottom {
         height: 86svh;
