@@ -1,4 +1,4 @@
-const MAX_POKEMON = 5;
+const MAX_POKEMON = 25;
 let pokemonIndex = 0;
 let allPokemon = [];
 let statsTable;
@@ -20,7 +20,7 @@ async function init(){
   
     await loadAllPokemon();
     await loadPokemonInformations();
-    renderPokemonSmallCard();
+    renderPokemonSmallCardOuter();
     // pickRandomPokemon()
     await loadPokemon(pokemonIndex);
 }
@@ -70,10 +70,10 @@ async function loadAllPokemon(){
 }
 
 
-function renderPokemonSmallCard(){
-    let content = document.getElementById('overview-container');
+function renderPokemonSmallCardOuter(){
     for(let i=0; i<allPokemon.length;i++){
-        content.innerHTML += renderPokemonSmallCardHTML(i);
+        renderPokemonSmallCardOuterHTML(i);
+        renderPokemonSmallCardInnerHTML(i);
     }
 }
 
