@@ -53,6 +53,7 @@
 body {
     background-color: white;
     position: relative;
+    padding:10px;
 }
 
 .blur {
@@ -75,6 +76,9 @@ body {
     color: white;
     padding: 24px;
     border-radius: 10px;
+}
+#pokedex-top img{
+    width: 50px;
 }
 
 .pokedex-bottom {
@@ -173,8 +177,8 @@ body {
 
 .close {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 40px;
     cursor: pointer;
     width: 20px;
     height: 20px;
