@@ -1,6 +1,6 @@
 :root {
     --menu-acc: rgb(167, 167, 167);
-    --effect: all .175s ease-in-out;
+    --effect: all .275s ease-in-out;
 }
 
 .electric,.ground,.rock {
@@ -129,6 +129,13 @@ body {
     gap: 10px;
 }
 
+
+#overview-container:has(.card:hover) .card:not(:hover){
+    /* border: 5px solid green; */
+    /* transform: scale(.8); */
+    opacity: .7;
+    transition: var(--effect);
+}
 .card {
     position: relative;
     padding: 10px;
@@ -139,6 +146,7 @@ body {
     cursor: pointer;
     color:white;
 }
+
 
 .card h2{
     padding-bottom: 10px;
