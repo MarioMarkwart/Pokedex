@@ -40,3 +40,18 @@ function setTitle(){
     if (pokedexOpened == "") title.innerHTML = "Pokédex"
     else title.innerHTML = `Pokédex - ${firstLetterToUpperCase(pokemonInformations['name'][pokemonIndex])}`;
 }
+
+
+window.addEventListener('scroll', () => {
+    // Calculate the distance from the top of the page to the scroll position
+    let scrollTop = window.scrollY;
+    // Calculate the total scrollable height
+    let windowHeight = window.innerHeight;
+    let fullHeight = document.body.offsetHeight;
+
+    // Check if the scroll is within a certain range from the bottom
+    if (scrollTop + windowHeight >= fullHeight) {
+        loadMorePokemon()
+      console.log('Reached the bottom of the page');
+    }
+  })
