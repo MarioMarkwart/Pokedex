@@ -64,7 +64,6 @@ html{
     position: sticky;
     top:50px;
     z-index: 10000;
-    /* background-color: var(--bgcolor) !important; */
     border-top-left-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
@@ -189,6 +188,7 @@ html{
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    padding-bottom: 100px;
 }
 
 
