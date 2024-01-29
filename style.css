@@ -332,6 +332,11 @@ h1{
     transition: var(--effect);
 }
 
+.autoload{
+    position: absolute;
+    right: 20px;
+    top:15px;
+}
 
 .loadMoreBtn:hover{
     background-color: rgba(0,0,0,.2);
