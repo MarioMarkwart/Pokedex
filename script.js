@@ -5,6 +5,7 @@ let pokemonIndex = 0;
 let fetchedPokemon = 0;
 let allPokemon = [];
 let statsTable;
+let actStatsTab = 0;
 let pokedexOpened;
 let pokemonInformations = {
     'name': [],
@@ -33,19 +34,16 @@ function pickRandomPokemon(){
     loadPokemon(number);
 }
 
+
 async function loadAllPokemon(){
-    // let url = `https://pokeapi.co/api/v2/pokemon/?limit=${MAX_POKEMON}`
     let response = await fetch(url);
     let responseAsJson = await response.json();
     
     url = responseAsJson['next'];
-    // console.log("NEXT: ", url)
     availablePokemon = responseAsJson['count'];
     console.log(responseAsJson)
     for (let i=0; i<responseAsJson['results'].length; i++){
-        // if (!allPokemon[0]['name'].includes(responseAsJson['results'][i]['name'])){
-            allPokemon.push(responseAsJson['results'][i]);
-        // }
+        allPokemon.push(responseAsJson['results'][i]);
     }
     console.log(allPokemon);
 }
@@ -60,11 +58,12 @@ async function loadPokemonInformations(){
             setPokemonInformations(responseAsJson);
             fetchedPokemon++;
             loadingScreen(i+1);
-            console.log("fetched: ", i+1);
+            // console.log("fetched: ", i+1);
         }
     }
 
 }
+
 
 async function setPokemonInformations(currentPokemon){
     pokemonInformations['name'].push(currentPokemon['name']);
@@ -99,7 +98,7 @@ async function loadPokemon(idx){
 
 function renderPokedex(){
     renderPokedexTop();
-    renderPokedexBottom(0);
+    renderPokedexBottom(actStatsTab);
 }
 
 
@@ -122,6 +121,9 @@ function renderPokedexTop(){
 
 function renderPokedexBottom(index){
     let statsTable = document.getElementById('statsTable');
+    actStatsTab = index;
+    console.log("Index: ", index)
+    console.log("actstatstab: ", actStatsTab)
     statsTable.innerHTML = "";
     switch(index){
         case 0: renderAboutStatHTML(statsTable); break;
@@ -129,6 +131,7 @@ function renderPokedexBottom(index){
         case 2: renderMovesStatHTML(statsTable); break;
     }
 }
+
 
 function setStatsTab(index){
     for (let i = 0; i < 3; i++) {
@@ -139,17 +142,23 @@ function setStatsTab(index){
             document.getElementById(`stat${i}`).classList.remove('active')
         }
     }
-    renderPokedexBottom(index, pokemonIndex);
+    renderPokedexBottom(index);
 }
 
 
 function loadNextPokemon(){
+    console.warn("loadNext: ", actStatsTab)
     pokemonIndex === allPokemon.length - 1 ? loadPokemon(0) : loadPokemon(pokemonIndex + 1)
+    setStatsTab(actStatsTab);
 }
 
+
 function loadPreviousPokemon(){
+    console.log("PREV: ", actStatsTab)
+    setStatsTab(actStatsTab);
     pokemonIndex === 0 ? loadPokemon(allPokemon.length - 1) : loadPokemon(pokemonIndex - 1)
 }
+
 
 function loadingScreen(i){
     let loadingScreen = document.getElementById('loadingScreen');
@@ -160,10 +169,11 @@ function loadingScreen(i){
     else loaded = (i - loaded) * 100 / MAX_POKEMON;
 
 
-    console.log(loaded);
+    // console.log(loaded);
     loadingScreen.innerHTML =  `${loaded.toFixed(2)}% geladen`;
     loaded < 100 ? loadingScreen.classList.remove('d-none') : loadingScreen.classList.add('d-none')
 }
+
 
 async function loadMorePokemon(){
     await loadAllPokemon();

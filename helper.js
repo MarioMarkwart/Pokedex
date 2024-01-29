@@ -8,7 +8,7 @@ function toTempArray(valuesToPush, part1, part2){
 }
 
 function closePokedex(){
-    console.log("close")
+    // console.log("close")
     pokedexOpened = false;
     document.getElementById('pokedex-container').classList.add("d-none");
     document.getElementById('overview-container').classList.remove("blur");
@@ -18,7 +18,7 @@ function closePokedex(){
 
 
 function doNotClose(event){
-    console.log('Don\'t close');
+    // console.log('Don\'t close');
     event.stopPropagation();
 }
 
