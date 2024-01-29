@@ -1,8 +1,10 @@
+const DEBUGMODE = false;
 const MAX_POKEMON = 25;
-let url = `https://pokeapi.co/api/v2/pokemon/?limit=${MAX_POKEMON}`;
+let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let availablePokemon = 0;
-let pokemonIndex = 0;
 let allPokemon = [];
+let loadedPokemon = 0;
+let pokemonIndex = 0;
 let loading = false;
 let statsTable;
 let actStatsTab = 0;
@@ -21,9 +23,11 @@ let pokemonInformations = {
 
 
 async function init(){
-    await loadAllPokemon();
-    await loadPokemonInformations();
-    renderPokemonSmallCard();
+    if (!DEBUGMODE){
+        await loadAllPokemon();
+        await loadPokemonInformations();
+        renderPokemonSmallCard();
+    }
 }
 
 
@@ -49,17 +53,18 @@ async function loadAllPokemon(){
 
 async function loadPokemonInformations(){
     loading = true;
-    let loadedPokemon = 0;
-    for (let i=0; i<allPokemon.length; i++){
+    let actBatch = 0;
+    for (let i=loadedPokemon; i<loadedPokemon + MAX_POKEMON; i++){
         if (!pokemonInformations['id'].includes(i+1)){
             let url = allPokemon[i]['url'];
             let response = await fetch(url);
             let responseAsJson = await response.json();
             setPokemonInformations(responseAsJson);
-            loadedPokemon++
-            setProgressBar(loadedPokemon)
+            actBatch++;
+            setProgressBar(actBatch);
         }
     }
+    loadedPokemon += MAX_POKEMON;
     loading = false;
 }
 
@@ -79,7 +84,9 @@ async function setPokemonInformations(currentPokemon){
 
 function renderPokemonSmallCard(){
     document.getElementById('overview-container').innerHTML = "";
-    for(let i=0; i<allPokemon.length;i++){
+    console.log("RENDER: ", loadedPokemon)
+    for(let i=0; i<loadedPokemon;i++){
+        console.log(i);
         renderPokemonSmallCardOuterHTML(i);
         renderPokemonSmallCardInnerHTML(i);
     }
@@ -142,7 +149,7 @@ function setStatsTab(index){
 
 function loadNextPokemon(){
     console.warn("loadNext: ", actStatsTab)
-    pokemonIndex === allPokemon.length - 1 ? loadPokemon(0) : loadPokemon(pokemonIndex + 1)
+    pokemonIndex === loadedPokemon - 1 ? loadPokemon(0) : loadPokemon(pokemonIndex + 1)
     setStatsTab(actStatsTab);
 }
 
@@ -150,23 +157,21 @@ function loadNextPokemon(){
 function loadPreviousPokemon(){
     console.log("PREV: ", actStatsTab)
     setStatsTab(actStatsTab);
-    pokemonIndex === 0 ? loadPokemon(allPokemon.length - 1) : loadPokemon(pokemonIndex - 1)
+    pokemonIndex === 0 ? loadPokemon(loadedPokemon - 1) : loadPokemon(pokemonIndex - 1)
 }
 
-function setProgressBar(loadedPokemon){
-    let percent = loadedPokemon * 100 / MAX_POKEMON;
+function setProgressBar(actBatch){
+    let percent = actBatch * 100 / MAX_POKEMON;
     document.getElementById('progressBar').style.setProperty('width', `${percent}%`);
     document.getElementById('progressBar').innerHTML = `${percent}%`;
     if(percent == 100){
         document.getElementById('progressBar').style.setProperty('width', `${percent}%`);
-        document.getElementById('progressBar').innerHTML = `${allPokemon.length} of ${availablePokemon} loaded`
-
+        document.getElementById('progressBar').innerHTML = `${loadedPokemon + MAX_POKEMON} of ${availablePokemon} loaded`
     }
 }
 
 async function loadMorePokemon(){
     if(!loading){
-        await loadAllPokemon();
         await loadPokemonInformations();
         renderPokemonSmallCard();
     }

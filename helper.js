@@ -48,9 +48,13 @@ function setTitle(){
 addEventListener('change', () => {
     let chkbx = document.getElementById('chkbxautoload')
 
-    chkbx.checked
-    ? document.getElementById('loadMore').classList.add('d-none')
-    : document.getElementById('loadMore').classList.remove('d-none');
+    if (chkbx.checked){
+        document.getElementById('loadMore').classList.add('d-none');
+        document.getElementById('overview-container').style = "padding-bottom: 75px !important"
+    }else{
+        document.getElementById('loadMore').classList.remove('d-none');
+        document.getElementById('overview-container').style = "padding-bottom: 0 !important"
+    }
 
 })
 

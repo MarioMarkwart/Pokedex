@@ -11,7 +11,7 @@ function renderMoreBtn(){
 function renderPokemonSmallCardInnerHTML(i){
     let content = document.getElementById(`card${i}`)
     content.innerHTML += "";
-    content.innerHTML += /*html*/`<h2>${firstLetterToUpperCase(allPokemon[i]['name'])}</h2>`
+    content.innerHTML += /*html*/`<h2>${pokemonInformations['id'][i]}${firstLetterToUpperCase(pokemonInformations['name'][i])}</h2>`
     for (let j=0; j<pokemonInformations['types'][i].length; j++){
         content.innerHTML += /*html*/`<div class="type">${pokemonInformations['types'][i][j]['type']['name']}`
     }
