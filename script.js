@@ -24,8 +24,6 @@ async function init(){
     await loadAllPokemon();
     await loadPokemonInformations();
     renderPokemonSmallCard();
-    // pickRandomPokemon()
-    // await loadPokemon(pokemonIndex);
 }
 
 
@@ -38,7 +36,7 @@ function pickRandomPokemon(){
 async function loadAllPokemon(){
     let response = await fetch(url);
     let responseAsJson = await response.json();
-    
+
     url = responseAsJson['next'];
     availablePokemon = responseAsJson['count'];
     console.log(responseAsJson)
@@ -58,10 +56,8 @@ async function loadPokemonInformations(){
             setPokemonInformations(responseAsJson);
             fetchedPokemon++;
             loadingScreen(i+1);
-            // console.log("fetched: ", i+1);
         }
     }
-
 }
 
 
@@ -122,8 +118,6 @@ function renderPokedexTop(){
 function renderPokedexBottom(index){
     let statsTable = document.getElementById('statsTable');
     actStatsTab = index;
-    console.log("Index: ", index)
-    console.log("actstatstab: ", actStatsTab)
     statsTable.innerHTML = "";
     switch(index){
         case 0: renderAboutStatHTML(statsTable); break;
@@ -135,12 +129,9 @@ function renderPokedexBottom(index){
 
 function setStatsTab(index){
     for (let i = 0; i < 3; i++) {
-        if (i === index){
-            document.getElementById(`stat${i}`).classList.add('active');
-        }
-        else{
-            document.getElementById(`stat${i}`).classList.remove('active')
-        }
+        i === index 
+        ? document.getElementById(`stat${i}`).classList.add('active')
+        : document.getElementById(`stat${i}`).classList.remove('active')
     }
     renderPokedexBottom(index);
 }
@@ -168,8 +159,6 @@ function loadingScreen(i){
     if (i<MAX_POKEMON) loaded = i * 100 / MAX_POKEMON;
     else loaded = (i - loaded) * 100 / MAX_POKEMON;
 
-
-    // console.log(loaded);
     loadingScreen.innerHTML =  `${loaded.toFixed(2)}% geladen`;
     loaded < 100 ? loadingScreen.classList.remove('d-none') : loadingScreen.classList.add('d-none')
 }
@@ -179,5 +168,4 @@ async function loadMorePokemon(){
     await loadAllPokemon();
     await loadPokemonInformations();
     renderPokemonSmallCard();
-
 }
