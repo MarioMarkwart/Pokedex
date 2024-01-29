@@ -123,37 +123,37 @@ html{
     transition: var(--effect);
 }
 
-.btn{
+.button{
     position: absolute;
     width:40px;
 }
 
-.btn img{
+.button img{
     width: 100%;
 }
 
-.next-btn{
+.next-button{
     right: 20px;
 }
 
-.previous-btn{
+.previous-button{
     left:20;
 }
-.next-btn,
-.previous-btn{
+.next-button,
+.previous-button{
     transition: var(--effect);
     cursor: pointer;
     top: 15%;
     opacity: .5;
 }
 
-.next-btn:hover,
-.previous-btn:hover{
+.next-button:hover,
+.previous-button:hover{
     transition: var(--effect);
     opacity: 1;
 }
 
-.upBtn{
+.upbutton{
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -161,7 +161,7 @@ html{
     opacity: .5;
 }
 
-.upBtn:hover{
+.upbutton:hover{
     opacity: 1;
 }
 
@@ -361,7 +361,7 @@ html{
     top:15px;
 }
 
-.loadMoreBtn:hover{
+.loadMorebutton:hover{
     background-color: rgba(0,0,0,.2);
     transition: var(--effect);
 }
