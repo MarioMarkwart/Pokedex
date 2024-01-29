@@ -1,7 +1,7 @@
 function renderPokemonSmallCardOuterHTML(i){
     let container = document.getElementById('overview-container');
     let type = pokemonInformations['types'][i][0]['type']['name'];
-    container.innerHTML += /*html*/`<div id="card${i}" class="card ${type}" onclick="loadPokemon(${i})"></div>`
+    container.innerHTML += /*html*/`<div id="card${i}" class="smallCard ${type}" onclick="loadPokemon(${i})"></div>`
 }
 
 function renderMoreBtn(){
