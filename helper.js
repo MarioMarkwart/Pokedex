@@ -68,6 +68,6 @@ window.addEventListener('scroll', () => {
 
     // Check if the scroll is within a certain range from the bottom
     if ((scrollTop + windowHeight >= fullHeight) && document.getElementById('chkbxautoload').checked) {
-        loadMorePokemon()
+        loadMorePokemon();
     }
   })

@@ -4,6 +4,7 @@ let availablePokemon = 0;
 let pokemonIndex = 0;
 let fetchedPokemon = 0;
 let allPokemon = [];
+let loading = false;
 let statsTable;
 let actStatsTab = 0;
 let pokedexOpened;
@@ -48,6 +49,7 @@ async function loadAllPokemon(){
 
 
 async function loadPokemonInformations(){
+    loading = true;
     for (let i=0; i<allPokemon.length; i++){
         if (!pokemonInformations['id'].includes(i+1)){
             let url = allPokemon[i]['url'];
@@ -58,6 +60,7 @@ async function loadPokemonInformations(){
             loadingScreen(i+1);
         }
     }
+    loading = false;
 }
 
 
@@ -165,8 +168,10 @@ function loadingScreen(i){
 
 
 async function loadMorePokemon(){
-    await loadAllPokemon();
-    await loadPokemonInformations();
-    renderPokemonSmallCard();
+    if(!loading){
+        await loadAllPokemon();
+        await loadPokemonInformations();
+        renderPokemonSmallCard();
+    }
 }
 
