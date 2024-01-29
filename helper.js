@@ -45,6 +45,14 @@ function setTitle(){
     window.scrollTo(0,0);
 }
 
+addEventListener('change', () => {
+    let chkbx = document.getElementById('chkbxautoload')
+
+    chkbx.checked
+    ? document.getElementById('loadMore').classList.add('d-none')
+    : document.getElementById('loadMore').classList.remove('d-none');
+
+})
 
 window.addEventListener('scroll', () => {
     // Calculate the distance from the top of the page to the scroll position
