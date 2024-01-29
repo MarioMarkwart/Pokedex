@@ -1,7 +1,7 @@
 :root {
     --menu-acc: rgb(167, 167, 167);
     --effect: all .275s ease-in-out;
-    --bgcolor: white;
+    --bgcolor: rgb(249, 249, 249);
 }
 
 .electric,.ground,.rock {
@@ -54,7 +54,6 @@
 body {
     background-color: var(--bgcolor);
     position: relative;
-    padding-bottom: 50px;
 }
 
 html{
@@ -62,24 +61,31 @@ html{
 }
 
 .progress{
-    background-color: var(--bgcolor) !important;
+    position: sticky;
+    top:50px;
+    z-index: 10000;
+    /* background-color: var(--bgcolor) !important; */
     border-top-left-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
-}
-.progress-bar{
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
+    
 }
 
+#progressBar{
+    color:var(--bgcolor) !important;
+    
+}
 
 .title{
     position: sticky;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     top:0;
     z-index:1000;
     background-color: var(--bgcolor);
-    /* margin-bottom: 30px; */
+    
     text-align: center;
     box-shadow: 0px -2px 10px rgba(0,0,0,0.2);
 }
@@ -177,6 +183,8 @@ html{
 }
 
 #overview-container {
+    padding-top: 20px;
+    background-color: var(--bgcolor);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -278,7 +286,7 @@ html{
 
 #pokedex {
     position: fixed;
-    top: 50px;
+    top: 100px;
     left: 0;
     right: 0;
     max-width: 500px;
@@ -326,6 +334,7 @@ html{
     /* z-index: 1; */
 }
 #loadMore{
+    background-color: var(--bgcolor);
     display: flex;
     justify-content: center;
     padding: 20px;

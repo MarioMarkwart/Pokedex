@@ -2,7 +2,6 @@ const MAX_POKEMON = 25;
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=${MAX_POKEMON}`;
 let availablePokemon = 0;
 let pokemonIndex = 0;
-let fetchedPokemon = 0;
 let allPokemon = [];
 let loading = false;
 let statsTable;
@@ -50,14 +49,15 @@ async function loadAllPokemon(){
 
 async function loadPokemonInformations(){
     loading = true;
+    let loadedPokemon = 0;
     for (let i=0; i<allPokemon.length; i++){
         if (!pokemonInformations['id'].includes(i+1)){
             let url = allPokemon[i]['url'];
             let response = await fetch(url);
             let responseAsJson = await response.json();
             setPokemonInformations(responseAsJson);
-            fetchedPokemon++;
-            loadingScreen(i+1);
+            loadedPokemon++
+            setProgressBar(loadedPokemon)
         }
     }
     loading = false;
@@ -153,19 +153,16 @@ function loadPreviousPokemon(){
     pokemonIndex === 0 ? loadPokemon(allPokemon.length - 1) : loadPokemon(pokemonIndex - 1)
 }
 
+function setProgressBar(loadedPokemon){
+    let percent = loadedPokemon * 100 / MAX_POKEMON;
+    document.getElementById('progressBar').style.setProperty('width', `${percent}%`);
+    document.getElementById('progressBar').innerHTML = `${percent}%`;
+    if(percent == 100){
+        document.getElementById('progressBar').style.setProperty('width', `${percent}%`);
+        document.getElementById('progressBar').innerHTML = `${allPokemon.length} of ${availablePokemon} loaded`
 
-function loadingScreen(i){
-    let loadingScreen = document.getElementById('loadingScreen');
-    let loaded = 0;
-    //FIXME:
-
-    if (i<MAX_POKEMON) loaded = i * 100 / MAX_POKEMON;
-    else loaded = (i - loaded) * 100 / MAX_POKEMON;
-
-    loadingScreen.innerHTML =  `${loaded.toFixed(2)}% geladen`;
-    loaded < 100 ? loadingScreen.classList.remove('d-none') : loadingScreen.classList.add('d-none')
+    }
 }
-
 
 async function loadMorePokemon(){
     if(!loading){
