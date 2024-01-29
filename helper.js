@@ -41,10 +41,19 @@ function setTitle(){
     else title.innerHTML = `Pokédex - ${firstLetterToUpperCase(pokemonInformations['name'][pokemonIndex])}`;
 }
 
+ function scrollToTop(){
+    window.scrollTo(0,0);
+}
+
 
 window.addEventListener('scroll', () => {
     // Calculate the distance from the top of the page to the scroll position
     let scrollTop = window.scrollY;
+
+    // show/hide ScrollToTop-Button
+    if (scrollTop > 100) document.getElementById('scrollUp').classList.remove('d-none');
+    else document.getElementById('scrollUp').classList.add('d-none');
+
     // Calculate the total scrollable height
     let windowHeight = window.innerHeight;
     let fullHeight = document.body.offsetHeight;
@@ -52,6 +61,5 @@ window.addEventListener('scroll', () => {
     // Check if the scroll is within a certain range from the bottom
     if (scrollTop + windowHeight >= fullHeight) {
         loadMorePokemon()
-      console.log('Reached the bottom of the page');
     }
   })

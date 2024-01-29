@@ -54,6 +54,11 @@
 body {
     background-color: var(--bgcolor);
     position: relative;
+    padding-bottom: 100px;
+}
+
+html{
+    scroll-behavior: smooth;
 }
 
 h1{
@@ -94,6 +99,13 @@ h1{
 
 .close img{
     width: 50px;
+    opacity: .5;
+    transition: var(--effect);
+}
+
+.close img:hover{
+    opacity: 1;
+    transition: var(--effect);
 }
 
 .btn{
@@ -114,10 +126,30 @@ h1{
 }
 .next-btn,
 .previous-btn{
+    transition: var(--effect);
     cursor: pointer;
-    top: 15%
-
+    top: 15%;
+    opacity: .5;
 }
+
+.next-btn:hover,
+.previous-btn:hover{
+    transition: var(--effect);
+    opacity: 1;
+}
+
+.upBtn{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    opacity: .5;
+}
+
+.upBtn:hover{
+    opacity: 1;
+}
+
 .pokedex-bottom {
     display: flex;
     align-items: center;
