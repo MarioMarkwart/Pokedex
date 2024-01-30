@@ -14,12 +14,14 @@
 </head>
 
 <body onload="init()">
-    <div class="title"><h1>Pokédex</h1>
-        <div id="progressBarContainer" class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-            <div id="progressBar" class="progress-bar bg-warning text-dark" style="width: 75%">75%</div>
-        </div>
-        <div class="autoload"><input id="chkbxautoload" type="checkbox"> Enable/Disable AutoLoad</div></div>
-        <div id="loadingScreen">
+    <div class="title">
+        <h1>Pokédex</h1>
+        <input type="text" id="searchBox" placeholder="Search..."></input>
+        <div class="autoload"><input id="chkbxautoload" type="checkbox"> AutoLoad</div>
+    </div>
+    <div id="progressBarContainer" class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+        <div id="progressBar" class="progress-bar bg-warning text-dark" style="width: 0%">0%</div>
+    </div>
 
     </div>
     <div id="overview-container">

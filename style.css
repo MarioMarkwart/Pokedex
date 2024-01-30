@@ -62,35 +62,52 @@ html{
 
 .progress{
     position: sticky;
-    top:50px;
+    top:70px;
     z-index: 10000;
     border-top-left-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
-    
+
 }
 
 #progressBar{
     color:var(--bgcolor) !important;
-    
+
 }
 
 .title{
+    padding-inline: 20px;
     position: sticky;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    background-color: red !important;
     top:0;
+    height: 70px;
     z-index:1000;
     background-color: var(--bgcolor);
-    
     text-align: center;
     box-shadow: 0px -2px 10px rgba(0,0,0,0.2);
 }
+
+
 .blur {
     filter: blur(3px);
 }
+
+#searchBox{
+    height: 40px;
+    border-radius: 25px;
+    width: 30%;
+    text-indent: 15px
+}
+
+/* #searchBox::placeholder{
+    padding-left: 20px;
+} */
+
+#searchBox::
 
 #pokedex-container {
     position: fixed;
@@ -351,11 +368,11 @@ html{
     transition: var(--effect);
 }
 
-.autoload{
+/* .autoload{
     position: absolute;
     right: 20px;
     top:15px;
-}
+} */
 
 .loadMorebutton:hover{
     background-color: rgba(0,0,0,.2);
