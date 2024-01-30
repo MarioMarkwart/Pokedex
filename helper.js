@@ -75,3 +75,21 @@ window.addEventListener('scroll', () => {
         loadMorePokemon();
     }
   })
+
+function saveToLocalStorage() {
+    localStorage.setItem("allPokemon", JSON.stringify(allPokemon));
+}
+
+function loadFromLocalStorage() {
+    let allPokemonAsString = JSON.parse(localStorage.getItem("allPokemon"));
+
+    if (allPokemonAsString) {
+        allPokemon = allPokemonAsString;
+        console.log("loaded from localStorage");
+        console.log(allPokemon);
+        return true;
+    } else {
+        console.log("loaded from API");
+        return false;
+    }
+}

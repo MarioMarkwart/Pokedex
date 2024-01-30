@@ -4,9 +4,6 @@ function renderPokemonSmallCardOuterHTML(i){
     container.innerHTML += /*html*/`<div id="card${i}" class="smallCard ${type}" onclick="loadPokemon(${i})"></div>`
 }
 
-function renderMoreBtn(){
-    document.getElementById('loadMore').innerHTML = /*html*/`<div class="loadMoreBtn" onclick="loadMorePokemon()">Load More Pokemon</div>`
-}
 
 function renderPokemonSmallCardInnerHTML(i){
     let content = document.getElementById(`card${i}`)
@@ -17,7 +14,12 @@ function renderPokemonSmallCardInnerHTML(i){
     }
     content.innerHTML += `<img class="smallPokemon" src="${pokemonInformations['img'][i]}">`
     content.innerHTML += `</div>`
+    
+}
 
+
+function renderMoreBtn(){
+    document.getElementById('loadMore').innerHTML = /*html*/`<div class="loadMoreBtn" onclick="loadMorePokemon()">Load More Pokemon</div>`
 }
 
 function renderAboutStatHTML(statsTable) {

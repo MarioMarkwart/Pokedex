@@ -3,6 +3,7 @@ const MAX_POKEMON = 25;
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let availablePokemon = 0;
 let allPokemon = [];
+let pokemonToSearch = [];
 let loadedPokemon = 0;
 let pokemonIndex = 0;
 let loading = false;
@@ -192,30 +193,23 @@ async function loadMorePokemon(){
 function searchPokemon(){
     let word = document.getElementById('searchBox').value;
     console.clear();
-    for(let i=0; i<allPokemon.length; i++){
-        if(allPokemon[i]['name'].includes(word)){
-            console.log(i, allPokemon[i]['name'])
+    if (word == ""){
+        renderPokemonSmallCard();
+    }else{
+        pokemonToSearch = [];
+        for(let i=0; i<allPokemon.length; i++){
+            if(allPokemon[i]['name'].includes(word)){
+                console.log(i, allPokemon[i]['name'])
+                pokemonToSearch.push(allPokemon[i]['url']);
+            }
         }
     }
-    // console.log(word);
 }
 
-function saveToLocalStorage(){
-    localStorage.setItem('allPokemon', JSON.stringify(allPokemon))
-}
-
-function loadFromLocalStorage(){
-    let allPokemonAsString = JSON.parse(localStorage.getItem('allPokemon'));
-
-    if(allPokemonAsString){
-        allPokemon = allPokemonAsString;
-        console.log("loaded from localStorage");
-        console.log(allPokemon)
-        return true;
+async function renderFoundPokemon(){
+    document.getElementById('overview-container').innerHTML = "";
+    console.log(pokemonToSearch)
+    for (let i=0; i<pokemonToSearch.length; i++){
+        //?????????????
     }
-    else{
-        console.log("loaded from API");
-        return false;
-    }
-
 }
