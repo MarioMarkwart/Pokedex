@@ -122,37 +122,37 @@ html{
     transition: var(--effect);
 }
 
-.btn{
+.button{
     position: absolute;
     width:40px;
 }
 
-.btn img{
+.button img{
     width: 100%;
 }
 
-.next-btn{
+.next-button{
     right: 20px;
 }
 
-.previous-btn{
+.previous-button{
     left:20;
 }
-.next-btn,
-.previous-btn{
+.next-button,
+.previous-button{
     transition: var(--effect);
     cursor: pointer;
     top: 15%;
     opacity: .5;
 }
 
-.next-btn:hover,
-.previous-btn:hover{
+.next-button:hover,
+.previous-button:hover{
     transition: var(--effect);
     opacity: 1;
 }
 
-.upBtn{
+.upbutton{
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -160,7 +160,7 @@ html{
     opacity: .5;
 }
 
-.upBtn:hover{
+.upbutton:hover{
     opacity: 1;
 }
 
@@ -188,7 +188,7 @@ html{
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    padding-bottom: 100px;
+    /* padding-bottom: 150px; */
 }
 
 
@@ -215,7 +215,6 @@ html{
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1)
 }
 
-
 .smallCard h2{
     padding-bottom: 10px;
 }
@@ -226,17 +225,17 @@ html{
     width: 100px;
     background-color: rgba(255, 255, 255, .2);
     border-radius: 25px;
-    
 }
+
 .smallPokemon{
     position: absolute;
     width: 150px;
-    right:00px;
+    right:0px;
     bottom: 00px;
     transition: var(--effect);
 }
 
-.card:hover > .smallPokemon{
+.smallCard:hover > .smallPokemon{
     transform: scale(1.1) translate(-1px, -5px);
     transition: var(--effect);
 }
@@ -251,7 +250,6 @@ html{
     overflow-y: auto;
     border-radius: 0 0 10px 10px;
 }
-
 
 #statsTable {
     width: 80%;
@@ -294,7 +292,6 @@ html{
     margin: auto;
     border-radius: 10px;
     background-color: green;
-
 }
 
 .close {
@@ -360,7 +357,7 @@ html{
     top:15px;
 }
 
-.loadMoreBtn:hover{
+.loadMorebutton:hover{
     background-color: rgba(0,0,0,.2);
     transition: var(--effect);
 }
