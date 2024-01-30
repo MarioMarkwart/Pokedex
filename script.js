@@ -32,7 +32,10 @@ let pokemonInformations = {
 
 async function init(){
     if (!DEBUGMODE){
-        await loadAllPokemon();
+        if (!loadFromLocalStorage()){
+            await loadAllPokemon();
+        }
+        availablePokemon = allPokemon.length;
         await loadPokemonInformations();
         renderPokemonSmallCard();
     }
@@ -46,6 +49,7 @@ function pickRandomPokemon(){
 
 
 async function loadAllPokemon(){
+    console.log("running loadAllPokemon")
     let response = await fetch(url);
     let responseAsJson = await response.json();
 
@@ -56,6 +60,7 @@ async function loadAllPokemon(){
         allPokemon.push(responseAsJson['results'][i]);
     }
     console.log(allPokemon);
+    saveToLocalStorage();
 }
 
 
@@ -94,7 +99,6 @@ function renderPokemonSmallCard(){
     document.getElementById('overview-container').innerHTML = "";
     console.log("RENDER: ", loadedPokemon)
     for(let i=0; i<loadedPokemon;i++){
-        console.log(i);
         renderPokemonSmallCardOuterHTML(i);
         renderPokemonSmallCardInnerHTML(i);
     }
@@ -185,3 +189,33 @@ async function loadMorePokemon(){
     }
 }
 
+function searchPokemon(){
+    let word = document.getElementById('searchBox').value;
+    console.clear();
+    for(let i=0; i<allPokemon.length; i++){
+        if(allPokemon[i]['name'].includes(word)){
+            console.log(i, allPokemon[i]['name'])
+        }
+    }
+    // console.log(word);
+}
+
+function saveToLocalStorage(){
+    localStorage.setItem('allPokemon', JSON.stringify(allPokemon))
+}
+
+function loadFromLocalStorage(){
+    let allPokemonAsString = JSON.parse(localStorage.getItem('allPokemon'));
+
+    if(allPokemonAsString){
+        allPokemon = allPokemonAsString;
+        console.log("loaded from localStorage");
+        console.log(allPokemon)
+        return true;
+    }
+    else{
+        console.log("loaded from API");
+        return false;
+    }
+
+}
