@@ -25,7 +25,7 @@ let pokemonInformations = {
 /**
  * FIXME: Autoload not working in Responsive
  * TODO: Replace AutoLoad with Button (Bootstrap)
- * 
+ * TODO: Autoload-Icon (DIV with checkbox (opacity 0) and icon)
  * 
  */
 //TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
