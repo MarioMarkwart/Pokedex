@@ -103,12 +103,6 @@ html{
     text-indent: 15px
 }
 
-/* #searchBox::placeholder{
-    padding-left: 20px;
-} */
-
-#searchBox::
-
 #pokedex-container {
     position: fixed;
     top: 0;
