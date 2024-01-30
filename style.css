@@ -82,7 +82,7 @@ html{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: red !important;
+    /* background-color: red !important; */
     top:0;
     height: 70px;
     z-index:1000;
@@ -100,12 +100,20 @@ html{
     filter: blur(3px);
 }
 
+.searchBoxContainer{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
 #searchBox{
     height: 40px;
     border-radius: 25px;
     width: 30%;
     text-indent: 15px;
-    min-width: 150px;
+    width: 100%;
+    max-width: 450px;
+    margin-inline: 20px;
 }
 
 #pokedex-container {
