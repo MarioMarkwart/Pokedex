@@ -21,6 +21,14 @@ let pokemonInformations = {
     'moves': []
 }
 
+//TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
+/**
+ * FIXME: Autoload not working in Responsive
+ * TODO: Replace AutoLoad with Button (Bootstrap)
+ * 
+ * 
+ */
+//TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 
 async function init(){
     if (!DEBUGMODE){
