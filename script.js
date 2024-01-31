@@ -191,12 +191,13 @@ async function loadMorePokemon(){
 }
 
 function searchPokemon(){
-    let word = document.getElementById('searchBox').value;
+    let word = document.getElementById('searchBox').value.toLowerCase();
     console.clear();
     if (word == ""){
         renderPokemonSmallCard();
     }else{
         pokemonToSearch = [];
+        // word = word.toLowerCase();
         for(let i=0; i<allPokemon.length; i++){
             if(allPokemon[i]['name'].includes(word)){
                 console.log(i, allPokemon[i]['name'])
