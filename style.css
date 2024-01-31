@@ -277,6 +277,25 @@ html{
     padding-bottom: 10px;
 }
 
+/* SMALLCARD SHAKE */
+/*
+.smallCard:hover{
+    animation: shake 275ms ease;
+}
+
+@keyframes shake {
+    0%, 50%{
+        transform: rotate(0);
+    }
+    25%{
+        transform: rotate(-5deg);
+    }
+    75%{
+        transform: rotate(5deg);
+    }
+}
+*/
+
 .type{
     padding: 5px;
     margin-bottom: 5px;
