@@ -62,3 +62,13 @@ function renderMovesStatHTML(statsTable){
     }
 }
 
+/**
+ *TODO:
+ * 
+ * <div>Abilities</div>
+ * <div abilitiesContainer>FOR OF...abillities</div>
+ * ...
+ * 
+ * 
+ * 
+ */
