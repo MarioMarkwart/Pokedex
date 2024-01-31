@@ -1,6 +1,6 @@
 :root {
     --menu-acc: rgb(167, 167, 167);
-    --effect: all .275s ease-in-out;
+    --effect: all 275ms ease-in-out;
     --bgcolor: rgb(249, 249, 249);
 }
 
@@ -186,16 +186,27 @@ html{
     opacity: 1;
 }
 
-.upbutton{
+.upbutton {
     position: fixed;
     bottom: 20px;
     right: 20px;
     cursor: pointer;
     opacity: .5;
+    transition: opacity 0.3s ease; /* Füge eine Transition für die Opazität hinzu */
 }
 
-.upbutton:hover{
+.upbutton:hover {
     opacity: 1;
+    animation: moveUpAndDown 500ms ease 2; /* Füge die Keyframe-Animation hinzu */
+}
+
+@keyframes moveUpAndDown {
+    0%, 100% {
+        transform: translateY(0); /* Anfangs- und Endposition (keine Veränderung) */
+    }
+    50% {
+        transform: translateY(-10px); /* In der Mitte der Animation nach oben bewegen */
+    }
 }
 
 .pokedex-bottom {
