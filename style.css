@@ -209,6 +209,19 @@ html{
     }
 }
 
+#pokeball:hover{
+    animation: rotateBall 500ms ease-in-out;
+}
+
+@keyframes rotateBall{
+    0%{ 
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
 .pokedex-bottom {
     display: flex;
     align-items: center;
