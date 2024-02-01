@@ -1,5 +1,5 @@
 :root {
-    --menu-acc: rgb(167, 167, 167);
+    --menu-acc: rgb(238, 238, 238);
     --effect: all 275ms ease-in-out;
     --bgcolor: rgb(249, 249, 249);
 }
@@ -423,6 +423,10 @@ html{
     left: 50%;
     margin-left: -60px;
     /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+#myChart{
+    height: 100%
 }
 
 #loadingScreen{

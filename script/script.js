@@ -1,5 +1,5 @@
 const DEBUGMODE = false;
-const MAX_POKEMON = 25;
+const MAX_POKEMON = 5;
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let availablePokemon = 0;
 let allPokemon = [];

@@ -56,11 +56,20 @@ function renderAboutStatHTML(statsTable) {
 
 
 function renderBaseStatHTML(statsTable){
+    // WARUM KEINE BALKEN WENN LEER? WIRD DOCH DANACH GEFÜLLT?!"
+    chartLabel = [];
+    chartData = [];
+    statsTable.innerHTML = `<canvas id="myChart"></canvas>`
+
     for(let i=0; i<pokemonInformations["baseStats"][pokemonIndex].length; i++){
-        statsTable.innerHTML += /*html*/`
-            <p><b>${pokemonInformations["baseStats"][pokemonIndex][i]['stat']['name']}:</b>
-            ${pokemonInformations["baseStats"][pokemonIndex][i]['base_stat']}</p>`
+        chartLabel.push(pokemonInformations["baseStats"][pokemonIndex][i]['stat']['name']);
+        chartData.push(pokemonInformations["baseStats"][pokemonIndex][i]['base_stat']);
+        // statsTable.innerHTML += /*html*/`
+        //     <p><b>${pokemonInformations["baseStats"][pokemonIndex][i]['stat']['name']}:</b>
+        //     ${pokemonInformations["baseStats"][pokemonIndex][i]['base_stat']}</p>`
     }
+    console.log(chartLabel, chartData);
+    drawChart();
 }
 
 
@@ -70,7 +79,6 @@ function renderMovesStatHTML(statsTable){
     statsTable.innerHTML = `<div class="statBody" id="moves"></div>`
     for (let i=0; i<moves.length; i++){
         document.getElementById('moves').innerHTML += /*html*/`<div class="statValue moveStats">${firstLetterToUpperCase(moves[i]['move']['name'])}</div>`
-
     }
 }
 
