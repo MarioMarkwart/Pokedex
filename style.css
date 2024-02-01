@@ -154,6 +154,7 @@ html{
 .pokeball > img{
     width: 40px;
 }
+
 .button{
     display: flex;
     flex-direction: row;
@@ -333,10 +334,6 @@ html{
     padding: 10px;
 }
 
-#statsTable td {
-    width: 50%;
-    padding-block: 5px;
-}
 
 .statsMenuBar {
     display: flex;
@@ -352,7 +349,6 @@ html{
     border-radius: 10px 10px 0 0;
     padding: 5px;
     flex-grow: 1;
-
 }
 
 .active {
@@ -362,6 +358,12 @@ html{
 .statTitle{
     font-weight: bold;
     text-align: center;
+    padding-top: 15px
+}
+
+#statsTable > :nth-child(1){
+    padding-top: 0;
+    /* background-color: pink; */
 }
 
 .statBody{
@@ -369,6 +371,7 @@ html{
     flex-wrap: wrap;
     /* background-color: red; */
     gap: 5px;
+    justify-content: center;
 }
 
 .statValue{
