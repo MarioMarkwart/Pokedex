@@ -67,11 +67,14 @@ function renderBaseStatHTML(statsTable){
 function renderMovesStatHTML(statsTable){
 
     let moves = pokemonInformations["moves"][pokemonIndex];
+    statsTable.innerHTML = `<div class="statBody" id="moves"></div>`
     for (let i=0; i<moves.length; i++){
-        statsTable.innerHTML += /*html*/`<p>${firstLetterToUpperCase(moves[i]['move']['name'])}</p>`;
+        document.getElementById('moves').innerHTML += /*html*/`<div class="statValue moveStats">${firstLetterToUpperCase(moves[i]['move']['name'])}</div>`
+
     }
 }
 
+//Farbe + Komplementärfarbe = Weiß / Weiß - Farbe = Komplementärfarbe
 /**
  *TODO:
  * 

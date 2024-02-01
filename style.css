@@ -378,8 +378,14 @@ html{
     /* background-color: green; */
     border: 1px solid lightgray;
     border-radius: 10px;
-    padding: 5px;
+    padding: 10px;
     gap: 5px;
+}
+
+.moveStats{
+    flex:1;
+    text-wrap: nowrap;
+    text-align: center;
 }
 
 #pokedex {
