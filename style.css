@@ -359,6 +359,15 @@ html{
     background-color: var(--menu-acc);
 }
 
+.statTitle{
+    font-weight: bold;
+}
+
+.statBody{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 #pokedex {
     position: fixed;
     top: 100px;

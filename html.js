@@ -24,23 +24,26 @@ function renderMoreBtn(){
 
 function renderAboutStatHTML(statsTable) {
 	let abilities = pokemonInformations["abilities"][pokemonIndex];
-	statsTable.innerHTML = "<p><b>Abilities</b></p>";
+	statsTable.innerHTML = `
+    <div class="statTitle">Abilities</div>
+    <div class="statBody" id="statBody></div>`;
+
+    let statBody = document.getElementById('statBody');
+
 	toTempArray(abilities, "ability", "name").forEach((e) => {
-		statsTable.innerHTML += `<p>${e}</p>`;
+		statBody.innerHTML += `<div>${e}</div>`;
 	});
-	statsTable.innerHTML += `
-        <p>&nbsp</p>
-        <p><b>Height</b></p>
-        <p>${(pokemonInformations["height"][pokemonIndex] / 10).toFixed(2)} cm</p>
-        <p><p>&nbsp</p></p>
+	statBody.innerHTML += `
+        <div class="statTitle">Height</div>
+        <div>${(pokemonInformations["height"][pokemonIndex] / 10).toFixed(2)} cm</div>
         
-        <p><b>Weight</b></p>
-        <p>${pokemonInformations["weight"][pokemonIndex] / 10} kg</p>
-        <p>&nbsp</p>        
-        <tr><b>Type</b></p>`;
+        <div class="statTitle">Weight</div>
+        <div>${pokemonInformations["weight"][pokemonIndex] / 10} kg</div>
+        
+        <div class="statTitle">Type</div>`
 
 	toTempArray(pokemonInformations["types"][pokemonIndex],"type","name").forEach((e) => {
-		statsTable.innerHTML += `<p>${e}</p>`;
+		stat.innerHTML += `<div>${e}</div>`;
 	});
 }
 
