@@ -361,11 +361,22 @@ html{
 
 .statTitle{
     font-weight: bold;
+    text-align: center;
 }
 
 .statBody{
     display: flex;
     flex-wrap: wrap;
+    /* background-color: red; */
+    gap: 5px;
+}
+
+.statValue{
+    /* background-color: green; */
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 5px;
+    gap: 5px;
 }
 
 #pokedex {
