@@ -1,5 +1,5 @@
 const DEBUGMODE = false;
-const MAX_POKEMON = 50;
+const MAX_POKEMON = 5;
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let availablePokemon = 0;
 let allPokemon = [];
@@ -46,7 +46,7 @@ async function loadAllPokemon(){
 
     url = responseAsJson['next'];
     availablePokemon = responseAsJson['count'];
-    console.log(responseAsJson)
+    // console.log(responseAsJson)
     for (let i=0; i<responseAsJson['results'].length; i++){
         allPokemon.push(responseAsJson['results'][i]);
     }
@@ -60,23 +60,22 @@ async function loadPokemonInformations(){
     let actBatch = 0;
     for (let i=loadedPokemon; i<loadedPokemon + MAX_POKEMON; i++){
         let url = allPokemon[i]['url'];
-        let response = await fetch(url);
-        let responseAsJson = await response.json();
 
-        pokemonInformations[i] = {
-            ['name']:responseAsJson['name'],
-            ['id'] : responseAsJson['id'],
-            ['img'] : responseAsJson['sprites']['other']['official-artwork']['front_shiny'],
-            ['abilities'] : responseAsJson['abilities'],
-            ['height'] : responseAsJson['height'],
-            ['weight'] : responseAsJson['weight'],
-            ['types'] : responseAsJson['types'],
-            ['baseStats'] : responseAsJson['stats'],
-            ['moves'] : responseAsJson['moves']
-        }
+        await setPokemonInformations(url);
+        //  = {
+            // ['name']:responseAsJson['name'],
+            // ['id'] : responseAsJson['id'],
+            // ['img'] : responseAsJson['sprites']['other']['official-artwork']['front_shiny'],
+            // ['abilities'] : responseAsJson['abilities'],
+            // ['height'] : responseAsJson['height'],
+            // ['weight'] : responseAsJson['weight'],
+            // ['types'] : responseAsJson['types'],
+            // ['baseStats'] : responseAsJson['stats'],
+            // ['moves'] : responseAsJson['moves']
+        // }
         actBatch++;
         setProgressBar(actBatch);
-        (console.log(Object.keys(pokemonInformations).length));
+        // (console.log(Object.keys(pokemonInformations).length));
     }
     loadedPokemon += MAX_POKEMON;
     
@@ -95,23 +94,32 @@ async function loadPokemonInformations(){
 // }
 
 
-// async function setPokemonInformations(currentPokemon){
-//     pokemonInformations['name'].push(currentPokemon['name']);
-//     pokemonInformations['id'].push(currentPokemon['id']);
-//     pokemonInformations['img'].push(currentPokemon['sprites']['other']['official-artwork']['front_shiny']);
-//     pokemonInformations['abilities'].push(currentPokemon['abilities']);
-//     pokemonInformations['height'].push(currentPokemon['height']);
-//     pokemonInformations['weight'].push(currentPokemon['weight']);
-//     pokemonInformations['types'].push(currentPokemon['types']);
-//     pokemonInformations['baseStats'].push(currentPokemon['stats']);
-//     pokemonInformations['moves'].push(currentPokemon['moves']);
-// }
+async function setPokemonInformations(url){
+    let response = await fetch(url);
+    let responseAsJson = await response.json();
+
+    let pokemonId = responseAsJson['id']
+    console.log(responseAsJson)
+
+    
+    pokemonInformations[pokemonId] = {
+        ['name']:responseAsJson['name'],
+        ['id'] : responseAsJson['id'],
+        ['img'] : responseAsJson['sprites']['other']['official-artwork']['front_shiny'],
+        ['abilities'] : responseAsJson['abilities'],
+        ['height'] : responseAsJson['height'],
+        ['weight'] : responseAsJson['weight'],
+        ['types'] : responseAsJson['types'],
+        ['baseStats'] : responseAsJson['stats'],
+        ['moves'] : responseAsJson['moves']
+    }
+}
 
 
 function renderPokemonSmallCard(){
     document.getElementById('overview-container').innerHTML = "";
     console.log("RENDER: ", loadedPokemon)
-    for(let i=0; i<loadedPokemon;i++){
+    for(let i=1; i<loadedPokemon+1;i++){
         renderPokemonSmallCardOuterHTML(i);
         renderPokemonSmallCardInnerHTML(i);
     }
@@ -204,7 +212,7 @@ async function loadMorePokemon(){
 
 function searchPokemon(){
     let word = document.getElementById('searchBox').value.toLowerCase();
-    console.clear();
+    // console.clear();
     if (word == ""){
         renderPokemonSmallCard();
     }else{
@@ -215,6 +223,7 @@ function searchPokemon(){
                 pokemonToSearch.push(allPokemon[i]['url']);
             }
         }
+        renderFoundPokemon();
     }
 }
 
@@ -222,6 +231,8 @@ async function renderFoundPokemon(){
     document.getElementById('overview-container').innerHTML = "";
     console.log(pokemonToSearch)
     for (let i=0; i<pokemonToSearch.length; i++){
-        //?????????????
+        await setPokemonInformations(pokemonToSearch[i])
+        renderPokemonSmallCard(); //gesonderte funktion machen.
     }
+    
 }
