@@ -1,5 +1,5 @@
 const DEBUGMODE = false;
-const MAX_POKEMON = 5;
+const MAX_POKEMON = 50;
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let availablePokemon = 0;
 let allPokemon = [];
@@ -10,17 +10,7 @@ let loading = false;
 let statsTable;
 let actStatsTab = 0;
 let pokedexOpened;
-let pokemonInformations = {
-    'name': [],
-    'id': [],
-    'img': [],
-    'abilities': [],
-    'height': [],
-    'weight': [],
-    'types': [],
-    'baseStats': [],
-    'moves': []
-}
+let pokemonInformations = {};
 
 //TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 /**
@@ -69,31 +59,53 @@ async function loadPokemonInformations(){
     loading = true;
     let actBatch = 0;
     for (let i=loadedPokemon; i<loadedPokemon + MAX_POKEMON; i++){
-        if (!pokemonInformations['id'].includes(i+1)){
-            let url = allPokemon[i]['url'];
-            let response = await fetch(url);
-            let responseAsJson = await response.json();
-            setPokemonInformations(responseAsJson);
-            actBatch++;
-            setProgressBar(actBatch);
+        let url = allPokemon[i]['url'];
+        let response = await fetch(url);
+        let responseAsJson = await response.json();
+
+        pokemonInformations[i] = {
+            ['name']:responseAsJson['name'],
+            ['id'] : responseAsJson['id'],
+            ['img'] : responseAsJson['sprites']['other']['official-artwork']['front_shiny'],
+            ['abilities'] : responseAsJson['abilities'],
+            ['height'] : responseAsJson['height'],
+            ['weight'] : responseAsJson['weight'],
+            ['types'] : responseAsJson['types'],
+            ['baseStats'] : responseAsJson['stats'],
+            ['moves'] : responseAsJson['moves']
         }
+        actBatch++;
+        setProgressBar(actBatch);
+        (console.log(Object.keys(pokemonInformations).length));
     }
     loadedPokemon += MAX_POKEMON;
+    
     loading = false;
 }
 
+        // if (!pokemonInformations['id'].includes(i+1)){
+        //     let url = allPokemon[i]['url'];
+        //     let response = await fetch(url);
+        //     let responseAsJson = await response.json();
+        //     setPokemonInformations(responseAsJson);
+        //     actBatch++;
+        //     setProgressBar(actBatch);
+        // }
+//     }
+// }
 
-async function setPokemonInformations(currentPokemon){
-    pokemonInformations['name'].push(currentPokemon['name']);
-    pokemonInformations['id'].push(currentPokemon['id']);
-    pokemonInformations['img'].push(currentPokemon['sprites']['other']['official-artwork']['front_shiny']);
-    pokemonInformations['abilities'].push(currentPokemon['abilities']);
-    pokemonInformations['height'].push(currentPokemon['height']);
-    pokemonInformations['weight'].push(currentPokemon['weight']);
-    pokemonInformations['types'].push(currentPokemon['types']);
-    pokemonInformations['baseStats'].push(currentPokemon['stats']);
-    pokemonInformations['moves'].push(currentPokemon['moves']);
-}
+
+// async function setPokemonInformations(currentPokemon){
+//     pokemonInformations['name'].push(currentPokemon['name']);
+//     pokemonInformations['id'].push(currentPokemon['id']);
+//     pokemonInformations['img'].push(currentPokemon['sprites']['other']['official-artwork']['front_shiny']);
+//     pokemonInformations['abilities'].push(currentPokemon['abilities']);
+//     pokemonInformations['height'].push(currentPokemon['height']);
+//     pokemonInformations['weight'].push(currentPokemon['weight']);
+//     pokemonInformations['types'].push(currentPokemon['types']);
+//     pokemonInformations['baseStats'].push(currentPokemon['stats']);
+//     pokemonInformations['moves'].push(currentPokemon['moves']);
+// }
 
 
 function renderPokemonSmallCard(){
@@ -122,16 +134,16 @@ function renderPokedex(){
 
 
 function renderPokedexTop(){
-    document.getElementById('pokemonName').innerHTML = firstLetterToUpperCase(pokemonInformations['name'][pokemonIndex]);
-    let pokePic = pokemonInformations['img'][pokemonIndex];
+    document.getElementById('pokemonName').innerHTML = firstLetterToUpperCase(pokemonInformations[pokemonIndex]['name']);
+    let pokePic = pokemonInformations[pokemonIndex]['img'];
     if (pokePic != null) document.getElementById('pokemonImage').src = pokePic;
     else (document.getElementById('pokemonImage').src = './img/questionmark.png')
 
-    document.getElementById('pokemonId').innerHTML = /*html*/`#${pokemonInformations['id'][pokemonIndex]}`
+    document.getElementById('pokemonId').innerHTML = /*html*/`#${pokemonInformations[pokemonIndex]['id']}`
 
     let pokedexTop = document.getElementById('pokedex-top');
     pokedexTop.className = "";
-    pokedexTop.classList.add(`${pokemonInformations['types'][pokemonIndex][0]['type']['name']}`)
+    pokedexTop.classList.add(`${pokemonInformations[pokemonIndex]['types'][0]['type']['name']}`)
 
     document.getElementById('pokedex-container').classList.remove('d-none');
     document.getElementById('overview-container').classList.add('blur');
