@@ -12,7 +12,7 @@ function renderPokemonSmallCardInnerHTML(i){
     for (let j=0; j<pokemonInformations[i]['types'].length; j++){
         content.innerHTML += /*html*/`<div class="type">${pokemonInformations[i]['types'][j]['type']['name']}`
     }
-    content.innerHTML += `<img class="smallPokemon" src="${pokemonInformations[i]['img']}">`
+    content.innerHTML += `<img class="smallPokemon" src="${pokemonInformations[i]['img']}" alt="${pokemonInformations[i]['name']}">`
     content.innerHTML += `</div>`
     
 }
