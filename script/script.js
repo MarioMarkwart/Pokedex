@@ -234,5 +234,4 @@ async function renderFoundPokemon(){
         await setPokemonInformations(pokemonToSearch[i])
         renderPokemonSmallCard(); //gesonderte funktion machen.
     }
-    
 }

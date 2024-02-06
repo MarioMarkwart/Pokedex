@@ -7,6 +7,12 @@ function toTempArray(valuesToPush, part1, part2){
     return tempArray;
 }
 
+function getIdOutOfUrl(urlToSplit){
+    let id = urlToSplit.split('/')[6];
+    return id;
+}
+
+
 function closePokedex(){
     // console.log("close")
     pokedexOpened = false;
@@ -18,7 +24,6 @@ function closePokedex(){
 
 
 function doNotClose(event){
-    // console.log('Don\'t close');
     event.stopPropagation();
 }
 
