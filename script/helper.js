@@ -9,6 +9,7 @@ function toTempArray(valuesToPush, part1, part2){
 
 function getIdOutOfUrl(urlToSplit){
     let id = urlToSplit.split('/')[6];
+    console.log("ID: ", id)
     return id;
 }
 
