@@ -3,7 +3,7 @@ const MAX_POKEMON = 5;
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let availablePokemon = 0;
 let allPokemon = [];
-let pokemonToSearch = [];
+let foundPokemon = [];
 let loadedPokemon = 0;
 let pokemonIndex = 0;
 let loading = false;
@@ -102,13 +102,6 @@ function renderBatch(){
     }
 }
 
-function renderFoundPokemon(){
-    document.getElementById('overview-container').innerHTML = "";
-    for (let i=0; i<pokemonToSearch; i++){
-        // console.log(allPokemon[i])
-        renderPokemonSmallCard(getIdOutOfUrl(allPokemon[i]['url']));
-    }
-}
 
 function renderPokemonSmallCard(pokemonId){
     renderPokemonSmallCardOuterHTML(pokemonId);
@@ -197,32 +190,36 @@ async function loadMorePokemon(){
     if(!loading){
         await loadPokemonInformations();
         renderBatch();
-        // renderPokemonSmallCard();
     }
 }
 
 function searchPokemon(){
     let word = document.getElementById('searchBox').value.toLowerCase();
-    // console.clear();
     if (word == ""){
-        renderPokemonSmallCard();
+        renderBatch();
     }else{
-        pokemonToSearch = [];
+        foundPokemon = [];
         for(let i=0; i<allPokemon.length; i++){
             if(allPokemon[i]['name'].includes(word)){
-                console.log(i, allPokemon[i]['name'])
-                // pokemonToSearch.push(allPokemon[i]['url']);
+                foundPokemon.push(allPokemon[i]['url']);
             }
         }
-        renderFoundPokemon();
+        console.log()
+        fetchFoundPokemon();
     }
 }
 
-// async function renderFoundPokemon(){
-//     document.getElementById('overview-container').innerHTML = "";
-//     console.log(pokemonToSearch)
-//     for (let i=0; i<pokemonToSearch.length; i++){
-//         await setPokemonInformations(pokemonToSearch[i])
-//         renderPokemonSmallCard(); //gesonderte funktion machen.
-//     }
-// }
+async function fetchFoundPokemon(){
+    document.getElementById('overview-container').innerHTML = "";
+    for (let i=0; i<foundPokemon.length; i++){
+        await setPokemonInformations(foundPokemon[i])
+    }
+    renderFoundPokemon();
+}
+
+function renderFoundPokemon(){
+    document.getElementById('overview-container').innerHTML = "";
+    for (let i=0; i<foundPokemon.length; i++){
+        renderPokemonSmallCard(getIdOutOfUrl(foundPokemon[i]));
+    }
+}
