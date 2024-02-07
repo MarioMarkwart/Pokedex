@@ -41,13 +41,11 @@ function pickRandomPokemon(){
 
 
 async function loadAllPokemon(){
-    console.log("running loadAllPokemon")
     let response = await fetch(url);
     let responseAsJson = await response.json();
 
     url = responseAsJson['next'];
     availablePokemon = responseAsJson['count'];
-    // console.log(responseAsJson)
     for (let i=0; i<responseAsJson['results'].length; i++){
         allPokemon.push(responseAsJson['results'][i]);
     }
@@ -79,7 +77,6 @@ async function setPokemonInformations(url){
     let responseAsJson = await response.json();
 
     let pokemonId = responseAsJson['id']
-    console.log(responseAsJson)
 
     pokemonInformations[pokemonId] = {
         ['name']:responseAsJson['name'],
@@ -97,7 +94,6 @@ async function setPokemonInformations(url){
 function renderBatch(){
     document.getElementById('overview-container').innerHTML = "";
     for (let i=0; i<loadedPokemon; i++){
-        console.log(allPokemon[i])
         renderPokemonSmallCard(getIdOutOfUrl(allPokemon[i]['url']));
     }
 }
@@ -171,7 +167,6 @@ function loadNextPokemon(){
 
 
 function loadPreviousPokemon(){
-    console.log("PREV: ", actStatsTab)
     setStatsTab(actStatsTab);
     pokemonIndex === 0 ? loadPokemon(loadedPokemon - 1) : loadPokemon(pokemonIndex - 1)
 }
@@ -204,7 +199,6 @@ function searchPokemon(){
                 foundPokemon.push(allPokemon[i]['url']);
             }
         }
-        console.log()
         fetchFoundPokemon();
     }
 }

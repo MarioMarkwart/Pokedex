@@ -12,11 +12,17 @@ function renderPokemonSmallCardInnerHTML(i){
     for (let j=0; j<pokemonInformations[i]['types'].length; j++){
         content.innerHTML += /*html*/`<div class="type">${pokemonInformations[i]['types'][j]['type']['name']}`
     }
-    content.innerHTML += `<img class="smallPokemon" src="${pokemonInformations[i]['img']}" alt="${pokemonInformations[i]['name']}">`
+    content.innerHTML += `<img class="smallPokemon" src="${setImage(i)}" alt="${pokemonInformations[i]['name']}">`
     content.innerHTML += `</div>`
     
 }
 
+function setImage(i){
+    if (pokemonInformations[i]['img'] == null){
+        return './img/questionmark.png'
+    }
+    return pokemonInformations[i]['img']
+}
 
 function renderMoreBtn(){
     document.getElementById('loadMore').innerHTML = /*html*/`<div class="loadMoreBtn" onclick="loadMorePokemon()">Load More Pokemon</div>`

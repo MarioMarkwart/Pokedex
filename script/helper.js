@@ -8,15 +8,11 @@ function toTempArray(valuesToPush, part1, part2){
 }
 
 function getIdOutOfUrl(urlToSplit){
-    console.log("urlToSplit: ", urlToSplit)
-    let id = urlToSplit.split('/')[6];
-    // console.log("ID: ", id)
-    return id;
+    return urlToSplit.split('/')[6];
 }
 
 
 function closePokedex(){
-    // console.log("close")
     pokedexOpened = false;
     document.getElementById('pokedex-container').classList.add("d-none");
     document.getElementById('overview-container').classList.remove("blur");
