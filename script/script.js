@@ -62,36 +62,15 @@ async function loadPokemonInformations(){
         let url = allPokemon[i]['url'];
 
         await setPokemonInformations(url);
-        //  = {
-            // ['name']:responseAsJson['name'],
-            // ['id'] : responseAsJson['id'],
-            // ['img'] : responseAsJson['sprites']['other']['official-artwork']['front_shiny'],
-            // ['abilities'] : responseAsJson['abilities'],
-            // ['height'] : responseAsJson['height'],
-            // ['weight'] : responseAsJson['weight'],
-            // ['types'] : responseAsJson['types'],
-            // ['baseStats'] : responseAsJson['stats'],
-            // ['moves'] : responseAsJson['moves']
-        // }
+
         actBatch++;
         setProgressBar(actBatch);
-        // (console.log(Object.keys(pokemonInformations).length));
+
     }
     loadedPokemon += MAX_POKEMON;
-    
+
     loading = false;
 }
-
-        // if (!pokemonInformations['id'].includes(i+1)){
-        //     let url = allPokemon[i]['url'];
-        //     let response = await fetch(url);
-        //     let responseAsJson = await response.json();
-        //     setPokemonInformations(responseAsJson);
-        //     actBatch++;
-        //     setProgressBar(actBatch);
-        // }
-//     }
-// }
 
 
 async function setPokemonInformations(url){
@@ -101,7 +80,6 @@ async function setPokemonInformations(url){
     let pokemonId = responseAsJson['id']
     console.log(responseAsJson)
 
-    
     pokemonInformations[pokemonId] = {
         ['name']:responseAsJson['name'],
         ['id'] : responseAsJson['id'],
