@@ -32,7 +32,7 @@ function firstLetterToUpperCase(str){
 
 
 function setFavIcon(){
-    if (pokedexOpened) document.getElementById('favicon').href = pokemonInformations[pokemonIndex]['img'];
+    if (pokedexOpened) document.getElementById('favicon').href = allPokemon[pokemonIndex]['img'];
     else document.getElementById('favicon').href = '/img/favicon.png';
 }
 
@@ -41,7 +41,7 @@ function setTitle(){
     let title = document.getElementById('title');
 
     if (pokedexOpened == "") title.innerHTML = "Pokédex"
-    else title.innerHTML = `Pokédex - ${firstLetterToUpperCase(pokemonInformations[pokemonIndex]['name'])}`;
+    else title.innerHTML = `Pokédex - ${firstLetterToUpperCase(allPokemon[pokemonIndex]['name'])}`;
 }
 
  function scrollToTop(){
