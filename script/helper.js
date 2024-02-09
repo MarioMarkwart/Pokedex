@@ -61,6 +61,17 @@ addEventListener('change', () => {
 
 })
 
+function hidePrevNextBtn(){
+    if (searching) {
+        document.getElementById('prevBtn').classList.add("d-none");
+        document.getElementById('nextBtn').classList.add("d-none");
+    }else{
+        document.getElementById('prevBtn').classList.remove("d-none");
+        document.getElementById('nextBtn').classList.remove("d-none");
+    }
+    
+}
+
 window.addEventListener('scroll', () => {
     // Calculate the distance from the top of the page to the scroll position
     let scrollTop = window.scrollY;

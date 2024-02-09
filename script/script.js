@@ -1,8 +1,9 @@
 const DEBUGMODE = false;
-const MAX_POKEMON = 5;
+const MAX_POKEMON = 50;
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let availablePokemon = 0;
 let allPokemon = [];
+let searching = false;
 let foundPokemon = [];
 let loadedPokemon = 0;
 let pokemonIndex = 0;
@@ -57,15 +58,17 @@ async function loadAllPokemon(){
 async function loadPokemonInformations(){
     loading = true;
     let actBatch = 0;
+
+    let loadingList = [];
+
     for (let i=loadedPokemon; i<loadedPokemon + MAX_POKEMON; i++){
-        let url = allPokemon[i]['url'];
-
-        await setPokemonInformations(url);
-
-        actBatch++;
-        setProgressBar(actBatch);
-
+        loadingList.push(setPokemonInformations(allPokemon[i]['url']))
+        loadingList.push(actBatch++);
+        loadingList.push(setProgressBar(actBatch));
     }
+
+    await Promise.all(loadingList);
+
     loadedPokemon += MAX_POKEMON;
 
     loading = false;
@@ -91,6 +94,7 @@ async function setPokemonInformations(url){
     }
 }
 
+
 function renderBatch(){
     document.getElementById('overview-container').innerHTML = "";
     for (let i=0; i<loadedPokemon; i++){
@@ -106,13 +110,15 @@ function renderPokemonSmallCard(pokemonId){
 }
 
 
-async function loadPokemon(idx){
+function loadPokemon(idx){
+    hidePrevNextBtn();
     pokemonIndex = idx;
     pokedexOpened = true;
     setFavIcon();
     setTitle();
     renderPokedex()
 }
+
 
 function renderPokedex(){
     renderPokedexTop();
@@ -170,6 +176,7 @@ function loadPreviousPokemon(){
     pokemonIndex === 1 ? loadPokemon(loadedPokemon) : loadPokemon(pokemonIndex - 1)
 }
 
+
 function setProgressBar(actBatch){
     let percent = actBatch * 100 / MAX_POKEMON;
     document.getElementById('progressBar').style.setProperty('width', `${percent}%`);
@@ -180,6 +187,7 @@ function setProgressBar(actBatch){
     }
 }
 
+
 async function loadMorePokemon(){
     if(!loading){
         await loadPokemonInformations();
@@ -187,12 +195,16 @@ async function loadMorePokemon(){
     }
 }
 
+
 function searchPokemon(){
     let word = document.getElementById('searchBox').value.toLowerCase();
     if (word == ""){
+        searching = false;
         renderBatch();
     }else{
+        searching = true;
         foundPokemon = [];
+        console.log(allPokemon.length)
         for(let i=0; i<allPokemon.length; i++){
             if(allPokemon[i]['name'].includes(word)){
                 foundPokemon.push(allPokemon[i]['url']);
@@ -202,13 +214,17 @@ function searchPokemon(){
     }
 }
 
+
 async function fetchFoundPokemon(){
     document.getElementById('overview-container').innerHTML = "";
+    let loadingList = []
     for (let i=0; i<foundPokemon.length; i++){
-        await setPokemonInformations(foundPokemon[i])
+        loadingList.push(setPokemonInformations(foundPokemon[i]))
     }
+    await Promise.all(loadingList);
     renderFoundPokemon();
 }
+
 
 function renderFoundPokemon(){
     document.getElementById('overview-container').innerHTML = "";
