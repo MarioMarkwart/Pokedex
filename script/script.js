@@ -160,15 +160,14 @@ function setStatsTab(index){
 
 
 function loadNextPokemon(){
-    console.warn("loadNext: ", actStatsTab)
-    pokemonIndex === loadedPokemon - 1 ? loadPokemon(0) : loadPokemon(pokemonIndex + 1)
+    pokemonIndex === loadedPokemon  ? loadPokemon(1) : loadPokemon(pokemonIndex + 1)
     setStatsTab(actStatsTab);
 }
 
 
 function loadPreviousPokemon(){
     setStatsTab(actStatsTab);
-    pokemonIndex === 0 ? loadPokemon(loadedPokemon - 1) : loadPokemon(pokemonIndex - 1)
+    pokemonIndex === 1 ? loadPokemon(loadedPokemon) : loadPokemon(pokemonIndex - 1)
 }
 
 function setProgressBar(actBatch){
