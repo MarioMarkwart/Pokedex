@@ -1,10 +1,18 @@
+/**
+ * 
+ * @param {number} i the smallCard-number
+ */
+
 function renderPokemonSmallCardOuterHTML(i){
     let container = document.getElementById('overview-container');
     let type = allPokemon[i]['types'][0]['type']['name'];
-    container.innerHTML += /*html*/`<div id="card${i}" class="smallCard ${type}" onclick="loadPokemon(${i})"></div>`
+    container.innerHTML += /*html*/`<div id="card${i}" class="smallCard ${type}" onclick="loadPokedex(${i})"></div>`
 }
 
-
+/**
+ * 
+ * @param {number} i the smallCard-number
+ */
 function renderPokemonSmallCardInnerHTML(i){
     let content = document.getElementById(`card${i}`)
     content.innerHTML += "";
@@ -14,16 +22,25 @@ function renderPokemonSmallCardInnerHTML(i){
     }
     content.innerHTML += `<img class="smallPokemon" src="${setImage(i)}" alt="${allPokemon[i]['name']}">`
     content.innerHTML += `</div>`
-    
 }
 
-function setImage(i){
-    if (allPokemon[i]['img'] == null){
+
+/**
+ * if theres no pokemon image set it to a default questionmark-image
+ * @param {number} idx index of the pokemon
+ * @returns the url of the image
+ */
+function setImage(idx){
+    if (allPokemon[idx]['img'] == null){
         return './img/questionmark.png'
     }
-    return allPokemon[i]['img']
+    return allPokemon[idx]['img']
 }
 
+
+/**
+ * render the loadMoreButton
+ */
 function renderMoreBtn(){
     let loadMoreBtn = document.getElementById('loadMore');
     let checkbox = document.getElementById('chkbxautoload')
@@ -37,10 +54,12 @@ function renderMoreBtn(){
         loadMoreBtn.children[0].classList.remove('d-none');
         checkbox.disabled = false; 
     }
-
-    
 }
 
+/**
+ * 
+ * @param {string} statsTable div to render in
+ */
 function renderAboutStatHTML(statsTable) {
 	statsTable.innerHTML = `
         <div class="statTitle">Abilities</div>
@@ -73,7 +92,10 @@ function renderAboutStatHTML(statsTable) {
 	});
 }
 
-
+/**
+ * 
+ * @param {string} statsTable div to render in
+ */
 function renderBaseStatHTML(statsTable){
     // WARUM KEINE BALKEN WENN LEER? WIRD DOCH DANACH GEFÜLLT?!"
     chartLabel = [];
@@ -87,13 +109,15 @@ function renderBaseStatHTML(statsTable){
         //     <p><b>${allPokemon["baseStats"][pokemonIndex][i]['stat']['name']}:</b>
         //     ${allPokemon["baseStats"][pokemonIndex][i]['base_stat']}</p>`
     }
-    console.log(chartLabel, chartData);
+    // console.log(chartLabel, chartData);
     drawChart();
 }
 
-
+/**
+ * 
+ * @param {string} statsTable div to render in
+ */
 function renderMovesStatHTML(statsTable){
-
     let moves = allPokemon[pokemonIndex]["moves"];
     statsTable.innerHTML = `<div class="statBody" id="moves"></div>`
     for (let i=0; i<moves.length; i++){
