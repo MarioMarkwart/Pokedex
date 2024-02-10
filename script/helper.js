@@ -51,7 +51,7 @@ function setTitle(){
 addEventListener('change', () => {
     let chkbx = document.getElementById('chkbxautoload')
 
-    if (chkbx.checked){
+    if (chkbx.checked || searching){
         document.getElementById('loadMore').classList.add('d-none');
         document.getElementById('overview-container').style = "padding-bottom: 75px !important"
     }else{

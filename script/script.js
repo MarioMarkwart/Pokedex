@@ -200,6 +200,7 @@ function searchPokemon(){
         renderMoreBtn();
         foundPokemon = [];
         // console.log(Object.keys(allPokemon).length);
+        document.getElementById('overview-container').innerHTML = "";
         for (let key in allPokemon){
             // console.log(allPokemon[key]['name'])
             if (allPokemon[key]['name'].includes(word)){

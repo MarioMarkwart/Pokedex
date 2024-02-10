@@ -26,9 +26,19 @@ function setImage(i){
 
 function renderMoreBtn(){
     let loadMoreBtn = document.getElementById('loadMore');
+    let checkbox = document.getElementById('chkbxautoload')
     loadMoreBtn.innerHTML = /*html*/`<div id="loadMoreBtn" class="loadMoreBtn" onclick="loadMorePokemon()">Load More Pokemon</div>`
-    if(searching) loadMoreBtn.children[0].classList.add('d-none');
-    else loadMoreBtn.children[0].classList.remove('d-none');
+    if(searching){
+        loadMoreBtn.children[0].classList.add('d-none');
+        checkbox.checked = false;
+        checkbox.disabled = true;
+    } 
+    else{
+        loadMoreBtn.children[0].classList.remove('d-none');
+        checkbox.disabled = false; 
+    }
+
+    
 }
 
 function renderAboutStatHTML(statsTable) {
