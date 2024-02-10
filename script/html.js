@@ -25,7 +25,10 @@ function setImage(i){
 }
 
 function renderMoreBtn(){
-    document.getElementById('loadMore').innerHTML = /*html*/`<div class="loadMoreBtn" onclick="loadMorePokemon()">Load More Pokemon</div>`
+    let loadMoreBtn = document.getElementById('loadMore');
+    loadMoreBtn.innerHTML = /*html*/`<div id="loadMoreBtn" class="loadMoreBtn" onclick="loadMorePokemon()">Load More Pokemon</div>`
+    if(searching) loadMoreBtn.children[0].classList.add('d-none');
+    else loadMoreBtn.children[0].classList.remove('d-none');
 }
 
 function renderAboutStatHTML(statsTable) {

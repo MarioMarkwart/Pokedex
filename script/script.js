@@ -1,5 +1,5 @@
 const DEBUGMODE = false;
-const MAX_POKEMON = 50;
+const MAX_POKEMON = 25;
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let availablePokemon = 0;
 let allPokemon = {};
@@ -72,8 +72,7 @@ async function loadPokemonInformations(){
 async function setPokemonInformations(url){
     let response = await fetch(url);
     let responseAsJson = await response.json();
-    actBatch++;
-    setProgressBar(actBatch);
+
     let pokemonId = responseAsJson['id']
     allPokemon[pokemonId] = {
         ['name']:responseAsJson['name'],
@@ -198,6 +197,7 @@ function searchPokemon(){
         renderBatch();
     }else{
         searching = true;
+        renderMoreBtn();
         foundPokemon = [];
         // console.log(Object.keys(allPokemon).length);
         for (let key in allPokemon){
