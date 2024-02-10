@@ -12,6 +12,7 @@ let statsTable;
 let actStatsTab = 0;
 let pokedexOpened;
 let actBatch = 0;
+let searchTimeout;
 
 //TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 /**
@@ -43,8 +44,8 @@ async function loadAllPokemon(){
     url = responseAsJson['next'];
     availablePokemon = responseAsJson['count'];
     for (let i=0; i<responseAsJson['results'].length; i++){
-        allPokemon[i+1] = responseAsJson['results'][i];
-        // console.log(i)
+        // console.log(responseAsJson['results'][i])
+        allPokemon[getIdOutOfUrl(responseAsJson['results'][i]['url'])] = responseAsJson['results'][i];
         // allPokemon.push(responseAsJson['results'][i]);
     }
     console.log(allPokemon);
@@ -70,21 +71,23 @@ async function loadPokemonInformations(){
 
 
 async function setPokemonInformations(url){
-    let response = await fetch(url);
-    let responseAsJson = await response.json();
+    if (!checkIfPokemonInformationLoaded(url)){
+        let response = await fetch(url);
+        let responseAsJson = await response.json();
 
-    let pokemonId = responseAsJson['id']
-    allPokemon[pokemonId] = {
-        ['name']:responseAsJson['name'],
-        ['id'] : responseAsJson['id'],
-        ['img'] : responseAsJson['sprites']['other']['official-artwork']['front_shiny'],
-        ['abilities'] : responseAsJson['abilities'],
-        ['height'] : responseAsJson['height'],
-        ['weight'] : responseAsJson['weight'],
-        ['types'] : responseAsJson['types'],
-        ['baseStats'] : responseAsJson['stats'],
-        ['moves'] : responseAsJson['moves'],
-        ['url'] : url
+        let pokemonId = responseAsJson['id']
+        allPokemon[pokemonId] = {
+            ['name']:responseAsJson['name'],
+            ['id'] : responseAsJson['id'],
+            ['img'] : responseAsJson['sprites']['other']['official-artwork']['front_shiny'],
+            ['abilities'] : responseAsJson['abilities'],
+            ['height'] : responseAsJson['height'],
+            ['weight'] : responseAsJson['weight'],
+            ['types'] : responseAsJson['types'],
+            ['baseStats'] : responseAsJson['stats'],
+            ['moves'] : responseAsJson['moves'],
+            ['url'] : url
+        }
     }
 }
 
@@ -190,31 +193,31 @@ async function loadMorePokemon(){
 }
 
 
-function searchPokemon(){
+function searchPokemon() {
     let word = document.getElementById('searchBox').value.toLowerCase();
-    if (word == ""){
+    if (word == "") {
         searching = false;
         renderBatch();
-    }else{
+    } else {
+        clearTimeout(searchTimeout);
         searching = true;
         renderMoreBtn();
-        foundPokemon = [];
-        // console.log(Object.keys(allPokemon).length);
-        document.getElementById('overview-container').innerHTML = "";
-        for (let key in allPokemon){
-            // console.log(allPokemon[key]['name'])
-            if (allPokemon[key]['name'].includes(word)){
-                foundPokemon.push(allPokemon[key]['url']);
-            }
-        }        
-        // for(let i=0; i<Object.keys(allPokemon).length; i++){
-        //     if(allPokemon[i+1]['name'].includes(word)){
-        //         foundPokemon.push(i+1);
-        //     }
-        // }
-        // console.log(foundPokemon)
-        fetchFoundPokemon();
+        fillFoundPokemon(word);
     }
+}
+
+
+function fillFoundPokemon(word){
+    foundPokemon = [];
+    searchTimeout = setTimeout(function() {
+        for (let key in allPokemon) {
+            if (allPokemon[key]['name'].includes(word)) {
+                if (!foundPokemon.includes(allPokemon[key]['url']))
+                    foundPokemon.push(allPokemon[key]['url']);
+            }
+        }
+        fetchFoundPokemon();
+    }, 1000);
 }
 
 
@@ -222,9 +225,9 @@ async function fetchFoundPokemon(){
     document.getElementById('overview-container').innerHTML = "";
     let loadingList = []
     for (let i=0; i<foundPokemon.length; i++){
-        console.log(foundPokemon)
         loadingList.push(setPokemonInformations(foundPokemon[i]))
     }
+
     await Promise.all(loadingList);
     renderFoundPokemon();
 }

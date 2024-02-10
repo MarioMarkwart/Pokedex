@@ -27,7 +27,7 @@ function setImage(i){
 function renderMoreBtn(){
     let loadMoreBtn = document.getElementById('loadMore');
     let checkbox = document.getElementById('chkbxautoload')
-    loadMoreBtn.innerHTML = /*html*/`<div id="loadMoreBtn" class="loadMoreBtn" onclick="loadMorePokemon()">Load More Pokemon</div>`
+    loadMoreBtn.innerHTML = /*html*/`<div id="loadMoreBtn" class="loadMoreBtn d-none" onclick="loadMorePokemon()">Load More Pokemon</div>`
     if(searching){
         loadMoreBtn.children[0].classList.add('d-none');
         checkbox.checked = false;

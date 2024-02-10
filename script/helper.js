@@ -90,6 +90,15 @@ window.addEventListener('scroll', () => {
     }
   })
 
+function checkIfPokemonInformationLoaded(url){
+        let idx = getIdOutOfUrl(url);
+        if (allPokemon[idx].hasOwnProperty('id')){
+            return true;
+        }
+        return false;
+
+}
+
 function saveToLocalStorage() {
     localStorage.setItem("allPokemon", JSON.stringify(allPokemon));
 }
