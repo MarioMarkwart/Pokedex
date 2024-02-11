@@ -11,7 +11,7 @@ let loading = false;
 let statsTable;
 let actStatsTab = 0;
 let pokedexOpened = new Boolean;
-let actBatch = 0;
+let loadingCount = 0;
 let searchTimeout;
 
 //TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
@@ -93,8 +93,8 @@ async function setPokemonInformations(url){
 }
 
 // PROGRESS BAR
-function setProgressBar(actBatch){
-    let percent = actBatch * 100 / MAX_POKEMON;
+function setProgressBar(loadingCount){
+    let percent = loadingCount * 100 / MAX_POKEMON;
     document.getElementById('progressBar').style.setProperty('width', `${percent}%`);
     document.getElementById('progressBar').innerHTML = `${percent}%`;
     if(percent == 100){
