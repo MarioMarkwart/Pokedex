@@ -105,8 +105,8 @@ function setProgressBar(){
     }else{
         progressBar.classList.remove("progress-bar-striped")
         progressBar.classList.remove("progress-bar-animated")
-        if (searching) progressBar.innerHTML = `${foundPokemon.length} Pokemons found`
-        else progressBar.innerHTML = `${setAmountLoadedPokemon()} Pokemons loaded`
+        if (searching) progressBar.innerHTML = `${foundPokemon.length} Pokémon found`
+        else progressBar.innerHTML = `Showing ${loadedPokemon} of ${availablePokemon} Pokémon`
     }
 }
 
@@ -263,8 +263,10 @@ async function fetchFoundPokemon(){
     for (let i=0; i<foundPokemon.length; i++){
         loadingList.push(setPokemonInformations(foundPokemon[i]))
     }
-
+    loading = true;
+    setProgressBar();
     await Promise.all(loadingList);
+    loading = false;
     setProgressBar();
     renderFoundPokemon();
 }
