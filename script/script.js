@@ -11,7 +11,6 @@ let loading = false;
 let statsTable;
 let actStatsTab = 0;
 let pokedexOpened = new Boolean;
-let loadingCount = 0;
 let searchTimeout;
 
 //TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
@@ -58,6 +57,7 @@ async function loadAllPokemon(){
  */
 async function loadPokemonInformations(){
     loading = true;
+    setProgressBar()
     let loadingList = [];
     for (let i=loadedPokemon; i<loadedPokemon + MAX_POKEMON; i++){
         loadingList.push(setPokemonInformations(allPokemon[i+1]['url']))
@@ -65,6 +65,7 @@ async function loadPokemonInformations(){
     await Promise.all(loadingList);
     loadedPokemon += MAX_POKEMON;
     loading = false;
+    setProgressBar();
 }
 
 /**
@@ -72,6 +73,7 @@ async function loadPokemonInformations(){
  * @param {string} url the url of the pokemon
  */
 async function setPokemonInformations(url){
+
     if (!checkIfPokemonInformationLoaded(url)){
         let response = await fetch(url);
         let responseAsJson = await response.json();
@@ -90,16 +92,21 @@ async function setPokemonInformations(url){
             ['url'] : url
         }
     }
+
 }
 
 // PROGRESS BAR
-function setProgressBar(loadingCount){
-    let percent = loadingCount * 100 / MAX_POKEMON;
-    document.getElementById('progressBar').style.setProperty('width', `${percent}%`);
-    document.getElementById('progressBar').innerHTML = `${percent}%`;
-    if(percent == 100){
-        document.getElementById('progressBar').style.setProperty('width', `${percent}%`);
-        document.getElementById('progressBar').innerHTML = `${loadedPokemon + MAX_POKEMON} of ${availablePokemon} loaded`
+function setProgressBar(){
+    let progressBar = document.getElementById('progressBar')
+    if(loading){
+        progressBar.classList.add("progress-bar-striped")
+        progressBar.classList.add("progress-bar-animated")
+        progressBar.innerHTML = "...loading..."
+    }else{
+        progressBar.classList.remove("progress-bar-striped")
+        progressBar.classList.remove("progress-bar-animated")
+        if (searching) progressBar.innerHTML = `${foundPokemon.length} Pokemons found`
+        else progressBar.innerHTML = `${setAmountLoadedPokemon()} Pokemons loaded`
     }
 }
 
@@ -218,12 +225,14 @@ function searchPokemon() {
     let word = document.getElementById('searchBox').value.toLowerCase();
     if (word == "") {
         searching = false;
+        setProgressBar();
         renderBatch();
     } else {
         searching = true;
         clearTimeout(searchTimeout);
         renderMoreBtn();
         fillFoundPokemon(word);
+        
     }
 }
 
@@ -256,7 +265,7 @@ async function fetchFoundPokemon(){
     }
 
     await Promise.all(loadingList);
-    saveToLocalStorage();
+    setProgressBar();
     renderFoundPokemon();
 }
 

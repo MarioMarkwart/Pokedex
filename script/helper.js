@@ -106,6 +106,15 @@ function setTitle(){
     else title.innerHTML = `Pokédex - ${firstLetterToUpperCase(allPokemon[pokemonIndex]['name'])}`;
 }
 
+function setAmountLoadedPokemon() {
+	let count = 0;
+	for (var key in allPokemon) {
+		if (allPokemon[key].hasOwnProperty("id")) {
+			count++;
+		}
+	}
+	return count;
+}
 
 /**
  * the up-arrow-button behaviour,
