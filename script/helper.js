@@ -126,25 +126,6 @@ function scrollToTop(){
 
 
 /**
- * eventListener for the autoload-checkbox;
- * activated => hide loadMoreButton
- * deactivated => show loadMoreButton
- */
-addEventListener('change', () => {
-    let chkbx = document.getElementById('chkbxautoload')
-
-    if (chkbx.checked || searching){
-        document.getElementById('loadMore').classList.add('d-none');
-        document.getElementById('overview-container').style = "padding-bottom: 75px !important"
-    }else{
-        document.getElementById('loadMore').classList.remove('d-none');
-        document.getElementById('overview-container').style = "padding-bottom: 0 !important"
-    }
-
-})
-
-
-/**
  * hide the previous / next button on searched cards
  */
 function hidePrevNextBtn(){
@@ -176,12 +157,33 @@ window.addEventListener('scroll', () => {
     let fullHeight = document.body.offsetHeight;
 
     // Check if the scroll is within a certain range from the bottom
-    if ((scrollTop + windowHeight >= fullHeight) && document.getElementById('chkbxautoload').checked) {
+    if ((scrollTop + windowHeight >= fullHeight) && autoload) {
         loadMorePokemon();
     }
   })
 
-  
+
+/**
+ * activate the autoLoad 
+ */
+function setAutoLoad(){
+    autoload = !autoload;
+
+    if (searching) autoload = false;
+
+    if (autoload){
+        document.getElementById('autoload').classList.add('autoloadActive');
+        document.getElementById('loadMore').classList.add('d-none');
+        document.getElementById('overview-container').style = "padding-bottom: 75px !important"
+    }else{
+        document.getElementById('autoload').classList.remove('autoloadActive');
+        document.getElementById('loadMore').classList.remove('d-none');
+        document.getElementById('overview-container').style = "padding-bottom: 0 !important"
+    }
+}
+
+
+
 /**
  * save allPokemon to localStorage
  */

@@ -447,14 +447,22 @@ html{
     transition: var(--effect);
 }
 
+.autoload{
+    width: 25px;
+    opacity: .2;
+    cursor: pointer;
+}
+
+.autoloadActive{
+    animation: rotateBall 500ms ease-in-out;
+    opacity: 1 !important;
+}
+
+
 @media (max-width: 530px) {
     .pokedex-bottom {
         height: 65svh;
         margin-top: -200px;
-    }
-
-    #autoloadText{
-        display: none;
     }
 
     #pokedexTitle{

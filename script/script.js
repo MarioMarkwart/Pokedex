@@ -12,6 +12,7 @@ let statsTable;
 let actStatsTab = 0;
 let pokedexOpened = new Boolean;
 let searchTimeout;
+let autoload = true;
 
 //TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 /**
@@ -29,6 +30,7 @@ let searchTimeout;
 async function init() {
 	await loadAllPokemon();
 	await loadPokemonInformations();
+    setAutoLoad();
 	renderBatch();
 }
 
@@ -237,10 +239,12 @@ function searchPokemon() {
     let word = document.getElementById('searchBox').value.toLowerCase();
     if (word == "") {
         searching = false;
+        setAutoLoad();
         setProgressBar();
         renderBatch();
     } else {
         searching = true;
+        setAutoLoad();
         clearTimeout(searchTimeout);
         renderMoreBtn();
         fillFoundPokemon(word);
@@ -253,7 +257,7 @@ function searchPokemon() {
  * search in the array for matches and push the results in foundPokemon[],
  * finally fetch the found pokemon 
  * @param {string} word 
- */
+*/
 function fillFoundPokemon(word){
     foundPokemon = [];
     searchTimeout = setTimeout(function() {
