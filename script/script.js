@@ -22,6 +22,7 @@ let searchTimeout;
  */
 //TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 
+
 /**
  * initial function
  */
@@ -30,6 +31,7 @@ async function init() {
 	await loadPokemonInformations();
 	renderBatch();
 }
+
 
 /**
  * fetch all names and urls
@@ -40,16 +42,15 @@ async function loadAllPokemon(){
     }else{
         let response = await fetch(url);
         let responseAsJson = await response.json();
-        
         url = responseAsJson['next'];
         availablePokemon = responseAsJson['count'];
         for (let i=0; i<responseAsJson['results'].length; i++){
             allPokemon[getIdOutOfUrl(responseAsJson['results'][i]['url'])] = responseAsJson['results'][i];
         }
             console.log("loaded from localStorage.", allPokemon);
-        
     }
 }
+
 
 /**
  * loading batches of MAX_POKEMON
@@ -67,6 +68,7 @@ async function loadPokemonInformations(){
     loading = false;
     setProgressBar();
 }
+
 
 /**
  * fetch needed information for each given pokemon
@@ -95,6 +97,7 @@ async function setPokemonInformations(url){
 
 }
 
+
 // PROGRESS BAR
 function setProgressBar(){
     let progressBar = document.getElementById('progressBar')
@@ -110,6 +113,7 @@ function setProgressBar(){
     }
 }
 
+
 // SMALLCARD
 /**
  * render batches of size MAX_POKEMON
@@ -122,6 +126,7 @@ function renderBatch(){
     }
 }
 
+
 /**
  * render the card on overview for any pokemon
  * @param {*} pokemonId the pokemon id
@@ -132,8 +137,8 @@ function renderPokemonSmallCard(pokemonId){
     renderMoreBtn();
 }
 
-// POKEDEX
 
+// POKEDEX (card)
 /**
  * load the card for a specific pokemon
  * @param {*} pokemonId the pokemon id
@@ -147,6 +152,7 @@ function loadPokedex(pokemonId){
     renderPokedex()
 }
 
+
 /**
  * render the loaded card
  */
@@ -154,6 +160,7 @@ function renderPokedex(){
     renderPokedexTop();
     renderPokedexBottom(actStatsTab);
 }
+
 
 /**
  * render the top part of the card
@@ -174,6 +181,7 @@ function renderPokedexTop(){
     document.getElementById('overview-container').classList.add('blur');
 }
 
+
 /**
  * render the tab (1, 2 or 3) of informations on the bottom of the card
  * @param {number} tab 
@@ -189,6 +197,7 @@ function renderPokedexBottom(tab){
     }
 }
 
+
 // PREVIOUS / NEXT
 /**
  * load the previous card
@@ -198,6 +207,7 @@ function loadNextPokemon(){
     setStatsTab(actStatsTab);
 }
 
+
 /**
  * load the next card
  */
@@ -205,6 +215,7 @@ function loadPreviousPokemon(){
     setStatsTab(actStatsTab);
     pokemonIndex === 1 ? loadPokedex(loadedPokemon) : loadPokedex(pokemonIndex - 1)
 }
+
 
 /**
  * load and render the next batch of size MAX_POKEMON
@@ -215,6 +226,7 @@ async function loadMorePokemon(){
         renderBatch();
     }
 }
+
 
 // SEARCHING
 /**
@@ -236,6 +248,7 @@ function searchPokemon() {
     }
 }
 
+
 /**
  * search in the array for matches and push the results in foundPokemon[],
  * finally fetch the found pokemon 
@@ -254,6 +267,7 @@ function fillFoundPokemon(word){
     }, 1000);
 }
 
+
 /**
  * load all found pokemon
  */
@@ -270,6 +284,7 @@ async function fetchFoundPokemon(){
     setProgressBar();
     renderFoundPokemon();
 }
+
 
 /**
  * render the search results
