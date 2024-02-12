@@ -238,8 +238,8 @@ html{
 }
 
 #pokemonImage {
-    width: 250px;
-    margin-top: -200px;
+    width: 200px;
+    margin-top: -160px;
 }
 
 #overview-container {
@@ -279,25 +279,6 @@ html{
 .smallCard h2{
     padding-bottom: 10px;
 }
-
-/* SMALLCARD SHAKE */
-/*
-.smallCard:hover{
-    animation: shake 275ms ease;
-}
-
-@keyframes shake {
-    0%, 50%{
-        transform: rotate(0);
-    }
-    25%{
-        transform: rotate(-5deg);
-    }
-    75%{
-        transform: rotate(5deg);
-    }
-}
-*/
 
 .type{
     padding: 5px;
@@ -484,7 +465,7 @@ html{
 
 @media (max-width: 530px) {
     .pokedex-bottom {
-        height: 86svh;
+        height: 70svh;
         margin-top: -200px;
     }
 
@@ -499,23 +480,65 @@ html{
         background-color: var(--menu-acc);
         overflow-y: auto;
         border-radius: 0 0 10px 10px;
-        height: 85%;
+        height: 80%;
+        width: 90%;
 
     }
 
     #pokemonImage {
-        width: 150px;
-        margin-top: -100px;
+        width: 120px;
+        margin-top: -70px;
     }
 
     #pokedex-top {
-        margin-bottom: 50px;
+        margin-bottom: 58px;
     }
 
     #pokedex {
-        top: 0;
-        width: 100%;
         height: 100%
     }
 
+    .statValue{
+        border: var(--borders);
+        border-radius: 10px;
+        padding: 10px;
+        gap: 5px;
+        font-size: small;
+    }
+
+    .statsMenuBar div{
+        font-size: smaller;
+    }
+    .statsMenuBar{
+        width: 90%;
+    }
+
+    .button img{
+        width: 80%
+    }
+
+    .smallCard {
+        position: relative;
+        padding: 10px;
+        width: 120px;
+        text-align: center;
+        height: 120px;
+        border-radius: 10px;
+        cursor: pointer;
+        color:white;
+        box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1)
+    }
+    .smallPokemon{
+        width: 70px;
+        /* display: none; */
+    }
+
+    h2{
+        font-size: smaller;
+    }
+
+    .type{
+        width: 40px;
+        font-size: xx-small
+    }
 }
