@@ -2,6 +2,8 @@
     --menu-acc: rgb(238, 238, 238);
     --effect: all 275ms ease-in-out;
     --bgcolor: rgb(249, 249, 249);
+    /* --borders: 1px solid rgba(0,0,0,.2) */
+    --borders: 1px solid lightgray
 }
 
 .electric,.ground,.rock {
@@ -327,6 +329,9 @@ html{
     height: 80%;
     overflow-y: auto;
     border-radius: 0 0 10px 10px;
+    border-left: var(--borders);
+    border-bottom: var(--borders);
+    border-right: var(--borders);
 }
 
 #statsTable {
@@ -349,10 +354,19 @@ html{
     border-radius: 10px 10px 0 0;
     padding: 5px;
     flex-grow: 1;
+    /* border-bottom: 1px solid red */
+}
+
+.statsButton{
+    border-bottom: var(--borders);
 }
 
 .active {
     background-color: var(--menu-acc);
+    border-left: var(--borders);;
+    border-top: var(--borders);
+    border-right: var(--borders);
+    border-bottom: none;
 }
 
 .statTitle{
@@ -363,20 +377,17 @@ html{
 
 #statsTable > :nth-child(1){
     padding-top: 0;
-    /* background-color: pink; */
 }
 
 .statBody{
     display: flex;
     flex-wrap: wrap;
-    /* background-color: red; */
     gap: 5px;
     justify-content: center;
 }
 
 .statValue{
-    /* background-color: green; */
-    border: 1px solid lightgray;
+    border: var(--borders);
     border-radius: 10px;
     padding: 10px;
     gap: 5px;
@@ -397,7 +408,6 @@ html{
     width: 90%;
     margin: auto;
     border-radius: 10px;
-    background-color: green;
 }
 
 .close {
@@ -490,6 +500,7 @@ html{
         overflow-y: auto;
         border-radius: 0 0 10px 10px;
         height: 85%;
+
     }
 
     #pokemonImage {
