@@ -103,7 +103,7 @@ function setTitle(){
     let title = document.getElementById('title');
 
     if (pokedexOpened == "") title.innerHTML = "Pokédex"
-    else title.innerHTML = `Pokédex - ${firstLetterToUpperCase(allPokemon[pokemonIndex]['name'])}`;
+    else title.innerHTML = `Pokédex - #${allPokemon[pokemonIndex]['id']} ${firstLetterToUpperCase(allPokemon[pokemonIndex]['name'])}`;
 }
 
 function setAmountLoadedPokemon() {
