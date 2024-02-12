@@ -2,7 +2,6 @@
     --menu-acc: rgb(238, 238, 238);
     --effect: all 275ms ease-in-out;
     --bgcolor: rgb(249, 249, 249);
-    /* --borders: 1px solid rgba(0,0,0,.2) */
     --borders: 1px solid lightgray
 }
 
@@ -84,7 +83,6 @@ html{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: red !important; */
     top:0;
     height: 70px;
     z-index:1000;
@@ -96,7 +94,6 @@ html{
 #pokedexTitle{
     margin: 0;
 }
-
 
 .blur {
     filter: blur(3px);
@@ -130,7 +127,6 @@ html{
 }
 
 #pokedex-top {
-    /* position: relative; */
     min-height: 30vh;
     color: white;
     padding: 24px;
@@ -175,6 +171,7 @@ html{
 .previous-button{
     left:20px;
 }
+
 .next-button,
 .previous-button{
     transition: var(--effect);
@@ -195,20 +192,20 @@ html{
     right: 20px;
     cursor: pointer;
     opacity: .5;
-    transition: opacity 0.3s ease; /* Füge eine Transition für die Opazität hinzu */
+    transition: opacity 0.3s ease;
 }
 
 .upbutton:hover {
     opacity: 1;
-    animation: moveUpAndDown 500ms ease 2; /* Füge die Keyframe-Animation hinzu */
+    animation: moveUpAndDown 500ms ease 2;
 }
 
 @keyframes moveUpAndDown {
     0%, 100% {
-        transform: translateY(0); /* Anfangs- und Endposition (keine Veränderung) */
+        transform: translateY(0);
     }
     50% {
-        transform: translateY(-10px); /* In der Mitte der Animation nach oben bewegen */
+        transform: translateY(-10px);
     }
 }
 
@@ -249,13 +246,11 @@ html{
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    /* padding-bottom: 150px; */
 }
 
 
 #overview-container:has(.smallCard:hover) .smallCard:not(:hover){
-    /* border: 5px solid green; */
-    /* transform: scale(.8); */
+
     opacity: .7;
     transition: var(--effect);
 }
@@ -278,6 +273,13 @@ html{
 
 .smallCard h2{
     padding-bottom: 10px;
+}
+
+.smallCardTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
 }
 
 .type{
@@ -335,7 +337,6 @@ html{
     border-radius: 10px 10px 0 0;
     padding: 5px;
     flex-grow: 1;
-    /* border-bottom: 1px solid red */
 }
 
 .statsButton{
@@ -413,24 +414,13 @@ html{
     top: 100%;
     left: 50%;
     margin-left: -60px;
-    /* Use half of the width (120/2 = 60), to center the tooltip */
 }
 
 #myChart{
     height: 100%
 }
 
-#loadingScreen{
-    content:"sadsd";
-    position: fixed;
-    top:0px;
-    right:0px;
-    left:0px;
-    height: 5px;
-    text-align: center;
-    background-color: lightgreen !important;
-    /* z-index: 1; */
-}
+
 #loadMore{
     background-color: var(--bgcolor);
     display: flex;
@@ -440,7 +430,6 @@ html{
 }
 .loadMoreBtn{
     width: 100%;
-    /* border: 1px solid black; */
     background-color: rgba(0,0,0,.1);
     border-radius: 25px;
     padding: 13px;
@@ -452,11 +441,6 @@ html{
     transition: var(--effect);
 }
 
-/* .autoload{
-    position: absolute;
-    right: 20px;
-    top:15px;
-} */
 
 .loadMorebutton:hover{
     background-color: rgba(0,0,0,.2);
@@ -501,7 +485,7 @@ html{
     .statValue{
         border: var(--borders);
         border-radius: 10px;
-        padding: 10px;
+        padding: 5px;
         gap: 5px;
         font-size: small;
     }
@@ -532,9 +516,21 @@ html{
         color:white;
         box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1)
     }
+
+    .smallCardTitle{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items:top;
+    }
+
+    .smallCardId{
+        font-size: x-small;
+    }
+
+
     .smallPokemon{
         width: 70px;
-        /* display: none; */
     }
 
     h2{
