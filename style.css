@@ -149,6 +149,7 @@ html{
     align-items: center;
     gap: 5px;
 }
+
 .pokeball > img{
     width: 40px;
 }
@@ -248,7 +249,6 @@ html{
     gap: 10px;
 }
 
-
 #overview-container:has(.smallCard:hover) .smallCard:not(:hover){
 
     opacity: .7;
@@ -321,7 +321,6 @@ html{
     width: 80%;
     padding: 10px;
 }
-
 
 .statsMenuBar {
     display: flex;
@@ -420,14 +419,13 @@ html{
     height: 100%
 }
 
-
 #loadMore{
     background-color: var(--bgcolor);
     display: flex;
     justify-content: center;
     padding: 20px;
-
 }
+
 .loadMoreBtn{
     width: 100%;
     background-color: rgba(0,0,0,.1);
@@ -440,7 +438,6 @@ html{
     cursor: pointer;
     transition: var(--effect);
 }
-
 
 .loadMorebutton:hover{
     background-color: rgba(0,0,0,.2);
@@ -458,7 +455,6 @@ html{
     opacity: 1 !important;
 }
 
-
 @media (max-width: 530px) {
     .pokedex-bottom {
         height: 65svh;
@@ -468,6 +464,7 @@ html{
     #pokedexTitle{
         display:none;
     }
+
     #pokemonStats {
         background-color: var(--menu-acc);
         overflow-y: auto;
@@ -535,7 +532,6 @@ html{
     .smallCardId{
         font-size: x-small;
     }
-
 
     .smallPokemon{
         width: 70px;

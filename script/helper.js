@@ -164,7 +164,7 @@ window.addEventListener('scroll', () => {
 
 
 /**
- * activate the autoLoad 
+ * toggle the autoLoad functionality. Disabled while searching.
  */
 function setAutoLoad(){
     autoload = !autoload;

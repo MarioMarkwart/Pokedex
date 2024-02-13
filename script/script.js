@@ -1,24 +1,22 @@
-const DEBUGMODE = false;
 const MAX_POKEMON = 50;
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
-let availablePokemon = 0;
 let allPokemon = {};
-let searching = false;
 let foundPokemon = [];
+let statsTable = "";
+let availablePokemon = 0;
 let loadedPokemon = 0;
 let pokemonIndex = 0;
-let loading = false;
-let statsTable;
 let actStatsTab = 0;
-let pokedexOpened = new Boolean;
 let searchTimeout;
+let loading = false;
+let pokedexOpened = false;
+let searching = false;
 let autoload = true;
+
 
 //TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
 /**
  * FIXME: Autoload not working in Responsive
- * TODO: Replace AutoLoad with Button (Bootstrap)
- * TODO: Autoload-Icon (DIV with checkbox (opacity 0) and icon)
  * 
  */
 //TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
