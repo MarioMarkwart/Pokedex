@@ -369,9 +369,11 @@ html{
 
 .statValue{
     border: var(--borders);
-    border-radius: 10px;
+    border-radius: 25px;
     padding: 10px;
-    gap: 5px;
+    /* min-width: 70px; */
+    text-align: center;
+    background-color: rgba(0,0,0,.03)
 }
 
 .moveStats{
@@ -489,9 +491,8 @@ html{
 
     .statValue{
         border: var(--borders);
-        border-radius: 10px;
+        border-radius: 25px;
         padding: 5px;
-        gap: 5px;
         font-size: small;
     }
 
