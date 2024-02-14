@@ -55,6 +55,7 @@
 body {
     background-color: var(--bgcolor);
     position: relative;
+    cursor: default;
 }
 
 html{
@@ -373,7 +374,8 @@ html{
     padding: 10px;
     /* min-width: 70px; */
     text-align: center;
-    background-color: rgba(0,0,0,.03)
+    background-color: rgba(0,0,0,.03);
+    
 }
 
 .moveStats{
@@ -408,6 +410,11 @@ html{
 
 .d-none {
     display: none !important;
+}
+
+.invisible{
+    cursor: default;
+    opacity: 0;
 }
 
 .tooltip .tooltiptext {

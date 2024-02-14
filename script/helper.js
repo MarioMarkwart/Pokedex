@@ -190,6 +190,6 @@ function setAutoLoad(){
 
 function checkIfMobileDevice(){
     "ontouchstart" in document.documentElement
-    ? document.getElementById('autoload').classList.add('d-none')
-    :document.getElementById('autoload').classList.remove('d-none')
+    ? document.getElementById('autoload').classList.add('invisible')
+    :document.getElementById('autoload').classList.remove('invisible')
 }

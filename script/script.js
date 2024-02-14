@@ -244,7 +244,8 @@ function searchPokemon() {
         clearTimeout(searchTimeout);
         renderMoreBtn();
         fillFoundPokemon(word);
-        
+        closePokedex();
+
     }
 }
 
