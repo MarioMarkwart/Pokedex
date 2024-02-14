@@ -28,6 +28,7 @@ let autoload = true;
 async function init() {
 	await loadAllPokemon();
 	await loadPokemonInformations();
+    checkIfMobileDevice();
     setAutoLoad();
 	renderBatch();
 }

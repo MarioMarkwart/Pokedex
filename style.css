@@ -455,6 +455,13 @@ html{
     opacity: 1 !important;
 }
 
+#loader{
+    position: sticky;
+    bottom: 0;
+    z-index: -1;
+    height: 50px;
+    background: rgba(0, 0, 0, .1);
+}
 @media (max-width: 530px) {
     .pokedex-bottom {
         height: 65svh;

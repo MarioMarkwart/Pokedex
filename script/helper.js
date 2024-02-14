@@ -162,6 +162,10 @@ window.addEventListener('scroll', () => {
     }
   })
 
+  window.addEventListener('resize', () => {
+    console.log("hasTouch: ","ontouchstart" in document.documentElement)
+    checkIfMobileDevice();
+  });
 
 /**
  * toggle the autoLoad functionality. Disabled while searching.
@@ -205,4 +209,10 @@ async function loadedFromLocalStorage() {
         return false;
     }
     return true;
+}
+
+function checkIfMobileDevice(){
+    "ontouchstart" in document.documentElement
+    ? document.getElementById('autoload').classList.add('d-none')
+    :document.getElementById('autoload').classList.remove('d-none')
 }
