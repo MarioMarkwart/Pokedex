@@ -167,6 +167,7 @@ window.addEventListener('scroll', () => {
     checkIfMobileDevice();
   });
 
+
 /**
  * toggle the autoLoad functionality. Disabled while searching.
  */
@@ -186,30 +187,6 @@ function setAutoLoad(){
     }
 }
 
-
-
-/**
- * save allPokemon to localStorage
- */
-function saveToLocalStorage() {
-    localStorage.setItem("allPokemon", JSON.stringify(allPokemon));
-}
-
-
-/**
- * checks if allPokemon found in localStorage
- * if so => get it from localstorage and set allPokemon
- * @returns true / false
- */
-async function loadedFromLocalStorage() {
-    let allPokemonAsString = await JSON.parse(localStorage.getItem("allPokemon"));
-
-    if (allPokemonAsString) {
-        allPokemon = allPokemonAsString;
-        return false;
-    }
-    return true;
-}
 
 function checkIfMobileDevice(){
     "ontouchstart" in document.documentElement

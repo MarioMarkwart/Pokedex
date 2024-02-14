@@ -37,19 +37,16 @@ async function init() {
 /**
  * fetch all names and urls
  */
-async function loadAllPokemon(){
-    if(!loadedFromLocalStorage){
-        console.log("loaded from API.", allPokemon);
-    }else{
-        let response = await fetch(url);
-        let responseAsJson = await response.json();
-        url = responseAsJson['next'];
-        availablePokemon = responseAsJson['count'];
-        for (let i=0; i<responseAsJson['results'].length; i++){
-            allPokemon[getIdOutOfUrl(responseAsJson['results'][i]['url'])] = responseAsJson['results'][i];
-        }
-            console.log("loaded from localStorage.", allPokemon);
-    }
+async function loadAllPokemon() {
+	let response = await fetch(url);
+	let responseAsJson = await response.json();
+	url = responseAsJson["next"];
+	availablePokemon = responseAsJson["count"];
+	for (let i = 0; i < responseAsJson["results"].length; i++) {
+		allPokemon[getIdOutOfUrl(responseAsJson["results"][i]["url"])] =
+			responseAsJson["results"][i];
+	}
+	console.log("loaded from localStorage.", allPokemon);
 }
 
 
