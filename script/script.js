@@ -40,13 +40,13 @@ async function init() {
 async function loadAllPokemon() {
 	let response = await fetch(url);
 	let responseAsJson = await response.json();
-	url = responseAsJson["next"];
+	// url = responseAsJson["next"];
 	availablePokemon = responseAsJson["count"];
 	for (let i = 0; i < responseAsJson["results"].length; i++) {
 		allPokemon[getIdOutOfUrl(responseAsJson["results"][i]["url"])] =
 			responseAsJson["results"][i];
 	}
-	console.log("loaded from localStorage.", allPokemon);
+	console.log(allPokemon);
 }
 
 
@@ -65,6 +65,9 @@ async function loadPokemonInformations(){
     loadedPokemon += MAX_POKEMON;
     loading = false;
     setProgressBar();
+    // following for chartJS-bulding
+    actStatsTab = 1;
+    loadPokedex(25)
 }
 
 

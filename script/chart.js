@@ -11,31 +11,32 @@ const BG_COLORS = [
 ];
 
 function drawChart() {
+
 	const ctx = document.getElementById("myChart");
 	new Chart(ctx, {
-		type: "bar",
+		type: 'bar',
 		data: {
-			// labels: apiLabels,
-			labels: chartLabel,
-			datasets: CONFIG_DATASETS,
+		//   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+		labels: chartLabel,
+		  datasets: [{
+			backgroundColor: BG_COLORS,
+			//   label: '# of Votes',
+			  data: chartData,
+			  borderWidth: 1,
+			  categoryPercentage: 1,
+			}]
 		},
-		options: CONFIG_OPTIONS,
-	});
+		options: {
+		responsive: true,
+		// indexAxis: 'y',
+		animation: true,
+		  scales: {
+			y: {
+			  beginAtZero: true
+			}
+		  }
+		}
+	  });
 }
 
-const CONFIG_OPTIONS = {
-	scales: {
-		y: {
-			beginAtZero: true,
-		},
-	},
-};
-const CONFIG_DATASETS = [
-	{
-		label: "# of Votes",
-		// data: apiData,
-		data: chartData,
-		backgroundColor: BG_COLORS,
-		borderWidth: 1,
-	},
-];
+

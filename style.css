@@ -319,8 +319,9 @@ html{
 }
 
 #statsTable {
-    width: 80%;
-    padding: 10px;
+    width: 100%;
+    padding: 20px;
+    height: 90%
 }
 
 .statsMenuBar {
@@ -424,9 +425,6 @@ html{
     margin-left: -60px;
 }
 
-#myChart{
-    height: 100%
-}
 
 #loadMore{
     background-color: var(--bgcolor);
