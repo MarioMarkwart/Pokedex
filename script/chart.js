@@ -27,8 +27,13 @@ function drawChart() {
 			}]
 		},
 		options: {
+			plugins: {
+				legend:{
+					display: false,
+				}
+			},
 		responsive: true,
-		// indexAxis: 'y',
+		indexAxis: 'y',
 		animation: true,
 		  scales: {
 			y: {
