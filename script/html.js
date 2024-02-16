@@ -99,21 +99,9 @@ function renderBaseStatHTML(statsTable){
     statsTable.innerHTML = `<canvas id="myChart"></canvas>`
 
     for(let i=0; i<allPokemon[pokemonIndex]["baseStats"].length; i++){
-        chartLabel.push(splitChartLabel(allPokemon[pokemonIndex]["baseStats"][i]['stat']['name']));
         chartData.push(allPokemon[pokemonIndex]["baseStats"][i]['base_stat']);
-        // statsTable.innerHTML += /*html*/`
-        //     <p><b>${allPokemon["baseStats"][pokemonIndex][i]['stat']['name']}:</b>
-        //     ${allPokemon["baseStats"][pokemonIndex][i]['base_stat']}</p>`
     }
-    // console.log(chartLabel, chartData);
     drawChart();
-}
-
-function splitChartLabel(label){
-    let labelArray = label.split('-');
-     console.log(labelArray.length, labelArray)
-     return labelArray;
-    
 }
 
 /**

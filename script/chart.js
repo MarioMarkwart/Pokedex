@@ -12,7 +12,7 @@ const BG_COLORS = [
 
 function drawChart() {
 	const ctx = document.getElementById("myChart");
-	new Chart(ctx, {
+	const chart = new Chart(ctx, {
 		type: "bar",
 		data: {
 			//   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -29,6 +29,7 @@ function drawChart() {
 			],
 		},
 		options: {
+			maintainAspectRatio: false,
 			plugins: {
 				legend: {
 				  display: false,
@@ -69,4 +70,17 @@ function drawChart() {
 	});
 }
 
+function updateIndexAxis() {
 
+    const chartContainerWidth = ctx.parentElement.offsetWidth;
+
+    // Überprüfe, ob die Breite kleiner als 530px ist
+    if (chartContainerWidth < 530) {
+        chart.options.indexAxis = 'x';
+    } else {
+        chart.options.indexAxis = 'y';
+    }
+
+    // Aktualisiere das Diagramm
+    chart.update();
+}

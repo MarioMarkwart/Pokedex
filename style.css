@@ -321,7 +321,7 @@ html{
 #statsTable {
     width: 100%;
     padding: 20px;
-    height: 90%
+    height: 70%
 }
 
 .statsMenuBar {
@@ -504,8 +504,14 @@ html{
     .statsMenuBar div{
         font-size: smaller;
     }
+
     .statsMenuBar{
         width: 90%;
+    }
+
+    
+    #statsTable{
+        max-height: 40%;
     }
 
     .button img{

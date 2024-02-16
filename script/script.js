@@ -1,4 +1,4 @@
-const MAX_POKEMON = 50;
+const MAX_POKEMON = 50; //set amount of Pokemon to be loaded each batch
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let allPokemon = {};
 let foundPokemon = [];
