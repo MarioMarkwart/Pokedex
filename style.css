@@ -468,6 +468,10 @@ html{
         margin-top: -200px;
     }
 
+    .loadMoreBtn{
+        width: 90%;
+    }
+
     #pokedexTitle{
         display:none;
     }
