@@ -40,11 +40,12 @@ async function init() {
 async function loadAllPokemon() {
 	let response = await fetch(url);
 	let responseAsJson = await response.json();
-	// url = responseAsJson["next"];
 	availablePokemon = responseAsJson["count"];
 	for (let i = 0; i < responseAsJson["results"].length; i++) {
-		allPokemon[getIdOutOfUrl(responseAsJson["results"][i]["url"])] =
-			responseAsJson["results"][i];
+		if (getIdOutOfUrl(responseAsJson["results"][i]["url"]) < 10000){
+            allPokemon[getIdOutOfUrl(responseAsJson["results"][i]["url"])] =
+                responseAsJson["results"][i];
+        }
 	}
 	console.log(allPokemon);
 }
