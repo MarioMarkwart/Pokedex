@@ -149,6 +149,7 @@ function loadPokedex(pokemonId){
     hidePrevNextBtn();
     pokemonIndex = pokemonId;
     pokedexOpened = true;
+    toggleNoScroll();
     setFavIcon();
     setTitle();
     renderPokedex()

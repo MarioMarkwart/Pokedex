@@ -40,12 +40,17 @@ function getIdOutOfUrl(urlToSplit){
     return urlToSplit.split('/')[6];
 }
 
+function toggleNoScroll(){
+    if (pokedexOpened)  document.getElementsByTagName('body')[0].classList.add('noScroll');
+    else document.getElementsByTagName('body')[0].classList.remove('noScroll');
+}
 
 /**
  * closing the card
  */
 function closePokedex(){
     pokedexOpened = false;
+    toggleNoScroll();
     document.getElementById('pokedex-container').classList.add("d-none");
     document.getElementById('overview-container').classList.remove("blur");
     setFavIcon();

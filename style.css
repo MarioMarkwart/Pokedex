@@ -462,6 +462,10 @@ html{
     opacity: 1 !important;
 }
 
+.noScroll{
+    overflow: hidden;
+}
+
 @media (max-width: 530px) {
     .pokedex-bottom {
         height: 65svh;
