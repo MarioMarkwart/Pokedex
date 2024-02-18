@@ -2,6 +2,8 @@ const MAX_POKEMON = 50; //set amount of Pokemon to be loaded each batch
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let allPokemon = {};
 let foundPokemon = [];
+let language = 'us';
+let namesLanguageField = 'name';
 let statsTable = "";
 let availablePokemon = 0;
 let loadedPokemon = 0;
@@ -67,8 +69,8 @@ async function loadPokemonInformations(){
     loading = false;
     setProgressBar();
     // following for chartJS-bulding
-    actStatsTab = 1;
-    loadPokedex(25)
+    // actStatsTab = 1;
+    // loadPokedex(25)
 }
 
 
@@ -170,7 +172,7 @@ function renderPokedex(){
  * render the top part of the card
  */
 function renderPokedexTop(){
-    document.getElementById('pokemonName').innerHTML = firstLetterToUpperCase(allPokemon[pokemonIndex]['name']);
+    document.getElementById('pokemonName').innerHTML = firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField]);
     let pokePic = allPokemon[pokemonIndex]['img'];
     if (pokePic != null) document.getElementById('pokemonImage').src = pokePic;
     else (document.getElementById('pokemonImage').src = './img/questionmark.png')
@@ -265,7 +267,7 @@ function fillFoundPokemon(word){
     foundPokemon = [];
     searchTimeout = setTimeout(function() {
         for (let key in allPokemon) {
-            if (allPokemon[key]['name'].includes(word) || germanNames[key]['name'].toLowerCase().includes(word)) {
+            if (allPokemon[key]['name'].includes(word) || germanNames[key]['germanName'].toLowerCase().includes(word)) {
                 if (!foundPokemon.includes(allPokemon[key]['url']))
                     foundPokemon.push(allPokemon[key]['url']);
             }
@@ -301,4 +303,16 @@ function renderFoundPokemon(){
     for (let i=0; i<foundPokemon.length; i++){
         renderPokemonSmallCard(getIdOutOfUrl(foundPokemon[i]));
     }
+}
+
+
+function switchLanguage() {
+	if (language == "us") {
+		namesLanguageField = "germanName";
+		language = "de";
+	} else if (language == "de") {
+		namesLanguageField = "name";
+		language = "us";
+	}
+	renderBatch();
 }

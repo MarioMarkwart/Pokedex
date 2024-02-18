@@ -114,6 +114,9 @@ html{
     width: 100%;
     max-width: 450px;
     margin-inline: 20px;
+
+    background-size: contain;
+    ;
 }
 
 #pokedex-container {
