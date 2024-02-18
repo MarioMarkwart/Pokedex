@@ -265,7 +265,7 @@ function fillFoundPokemon(word){
     foundPokemon = [];
     searchTimeout = setTimeout(function() {
         for (let key in allPokemon) {
-            if (allPokemon[key]['name'].includes(word)) {
+            if (allPokemon[key]['name'].includes(word) || germanNames[key]['name'].toLowerCase().includes(word)) {
                 if (!foundPokemon.includes(allPokemon[key]['url']))
                     foundPokemon.push(allPokemon[key]['url']);
             }

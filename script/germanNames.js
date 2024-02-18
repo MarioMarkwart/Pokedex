@@ -1023,6 +1023,5 @@ let germanNames = {
     "1022": { "name": "Eisenfels" },
     "1023": { "name": "Eisenhaupt" },
     "1024": { "name": "Terapagos" },
-    "1025": { "name": "Infamomo"
-    }
+    "1025": { "name": "Infamomo"}
 }
