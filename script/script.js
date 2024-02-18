@@ -1,4 +1,4 @@
-const MAX_POKEMON = 50; //set amount of Pokemon to be loaded each batch
+const MAX_POKEMON = 25; //set amount of Pokemon to be loaded each batch
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let allPokemon = {};
 let foundPokemon = [];
@@ -62,6 +62,8 @@ async function loadPokemonInformations(){
     setProgressBar()
     let loadingList = [];
     for (let i=loadedPokemon; i<loadedPokemon + MAX_POKEMON; i++){
+        // if (loadedPokemon >= availablePokemon) {console.log('ende'); break;}
+        // console.log(i);
         loadingList.push(setPokemonInformations(allPokemon[i+1]['url']))
     }
     await Promise.all(loadingList);
@@ -267,7 +269,7 @@ function fillFoundPokemon(word){
     foundPokemon = [];
     searchTimeout = setTimeout(function() {
         for (let key in allPokemon) {
-            if (allPokemon[key]['name'].includes(word) || germanNames[key]['germanName'].toLowerCase().includes(word)) {
+            if (allPokemon[key]['name'].includes(word) || germanNames[key]['name'].toLowerCase().includes(word)) {
                 if (!foundPokemon.includes(allPokemon[key]['url']))
                     foundPokemon.push(allPokemon[key]['url']);
             }
@@ -312,7 +314,8 @@ function switchLanguage() {
 		language = "de";
 	} else if (language == "de") {
 		namesLanguageField = "name";
-		language = "us";
-	}
-	renderBatch();
+		language = "us"
+    }
+    setPokeballLanguageIcon();
+	searching ? renderFoundPokemon() : renderBatch()
 }

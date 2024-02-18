@@ -194,3 +194,10 @@ async function loadedFromLocalStorage() {
     }
     return true;
 }
+
+
+function setPokeballLanguageIcon(){
+    let pokeballIcon = document.getElementById('pokeball');
+    if (language == 'de') pokeballIcon.src = './img/pokeball_DE.png';
+    if (language == 'us') pokeballIcon.src = './img/pokeball_US.png';
+}

@@ -152,10 +152,12 @@ html{
     display: flex;
     align-items: center;
     gap: 5px;
+    cursor: pointer;transition: var(--effect);
+    
 }
 
 .pokeball > img{
-    width: 40px;
+    width: 60px;transition: var(--effect);
 }
 
 .button{
@@ -216,6 +218,7 @@ html{
 
 #pokeball:hover{
     animation: rotateBall 500ms ease-in-out;
+    transition: var(--effect);
 }
 
 @keyframes rotateBall{
