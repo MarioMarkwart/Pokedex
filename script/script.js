@@ -85,6 +85,7 @@ async function setPokemonInformations(url){
         let pokemonId = responseAsJson['id']
         allPokemon[pokemonId] = {
             ['name']:responseAsJson['name'],
+            ['germanName']:germanNames[responseAsJson['id']]['name'],
             ['id'] : responseAsJson['id'],
             ['img'] : responseAsJson['sprites']['other']['official-artwork']['front_shiny'],
             ['abilities'] : responseAsJson['abilities'],
