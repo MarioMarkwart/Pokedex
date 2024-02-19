@@ -16,14 +16,6 @@ let searching = false;
 let autoload = true;
 
 
-//TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-/**
- * FIXME: Autoload not working in Responsive
- * 
- */
-//TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:TODO:
-
-
 /**
  * initial function
  */
@@ -33,6 +25,7 @@ async function init() {
     checkIfMobileDevice();
     setAutoLoad();
 	renderBatch();
+    printWelcomeMessage();
 }
 
 
@@ -49,7 +42,6 @@ async function loadAllPokemon() {
                 responseAsJson["results"][i];
         }
 	}
-	console.log(allPokemon);
 }
 
 
@@ -62,17 +54,12 @@ async function loadPokemonInformations(){
     setProgressBar()
     let loadingList = [];
     for (let i=loadedPokemon; i<loadedPokemon + MAX_POKEMON; i++){
-        // if (loadedPokemon >= availablePokemon) {console.log('ende'); break;}
-        // console.log(i);
         loadingList.push(setPokemonInformations(allPokemon[i+1]['url']))
     }
     await Promise.all(loadingList);
     loadedPokemon += MAX_POKEMON;
     loading = false;
     setProgressBar();
-    // following for chartJS-bulding
-    // actStatsTab = 1;
-    // loadPokedex(25)
 }
 
 
@@ -85,7 +72,6 @@ async function setPokemonInformations(url){
     if (!checkIfPokemonInformationLoaded(url)){
         let response = await fetch(url);
         let responseAsJson = await response.json();
-
         let pokemonId = responseAsJson['id']
         allPokemon[pokemonId] = {
             ['name']:responseAsJson['name'],
@@ -101,7 +87,6 @@ async function setPokemonInformations(url){
             ['url'] : url
         }
     }
-
 }
 
 
@@ -128,7 +113,6 @@ function setProgressBar(){
 function renderBatch(){
     document.getElementById('overview-container').innerHTML = "";
     for (let i=0; i<loadedPokemon; i++){
-        // console.log(allPokemon[i+1]['id'])
         renderPokemonSmallCard(allPokemon[i+1]['id']);
     }
 }
@@ -243,9 +227,7 @@ async function loadMorePokemon(){
  */
 function searchPokemon() {
     let word = document.getElementById('searchBox').value.toLowerCase();
-    console.log("WORD: ", word);
     if (word == "") {
-        console.log("WORD leer: ", word)
         searching = false;
         renderBatch();
         setAutoLoad();
@@ -311,9 +293,12 @@ function renderFoundPokemon(){
 }
 
 
+/**
+ * switch the language of the pokemon names between us and de
+ * and also set the flag inside of the pokeball
+ */
 function switchLanguage() {
-    document.getElementById('pokeball').classList.add('active');
-	if (language == "us") {
+    if (language == "us") {
         namesLanguageField = "germanName";
 		language = "de";
 	} else if (language == "de") {
@@ -323,6 +308,18 @@ function switchLanguage() {
     setPokeballLanguageIcon();
     setTitle();
     if(pokedexOpened) renderPokedex();
-	searching ? renderFoundPokemon() : renderBatch()
-    document.getElementById('pokeball').classList.remove('active');
+	
+    if(searching) renderFoundPokemon(); 
+    else renderBatch();
+}
+
+
+function printWelcomeMessage(){
+    console.log(
+`Welcome to my Pokedex!
+You can search out of ${availablePokemon} Pokemon with the original english name convention or the german version.
+Switch the names by clicking the Pokeball on the top left side.
+Just start searching and see some statistics of your favorite Pokemon!
+
+Have fun! :)`);
 }

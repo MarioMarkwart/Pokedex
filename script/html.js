@@ -57,7 +57,8 @@ function renderMoreBtn(){
  * @param {string} statsTable div to render in
  */
 function renderAboutStatHTML(statsTable) {
-	statsTable.innerHTML = `
+	statsTable.innerHTML = `<div class="statTitle">About ${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}</div>`
+	statsTable.innerHTML += `
         <div class="statTitle">Abilities</div>
         <div class="statBody" id="abilities"></div>`;
 
@@ -70,7 +71,7 @@ function renderAboutStatHTML(statsTable) {
         <div class="statBody" id="height"></div>`;
 
     document.getElementById('height').innerHTML = 
-        `<div class="statValue">${(allPokemon[pokemonIndex]["height"] / 10).toFixed(2)} cm</div>`
+        `<div class="statValue">${(allPokemon[pokemonIndex]["height"] / 10).toFixed(2)} m</div>`
         
         statsTable.innerHTML += ` 
         <div class="statTitle">Weight</div>
@@ -93,10 +94,8 @@ function renderAboutStatHTML(statsTable) {
  * @param {string} statsTable div to render in
  */
 function renderBaseStatHTML(statsTable){
-    // WARUM KEINE BALKEN WENN LEER? WIRD DOCH DANACH GEFÜLLT?!"
-    chartLabel = [];
     chartData = [];
-    statsTable.innerHTML = `<canvas id="myChart"></canvas>`
+    statsTable.innerHTML = `<b>${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}'s statistics</b><canvas id="myChart"></canvas>`
 
     for(let i=0; i<allPokemon[pokemonIndex]["baseStats"].length; i++){
         chartData.push(allPokemon[pokemonIndex]["baseStats"][i]['base_stat']);
@@ -110,7 +109,8 @@ function renderBaseStatHTML(statsTable){
  */
 function renderMovesStatHTML(statsTable){
     let moves = allPokemon[pokemonIndex]["moves"];
-    statsTable.innerHTML = `<div class="statBody" id="moves"></div>`
+    statsTable.innerHTML = `<div class="statTitle">${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}'s moves</div>`
+    statsTable.innerHTML += `<div class="statBody" id="moves"></div>`
     for (let i=0; i<moves.length; i++){
         document.getElementById('moves').innerHTML += /*html*/`<div class="statValue moveStats">${firstLetterToUpperCase(moves[i]['move']['name'])}</div>`
     }

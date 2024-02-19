@@ -1,5 +1,4 @@
 let chartData = [];
-let chartLabel = [];
 
 const BG_COLORS = [
 	"rgba(255,99,132,0.8)",
@@ -15,13 +14,10 @@ function drawChart() {
 	const chart = new Chart(ctx, {
 		type: "bar",
 		data: {
-			//   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-			// labels: chartLabel,
 			labels: ["HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"],
 			datasets: [
 				{
 					backgroundColor: BG_COLORS,
-					//   label: '# of Votes',
 					data: chartData,
 					borderWidth: 1,
 					categoryPercentage: 0.8,
@@ -62,9 +58,6 @@ function drawChart() {
 						display: false,
 					  },
 				},
-				x:{
-					// max: 150,
-				}
 			},
 		},
 	});
