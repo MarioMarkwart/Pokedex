@@ -2,8 +2,8 @@ const MAX_POKEMON = 25; //set amount of Pokemon to be loaded each batch
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999}`;
 let allPokemon = {};
 let foundPokemon = [];
-let language = 'us';
-let namesLanguageField = 'name';
+let language = 'de';
+let namesLanguageField = 'germanName';
 let statsTable = "";
 let availablePokemon = 0;
 let loadedPokemon = 0;
@@ -243,11 +243,13 @@ async function loadMorePokemon(){
  */
 function searchPokemon() {
     let word = document.getElementById('searchBox').value.toLowerCase();
+    console.log("WORD: ", word);
     if (word == "") {
+        console.log("WORD leer: ", word)
         searching = false;
+        renderBatch();
         setAutoLoad();
         setProgressBar();
-        renderBatch();
     } else {
         searching = true;
         setAutoLoad();
@@ -255,7 +257,6 @@ function searchPokemon() {
         renderMoreBtn();
         fillFoundPokemon(word);
         closePokedex();
-
     }
 }
 
@@ -283,17 +284,19 @@ function fillFoundPokemon(word){
  * load all found pokemon
  */
 async function fetchFoundPokemon(){
-    document.getElementById('overview-container').innerHTML = "";
-    let loadingList = []
-    for (let i=0; i<foundPokemon.length; i++){
-        loadingList.push(setPokemonInformations(foundPokemon[i]))
+    if (searching){
+        document.getElementById('overview-container').innerHTML = "";
+        let loadingList = []
+        for (let i=0; i<foundPokemon.length; i++){
+            loadingList.push(setPokemonInformations(foundPokemon[i]))
+        }
+        loading = true;
+        setProgressBar();
+        await Promise.all(loadingList);
+        loading = false;
+        setProgressBar();
+        renderFoundPokemon();
     }
-    loading = true;
-    setProgressBar();
-    await Promise.all(loadingList);
-    loading = false;
-    setProgressBar();
-    renderFoundPokemon();
 }
 
 

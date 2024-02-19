@@ -101,9 +101,11 @@ html{
 }
 
 .searchBoxContainer{
+    position: relative;
     display: flex;
     flex-grow: 1;
     justify-content: center;
+
 }
 
 #searchBox{
@@ -116,11 +118,12 @@ html{
     margin-inline: 20px;
     background-size: contain;
 }
+
 #searchBox:focus{
     outline: none;
     border-color: #ffc107;
-
 }
+
 
 #pokedex-container {
     position: fixed;
@@ -533,11 +536,6 @@ html{
 
     .statsMenuBar{
         width: 90%;
-    }
-
-    
-    #statsTable{
-        /* max-height: */
     }
 
     .button img{
