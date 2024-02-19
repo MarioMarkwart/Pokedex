@@ -20,8 +20,8 @@ window.addEventListener('scroll', () => {
     }
   })
 
-  window.addEventListener('resize', () => {
-    console.log("hasTouch: ","ontouchstart" in document.documentElement)
-    checkIfMobileDevice();
-    if(actStatsTab == 1) updateIndexAxis();
-  });
+window.addEventListener('resize', () => {
+  console.log("hasTouch: ","ontouchstart" in document.documentElement)
+  checkIfMobileDevice();
+  if(actStatsTab == 1) updateIndexAxis();
+});
