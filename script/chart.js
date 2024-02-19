@@ -63,24 +63,9 @@ function drawChart() {
 					  },
 				},
 				x:{
-					max: 120,
+					// max: 150,
 				}
 			},
 		},
 	});
-}
-
-function updateIndexAxis() {
-
-    const chartContainerWidth = chart.parentElement.offsetWidth;
-
-    // Überprüfe, ob die Breite kleiner als 530px ist
-    if (chartContainerWidth < 530) {
-        chart.options.indexAxis = 'x';
-    } else {
-        chart.options.indexAxis = 'y';
-    }
-
-    // Aktualisiere das Diagramm
-    chart.update();
 }

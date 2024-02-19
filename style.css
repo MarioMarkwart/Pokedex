@@ -131,7 +131,7 @@ html{
 }
 
 #pokedex-top {
-    min-height: 30vh;
+    height: 260px;
     color: white;
     padding: 24px;
     border-radius: 10px;
@@ -232,8 +232,7 @@ html{
 
 .pokedex-inner-container{
     position: fixed;
-    height: 55%;
-    background-color: red;
+    height: 560px;
     top: 10%;
     bottom: 0;
     left: 0;
@@ -311,7 +310,7 @@ html{
     position: absolute;
     width: 150px;
     right:0px;
-    bottom: 00px;
+    bottom: 00px; 
     transition: var(--effect);
 }
 
@@ -402,8 +401,8 @@ html{
 }
 
 #pokedex {
-    position: fixed;
-    top: 100px;
+    position: relative;
+    top: 30px;
     left: 0;
     right: 0;
     max-width: 500px;
@@ -484,8 +483,8 @@ html{
 
 @media (max-width: 530px) {
     .pokedex-bottom {
-        height: 65svh;
-        margin-top: -200px;
+            height: 400px;
+            margin-top: -200px;
     }
 
     .loadMoreBtn{
@@ -500,7 +499,7 @@ html{
         background-color: var(--menu-acc);
         overflow-y: auto;
         border-radius: 0 0 10px 10px;
-        height: 77%;
+        height: 74%;
         width: 90%;
 
     }
@@ -511,6 +510,7 @@ html{
     }
 
     #pokedex-top {
+        height: 200px;
         margin-bottom: 120px;
     }
 
@@ -535,7 +535,7 @@ html{
 
     
     #statsTable{
-        max-height: 40%;
+        /* max-height: */
     }
 
     .button img{
@@ -543,7 +543,7 @@ html{
     }
 
     .next-button, .previous-button {
-        top: 20%;
+        top: 23%;
     }
 
     .smallCard {
