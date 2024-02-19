@@ -72,7 +72,7 @@ function drawChart() {
 
 function updateIndexAxis() {
 
-    const chartContainerWidth = ctx.parentElement.offsetWidth;
+    const chartContainerWidth = chart.parentElement.offsetWidth;
 
     // Überprüfe, ob die Breite kleiner als 530px ist
     if (chartContainerWidth < 530) {

@@ -309,15 +309,17 @@ function renderFoundPokemon(){
 
 
 function switchLanguage() {
+    document.getElementById('pokeball').classList.add('active');
 	if (language == "us") {
-		namesLanguageField = "germanName";
+        namesLanguageField = "germanName";
 		language = "de";
 	} else if (language == "de") {
-		namesLanguageField = "name";
+        namesLanguageField = "name";
 		language = "us"
     }
     setPokeballLanguageIcon();
     setTitle();
     if(pokedexOpened) renderPokedex();
 	searching ? renderFoundPokemon() : renderBatch()
+    document.getElementById('pokeball').classList.remove('active');
 }

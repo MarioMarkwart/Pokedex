@@ -230,6 +230,16 @@ html{
     }
 }
 
+.pokedex-inner-container{
+    position: fixed;
+    height: 55%;
+    background-color: red;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 .pokedex-bottom {
     display: flex;
     align-items: center;
