@@ -19,9 +19,3 @@ window.addEventListener('scroll', () => {
         loadMorePokemon();
     }
   })
-
-window.addEventListener('resize', () => {
-  console.log("hasTouch: ","ontouchstart" in document.documentElement)
-  checkIfMobileDevice();
-  if(actStatsTab == 1) updateIndexAxis();
-});
