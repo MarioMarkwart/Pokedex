@@ -157,7 +157,7 @@ function loadPokedex(pokemonId){
     toggleNoScroll();
     setFavIcon();
     setTitle();
-    renderPokedex()
+    renderPokedex();
 }
 
 
@@ -317,5 +317,7 @@ function switchLanguage() {
 		language = "us"
     }
     setPokeballLanguageIcon();
+    setTitle();
+    if(pokedexOpened) renderPokedex();
 	searching ? renderFoundPokemon() : renderBatch()
 }
