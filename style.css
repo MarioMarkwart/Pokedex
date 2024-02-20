@@ -425,13 +425,13 @@ html{
 .statTitle{
     font-weight: bold;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 5px;
     padding-bottom: 5px;
 }
 
-#statsTable > :nth-child(1){
+/* #statsTable > :nth-child(1){
     padding-top: 0;
-}
+} */
 
 .statBody{
     display: flex;
@@ -538,7 +538,7 @@ html{
 
 @media (max-width: 530px) {
     .pokedex-bottom {
-            height: 400px;
+            height: 440px;
             margin-top: -200px;
     }
 
@@ -554,7 +554,7 @@ html{
         background-color: var(--menu-acc);
         overflow-y: auto;
         border-radius: 0 0 10px 10px;
-        height: 74%;
+        height: 77%;
         width: 90%;
 
     }
