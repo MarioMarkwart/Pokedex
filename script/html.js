@@ -57,7 +57,7 @@ function renderMoreBtn(){
  * @param {string} statsTable div to render in
  */
 function renderAboutStatHTML(statsTable) {
-	statsTable.innerHTML = `<div class="statTitle">About ${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}</div>`
+	statsTable.innerHTML = `<div class="statHead">About ${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}</div>`
 	statsTable.innerHTML += `
         <div class="statTitle">Abilities</div>
         <div class="statBody" id="abilities"></div>`;
@@ -95,7 +95,7 @@ function renderAboutStatHTML(statsTable) {
  */
 function renderBaseStatHTML(statsTable){
     chartData = [];
-    statsTable.innerHTML = `<b>${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}'s statistics</b><canvas id="myChart"></canvas>`
+    statsTable.innerHTML = `<div class="statHead">${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}'s statistics</div><canvas id="myChart"></canvas>`
 
     for(let i=0; i<allPokemon[pokemonIndex]["baseStats"].length; i++){
         chartData.push(allPokemon[pokemonIndex]["baseStats"][i]['base_stat']);
@@ -109,7 +109,7 @@ function renderBaseStatHTML(statsTable){
  */
 function renderMovesStatHTML(statsTable){
     let moves = allPokemon[pokemonIndex]["moves"];
-    statsTable.innerHTML = `<div class="statTitle">${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}'s moves</div>`
+    statsTable.innerHTML = `<div class="statHead">${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}'s moves</div>`
     statsTable.innerHTML += `<div class="statBody" id="moves"></div>`
     for (let i=0; i<moves.length; i++){
         document.getElementById('moves').innerHTML += /*html*/`<div class="statValue moveStats">${firstLetterToUpperCase(moves[i]['move']['name'])}</div>`

@@ -422,6 +422,12 @@ html{
     border-bottom: none;
 }
 
+.statHead{
+    font-size: large;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
 .statTitle{
     font-weight: bold;
     text-align: center;

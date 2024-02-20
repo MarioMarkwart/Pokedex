@@ -317,9 +317,12 @@ function switchLanguage() {
 function printWelcomeMessage(){
     console.log(
 `Welcome to my Pokedex!
+
 You can search out of ${availablePokemon} Pokemon with the original english name convention or the german version.
 Switch the names by clicking the Pokeball on the top left side.
 Just start searching and see some statistics of your favorite Pokemon!
+
+On desktop browsers is an autoload available, which is deativated on mobile devices.
 
 Have fun! :)`);
 }
