@@ -314,6 +314,9 @@ function switchLanguage() {
 }
 
 
+/**
+ * printing a welcome message on the console
+ */
 function printWelcomeMessage(){
     console.log(
 `Welcome to my Pokedex!

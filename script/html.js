@@ -9,6 +9,7 @@ function renderPokemonSmallCardOuterHTML(i){
     container.innerHTML += /*html*/`<div id="card${i}" class="smallCard ${type}" onclick="loadPokedex(${i})"></div>`
 }
 
+
 /**
  * 
  * @param {number} i the smallCard-number
@@ -52,6 +53,7 @@ function renderMoreBtn(){
     }
 }
 
+
 /**
  * 
  * @param {string} statsTable div to render in
@@ -89,6 +91,7 @@ function renderAboutStatHTML(statsTable) {
 	});
 }
 
+
 /**
  * 
  * @param {string} statsTable div to render in
@@ -102,6 +105,7 @@ function renderBaseStatHTML(statsTable){
     }
     drawChart();
 }
+
 
 /**
  * 

@@ -46,8 +46,6 @@
 }
 
 
-
-
 * {
     margin: 0;
     text-decoration: none;
@@ -70,12 +68,12 @@ html{
 ::-webkit-scrollbar {
     width: 16px;
 }
-  
+
 ::-webkit-scrollbar-track {
     background-color: var(--menu-acc);
     border-radius: 5px;
 }
-  
+
 ::-webkit-scrollbar-thumb {
     border-radius: 6px;
     background: url("../img/pokeball.png") #ffc107;
@@ -175,9 +173,9 @@ html{
 
 #pokedex-container {
     position: fixed;
+    background-color: rgba(0, 0, 0, .2);
     top: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, .2);
     width: 100vw;
     height: 100vh;
     z-index: 100;
@@ -205,9 +203,8 @@ html{
 .pokeball{
     display: flex;
     align-items: center;
-    gap: 5px;
-    cursor: pointer;transition: var(--effect);
-    
+    cursor: pointer;
+    transition: var(--effect);
 }
 
 .pokeball > img{
@@ -215,9 +212,9 @@ html{
 }
 
 .button{
+    position: absolute;
     display: flex;
     flex-direction: row;
-    position: absolute;
     width:40px;
 }
 
@@ -237,7 +234,7 @@ html{
 .previous-button{
     transition: var(--effect);
     cursor: pointer;
-    top: 15%;
+    top: 130px;
     opacity: .5;
 }
 
@@ -311,16 +308,15 @@ html{
 }
 
 #overview-container {
-    padding-top: 20px;
-    background-color: var(--bgcolor);
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
+    background-color: var(--bgcolor);
+    padding-top: 20px;
     gap: 10px;
 }
 
 #overview-container:has(.smallCard:hover) .smallCard:not(:hover){
-
     opacity: .7;
     transition: var(--effect);
 }
@@ -331,13 +327,13 @@ html{
 
 .smallCard {
     position: relative;
+    color:white;
     padding: 10px;
     width: 250px;
-    text-align: center;
     height: 250px;
+    text-align: center;
     border-radius: 10px;
     cursor: pointer;
-    color:white;
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1)
 }
 
@@ -347,9 +343,7 @@ html{
 
 .smallCardTitle{
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-
 }
 
 .type{
@@ -396,11 +390,11 @@ html{
 
 .statsMenuBar {
     display: flex;
+    justify-content: space-between;
     text-align: center;
     width: 80%;
-    justify-content: space-between;
-    cursor: pointer;
     margin-top: 0;
+    cursor: pointer;
 
 }
 
@@ -435,15 +429,11 @@ html{
     padding-bottom: 5px;
 }
 
-/* #statsTable > :nth-child(1){
-    padding-top: 0;
-} */
-
 .statBody{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 5px;
-    justify-content: center;
 }
 
 .statValue{
@@ -452,7 +442,6 @@ html{
     padding: 10px;
     text-align: center;
     background-color: var(--bgcolor);
-    
 }
 
 .moveStats{
@@ -466,8 +455,8 @@ html{
     top: 30px;
     left: 0;
     right: 0;
-    max-width: 500px;
     width: 90%;
+    max-width: 500px;
     margin: auto;
     border-radius: 10px;
 }
@@ -476,13 +465,9 @@ html{
     position: absolute;
     top: 10px;
     right: 40px;
-    cursor: pointer;
     width: 20px;
     height: 20px;
-}
-
-.close:hover {
-    color: black
+    cursor: pointer;
 }
 
 .d-none {
@@ -510,12 +495,11 @@ html{
 }
 
 .loadMoreBtn{
-    width: 100%;
     background-color: rgba(0,0,0,.1);
     border-radius: 25px;
     padding: 13px;
     width: 50%;
-    max-width: 200px;
+    max-width: 250px;
     height: 50px;
     text-align: center;
     cursor: pointer;
@@ -549,7 +533,7 @@ html{
     }
 
     .loadMoreBtn{
-        width: 90%;
+        width: 70%;
     }
 
     #pokedexTitle{
@@ -598,8 +582,9 @@ html{
         width: 80%
     }
 
-    .next-button, .previous-button {
-        top: 23%;
+    .next-button,
+    .previous-button {
+        top: 130px;
     }
 
     .smallCard {

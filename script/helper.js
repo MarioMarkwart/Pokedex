@@ -45,6 +45,7 @@ function toggleNoScroll(){
     else document.getElementsByTagName('body')[0].classList.remove('noScroll');
 }
 
+
 /**
  * closing the card
  */
