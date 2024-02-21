@@ -205,6 +205,7 @@ html{
     align-items: center;
     cursor: pointer;
     transition: var(--effect);
+    gap: 10px;
 }
 
 .pokeball > img{
