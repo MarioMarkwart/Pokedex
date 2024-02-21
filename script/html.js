@@ -2,7 +2,6 @@
  * 
  * @param {number} i the smallCard-number
  */
-
 function renderPokemonSmallCardOuterHTML(i){
     let container = document.getElementById('overview-container');
     let type = allPokemon[i]['types'][0]['type']['name'];

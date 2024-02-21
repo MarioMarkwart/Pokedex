@@ -112,6 +112,12 @@ function setTitle(){
     else title.innerHTML = `Pokédex - #${allPokemon[pokemonIndex]['id']} ${firstLetterToUpperCase(allPokemon[pokemonIndex][namesLanguageField])}`;
 }
 
+
+/**
+ * returns how many pokemons got the attribute "id"
+ * which means all needed informations for the pokemon is already loaded
+ * @returns count as number
+ */
 function setAmountLoadedPokemon() {
 	let count = 0;
 	for (var key in allPokemon) {
@@ -121,6 +127,7 @@ function setAmountLoadedPokemon() {
 	}
 	return count;
 }
+
 
 /**
  * the up-arrow-button behaviour,
@@ -142,7 +149,6 @@ function hidePrevNextBtn(){
         document.getElementById('prevBtn').classList.remove("d-none");
         document.getElementById('nextBtn').classList.remove("d-none");
     }
-    
 }
 
 
@@ -203,6 +209,9 @@ async function loadedFromLocalStorage() {
 }
 
 
+/**
+ * set the icon of the pokeball the language which is active.
+ */
 function setPokeballLanguageIcon(){
     let pokeballIcon = document.getElementById('pokeball');
     if (language == 'de') pokeballIcon.src = './img/pokeball_DE.png';
