@@ -144,6 +144,8 @@ function hidePrevNextBtn(){
     }
     
 }
+
+
 /**
  * toggle the autoLoad functionality
  */
@@ -151,6 +153,8 @@ function toggleAutoLoad(){
     autoload = !autoload;
     setAutoLoad();
 }
+
+
 /**
  * Sets some styles while autoload and not searching and vice versa
  */

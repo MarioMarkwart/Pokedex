@@ -203,12 +203,12 @@ html{
 .pokeball{
     display: flex;
     align-items: center;
-    cursor: pointer;
     transition: var(--effect);
     gap: 10px;
 }
 
-.pokeball > img{
+#pokeball{
+    cursor: pointer;
     width: 60px;transition: var(--effect);
 }
 
@@ -507,7 +507,7 @@ html{
     transition: var(--effect);
 }
 
-.loadMorebutton:hover{
+.loadMoreBtn:hover{
     background-color: rgba(0,0,0,.2);
     transition: var(--effect);
 }
