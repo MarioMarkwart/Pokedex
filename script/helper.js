@@ -144,24 +144,26 @@ function hidePrevNextBtn(){
     }
     
 }
-
-
 /**
- * toggle the autoLoad functionality. Disabled while searching.
+ * toggle the autoLoad functionality
+ */
+function toggleAutoLoad(){
+    autoload = !autoload;
+    setAutoLoad();
+}
+/**
+ * Sets some styles while autoload and not searching and vice versa
  */
 function setAutoLoad(){
-    autoload = !autoload;
-
-    if (searching) autoload = false;
-
-    if (autoload){
-        document.getElementById('autoload').classList.add('autoloadActive');
-        document.getElementById('loadMore').classList.add('d-none');
-        document.getElementById('overview-container').style = "padding-bottom: 75px !important"
-    }else{
+    if (searching || !autoload){
         document.getElementById('autoload').classList.remove('autoloadActive');
         document.getElementById('loadMore').classList.remove('d-none');
-        document.getElementById('overview-container').style = "padding-bottom: 0 !important"
+        document.getElementById('overview-container').style = "padding-bottom: 0 !important";
+    }
+    else{
+        document.getElementById('autoload').classList.add('autoloadActive');
+        document.getElementById('loadMore').classList.add('d-none');
+        document.getElementById('overview-container').style = "padding-bottom: 75px !important";
     }
 }
 

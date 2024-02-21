@@ -13,7 +13,7 @@ let searchTimeout;
 let loading = false;
 let pokedexOpened = false;
 let searching = false;
-let autoload = true;
+let autoload = false;
 
 
 /**

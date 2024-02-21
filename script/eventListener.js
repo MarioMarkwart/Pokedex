@@ -15,7 +15,7 @@ window.addEventListener('scroll', () => {
     let fullHeight = document.body.offsetHeight;
 
     // Check if the scroll is within a certain range from the bottom
-    if ((scrollTop + windowHeight >= fullHeight) && autoload) {
+    if ((scrollTop + windowHeight >= fullHeight) && autoload && !searching) {
         loadMorePokemon();
     }
   })
