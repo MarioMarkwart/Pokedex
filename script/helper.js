@@ -98,7 +98,7 @@ function firstLetterToUpperCase(str){
  */
 function setFavIcon(){
     if (pokedexOpened) document.getElementById('favicon').href = allPokemon[pokemonIndex]['img'];
-    else document.getElementById('favicon').href = '/img/favicon.png';
+    else document.getElementById('favicon').href = './img/favicon.png';
 }
 
 

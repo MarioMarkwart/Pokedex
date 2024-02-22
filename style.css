@@ -317,9 +317,9 @@ html{
     gap: 10px;
 }
 
-#overview-container:has(.smallCard:hover) .smallCard:not(:hover){
-    opacity: .7;
+#overview-container > .smallCard:hover{
     transition: var(--effect);
+    box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.3);
 }
 
 .loadingBarContainer{
@@ -335,7 +335,8 @@ html{
     text-align: center;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1)
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1);
+    transition: var(--effect);
 }
 
 .smallCard h2{
