@@ -2,6 +2,7 @@ const MAX_POKEMON = 25; //set amount of Pokemon to be loaded each batch
 let url = `https://pokeapi.co/api/v2/pokemon/?limit=9999`;
 let allPokemon = {};
 let foundPokemon = [];
+let germanNames = [];
 let language = 'de';
 let namesLanguageField = 'germanName';
 let statsTable = "";
@@ -20,6 +21,7 @@ let autoload = false;
  * initial function
  */
 async function init() {
+    await loadGermanNames();
 	await loadAllPokemon();
 	await loadPokemonInformations();
     checkIfMobileDevice();
@@ -87,6 +89,15 @@ async function setPokemonInformations(url){
             ['url'] : url
         }
     }
+}
+
+
+/**
+ * load germanNames.json to germanNames[]
+ */
+async function loadGermanNames(){
+    let response = await fetch('./script/germanNames.json')
+    germanNames = await response.json();
 }
 
 
